@@ -1,0 +1,26 @@
+{
+  "name": "anclivepa-rj-video",
+  "version": "1.0.0",
+  "description": "Vídeo institucional Anclivepa RJ — Pós-graduação em Medicina Veterinária",
+  "scripts": {
+    "start": "remotion studio",
+    "render": "remotion render AnclivepaVideo out/video.mp4 --codec=h264",
+    "render:hq": "remotion render AnclivepaVideo out/video-hq.mp4 --codec=h264 --crf=12",
+    "preview": "remotion studio"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.290",
+    "@remotion/google-fonts": "4.0.290",
+    "remotion": "4.0.290",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.1",
+    "typescript": "5.4.5"
+  },
+  "remotion": {
+    "entryPoint": "src/index.ts"
+  }
+}
