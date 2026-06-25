@@ -89,42 +89,93 @@ def marcar_fora_proporcao(caminho: Path, larg_real: float, alt_real: float) -> P
 
 # ---------------------------------------------------------------- Photoshop
 
+# Mapeamentos para os nomes amigaveis do config -> constantes JSX nativas do PS.
+_PS_MODE_JSX = {"CMYK": "OpenDocumentMode.CMYK", "RGB": "OpenDocumentMode.RGB"}
+_PS_TIF_COMPRESSION_JSX = {
+    "NENHUMA": "TIFFEncoding.NONE",
+    "LZW":     "TIFFEncoding.TIFFLZW",
+    "ZIP":     "TIFFEncoding.TIFFZIP",
+    "JPEG":    "TIFFEncoding.JPEG",
+}
+_PS_CROP_JSX = {
+    "BOUNDINGBOX": "CropToType.BOUNDINGBOX",
+    "MEDIABOX":    "CropToType.MEDIABOX",
+    "CROPBOX":     "CropToType.CROPBOX",
+    "BLEEDBOX":    "CropToType.BLEEDBOX",
+    "TRIMBOX":     "CropToType.TRIMBOX",
+    "ARTBOX":      "CropToType.ARTBOX",
+}
+
+
+def _jsx_path(p: Path) -> str:
+    # JSX File() usa forward-slash mesmo no Windows; mais simples que escapar \.
+    return str(p).replace("\\", "/")
+
+
 def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
     ps = win32com.client.Dispatch("Photoshop.Application")
     ps.Visible = cfg.APLICATIVOS_VISIVEIS
-    ps.Preferences.RulerUnits = 3  # psCm
-    ps.Preferences.TypeUnits = 3
 
     dpi = cfg.dpi_para(info.larg_cm, info.alt_cm)
-
-    opcoes = win32com.client.Dispatch("Photoshop.PDFOpenOptions")
-    opcoes.Resolution = dpi
-    opcoes.Mode = cfg.ps_modo_cor_codigo()
-    opcoes.AntiAlias = True
-    opcoes.CropPage = 1  # psBoundingBox
-
-    doc = ps.Open(str(info.caminho), opcoes)
-    larg_real, alt_real = float(doc.Width), float(doc.Height)
-
-    if not (dentro_da_tolerancia(info.larg_cm, larg_real)
-            and dentro_da_tolerancia(info.alt_cm, alt_real)):
-        doc.Close(2)  # psDoNotSaveChanges
-        novo = marcar_fora_proporcao(info.caminho, larg_real, alt_real)
-        return (f"[FORA] {info.caminho.name}: nome={info.larg_cm}x{info.alt_cm}cm, "
-                f"real={larg_real:.2f}x{alt_real:.2f}cm -> {novo.name}")
-
     pasta_saida.mkdir(parents=True, exist_ok=True)
     destino = pasta_saida / info.caminho.with_suffix(".tif").name
 
-    tif = win32com.client.Dispatch("Photoshop.TiffSaveOptions")
-    tif.ImageCompression = cfg.ps_compressao_tif_codigo()
-    tif.ByteOrder = 2  # psIBMByteOrder
-    tif.LayerCompression = 2
-    tif.EmbedColorProfile = cfg.TIF_EMBUTIR_PERFIL
-    tif.Transparency = False
-    doc.SaveAs(str(destino), tif, True)
+    modo_jsx = _PS_MODE_JSX[cfg.PHOTOSHOP_MODO_COR.upper()]
+    comp_jsx = _PS_TIF_COMPRESSION_JSX[cfg.TIF_COMPRESSAO.upper()]
+    crop_jsx = _PS_CROP_JSX[getattr(cfg, "PHOTOSHOP_CROP_PDF", "MEDIABOX").upper()]
+    embed = "true" if cfg.TIF_EMBUTIR_PERFIL else "false"
 
-    return f"[OK]   {info.caminho.name}: {dpi} dpi -> {destino}"
+    jsx = f"""
+    (function() {{
+      try {{
+        app.preferences.rulerUnits = Units.CM;
+        app.preferences.typeUnits  = TypeUnits.CM;
+
+        var f = new File("{_jsx_path(info.caminho)}");
+        var opts = new PDFOpenOptions();
+        opts.resolution = {dpi};
+        opts.mode       = {modo_jsx};
+        opts.antiAlias  = true;
+        opts.cropPage   = {crop_jsx};
+        opts.suppressWarnings = true;
+
+        var doc = app.open(f, opts);
+        var w = doc.width.as("cm");
+        var h = doc.height.as("cm");
+        var expW = {info.larg_cm}, expH = {info.alt_cm}, tol = {cfg.TOLERANCIA_CM};
+
+        if (Math.abs(w - expW) > tol || Math.abs(h - expH) > tol) {{
+          doc.close(SaveOptions.DONOTSAVECHANGES);
+          "FORA|" + w.toFixed(2) + "|" + h.toFixed(2);
+        }} else {{
+          var out = new File("{_jsx_path(destino)}");
+          var tif = new TiffSaveOptions();
+          tif.imageCompression  = {comp_jsx};
+          tif.byteOrder         = ByteOrder.IBM;
+          tif.layerCompression  = LayerCompression.RLE;
+          tif.embedColorProfile = {embed};
+          tif.transparency      = false;
+          doc.saveAs(out, tif, true);
+          "OK|" + w.toFixed(2) + "|" + h.toFixed(2);
+        }}
+      }} catch (e) {{
+        "ERRO|" + e.toString();
+      }}
+    }})();
+    """
+
+    resultado = str(ps.DoJavaScript(jsx)).strip()
+    status, _, resto = resultado.partition("|")
+
+    if status == "OK":
+        return f"[OK]   {info.caminho.name}: {dpi} dpi -> {destino}"
+    if status == "FORA":
+        larg_real, _, alt_real = resto.partition("|")
+        larg_real, alt_real = float(larg_real), float(alt_real)
+        novo = marcar_fora_proporcao(info.caminho, larg_real, alt_real)
+        return (f"[FORA] {info.caminho.name}: nome={info.larg_cm}x{info.alt_cm}cm, "
+                f"real={larg_real:.2f}x{alt_real:.2f}cm -> {novo.name}")
+    return f"[ERRO] {info.caminho.name}: {resto or resultado}"
 
 
 # ----------------------------------------------------------------- CorelDRAW

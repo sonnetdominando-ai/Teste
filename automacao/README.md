@@ -118,6 +118,9 @@ Tudo abaixo é em `config.py`.
   `PHOTOSHOP_MODO_COR = "RGB"`.
 - **TIF sem compressão** (para RIPs antigos) → bloco 5,
   `TIF_COMPRESSAO = "NENHUMA"`.
+- **PDF do cliente vem com sangra/bleed e a validação acusa fora** →
+  bloco 5, `PHOTOSHOP_CROP_PDF = "TRIMBOX"` (mede a área de corte
+  em vez da página inteira).
 - **Rodar silencioso, sem abrir as janelas** → bloco 7,
   `APLICATIVOS_VISIVEIS = False`.
 

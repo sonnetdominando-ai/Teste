@@ -78,6 +78,14 @@ DPI_POR_TAMANHO = [
 #     "RGB"  -> tela / web
 PHOTOSHOP_MODO_COR = "CMYK"
 
+# Qual "caixa" do PDF define o tamanho da pagina aberta no Photoshop.
+# Em geral o cliente envia o PDF com a medida final na MEDIABOX. Se vier
+# com sangra/bleed, troque para "TRIMBOX" para validar o tamanho de
+# corte em vez do tamanho da pagina inteira.
+# Valores aceitos: "MEDIABOX", "BOUNDINGBOX", "CROPBOX",
+#                  "BLEEDBOX", "TRIMBOX", "ARTBOX"
+PHOTOSHOP_CROP_PDF = "MEDIABOX"
+
 # Compressao do TIF final.
 # Valores aceitos: "NENHUMA", "LZW", "ZIP", "JPEG"
 TIF_COMPRESSAO = "LZW"
@@ -116,18 +124,3 @@ def dpi_para(larg_cm: float, alt_cm: float) -> int:
         if limite is None or lado <= limite:
             return dpi
     return DPI_POR_TAMANHO[-1][1]
-
-
-# Mapeamento de nomes amigaveis para os codigos COM do Photoshop.
-_PS_MODO_COR = {"RGB": 2, "CMYK": 3}                    # psOpenRGB / psOpenCMYK
-_PS_COMPRESSAO_TIF = {                                   # psTiffEncoding*
-    "NENHUMA": 1, "LZW": 2, "ZIP": 3, "JPEG": 4,
-}
-
-
-def ps_modo_cor_codigo() -> int:
-    return _PS_MODO_COR[PHOTOSHOP_MODO_COR.upper()]
-
-
-def ps_compressao_tif_codigo() -> int:
-    return _PS_COMPRESSAO_TIF[TIF_COMPRESSAO.upper()]
