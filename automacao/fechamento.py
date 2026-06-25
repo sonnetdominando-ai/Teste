@@ -8,9 +8,14 @@ abre no programa certo, valida a proporcao e gera o arquivo final em "Saida\\":
     PDF        -> Photoshop  -> TIF (DPI conforme tamanho)
     CDR/EPS/AI -> CorelDRAW  -> CDR (corte router / corte e contorno)
 
-Se a dimensao real do arquivo nao bater com o nome, o arquivo de origem
-e renomeado com o prefixo FORA_PROPORCAO_ e nada e exportado. O arquivo
-NUNCA e redimensionado.
+Comportamento do Photoshop quanto a proporcao:
+  - Se a Art Box (ou caixa configurada) tem a MESMA proporcao do nome
+    do arquivo, a imagem e renderizada exatamente em <largura>x<altura> cm
+    no DPI alvo. Salva como  base.tif .
+  - Se NAO tem a mesma proporcao, salva no tamanho natural e adiciona a
+    medida real entre parenteses no nome:
+        1X VINIL FOSCO 60X75 (29.69x37.09).tif
+    Arquivos JAMAIS sao distorcidos.
 
 PARA ALTERAR QUALQUER REGRA, edite apenas o BLOCO DE CONFIGURACAO logo
 abaixo. Nao precisa mexer no resto do arquivo.
@@ -91,11 +96,16 @@ DPI_POR_TAMANHO = [
 # Aceita: "CMYK" (impressao) ou "RGB" (tela / web)
 PHOTOSHOP_MODO_COR = "CMYK"
 
-# Qual "caixa" do PDF define o tamanho da pagina. Em geral o cliente
-# manda a medida final na MEDIABOX. Se vier com sangra/bleed e a validacao
-# acusar fora, troque para "TRIMBOX".
-# Aceita: "MEDIABOX", "BOUNDINGBOX", "CROPBOX", "BLEEDBOX", "TRIMBOX", "ARTBOX"
-PHOTOSHOP_CROP_PDF = "MEDIABOX"
+# Qual "caixa" do PDF define o tamanho da pagina. O cliente normalmente
+# exporta a arte na Art Box, entao esse e o padrao. Troque se a sua
+# pre-impressao definir a medida final em outra caixa do PDF.
+# Aceita: "ARTBOX", "MEDIABOX", "BOUNDINGBOX", "CROPBOX", "BLEEDBOX", "TRIMBOX"
+PHOTOSHOP_CROP_PDF = "ARTBOX"
+
+# Folga aceita na conferencia da PROPORCAO (relacao largura/altura).
+# 0.005 = 0.5%. Aumente se o PDF do cliente vier com sangra leve que
+# distorce a proporcao.
+TOL_PROPORCAO = 0.005
 
 # Compressao do TIF final.
 # Aceita: "NENHUMA", "LZW", "ZIP", "JPEG"
@@ -210,50 +220,107 @@ def _jsx_path(p: Path) -> str:
 
 
 def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
+    """
+    Duas passadas no PDF:
+      1) abre em 72 dpi so para ler a dimensao natural da caixa configurada
+      2) se a PROPORCAO da caixa bate com o nome do arquivo:
+           re-abre num DPI calculado de forma que os pixels finais
+           correspondam exatamente a (largura_nome x altura_nome) @ DPI alvo,
+           depois ajusta apenas a metadata (sem reamostrar) -> qualidade
+           vetorial preservada e arquivo salvo com o nome puro.
+         se NAO bate:
+           re-abre no DPI alvo no tamanho natural e salva o TIF com o
+           tamanho real entre parenteses no nome:
+             1X VINIL FOSCO 60X75 (29.69x37.09).tif
+    """
+    import json
+
     ps = win32com.client.Dispatch("Photoshop.Application")
     ps.Visible = APLICATIVOS_VISIVEIS
 
-    dpi = dpi_para(info.larg_cm, info.alt_cm)
+    target_dpi = dpi_para(info.larg_cm, info.alt_cm)
     pasta_saida.mkdir(parents=True, exist_ok=True)
-    destino = pasta_saida / info.caminho.with_suffix(".tif").name
 
     modo_jsx = _PS_MODE_JSX[PHOTOSHOP_MODO_COR.upper()]
     comp_jsx = _PS_TIF_COMPRESSION_JSX[TIF_COMPRESSAO.upper()]
     crop_jsx = _PS_CROP_JSX[PHOTOSHOP_CROP_PDF.upper()]
     embed = "true" if TIF_EMBUTIR_PERFIL else "false"
 
+    input_lit = json.dumps(_jsx_path(info.caminho))
+    saida_lit = json.dumps(_jsx_path(pasta_saida))
+    base_lit  = json.dumps(info.caminho.stem)
+
     jsx = f"""
-    var __resultado;
-    var __step = "inicio";
+    var __resultado, __step = "inicio";
     try {{
-      __step = "prefs.rulerUnits";   app.preferences.rulerUnits = Units.CM;
-      __step = "prefs.typeUnits";    app.preferences.typeUnits  = TypeUnits.CM;
+      __step = "prefs";
+      app.preferences.rulerUnits = Units.CM;
+      app.preferences.typeUnits  = TypeUnits.CM;
 
-      __step = "new File(input)";    var f = new File("{_jsx_path(info.caminho)}");
-      __step = "new PDFOpenOptions"; var opts = new PDFOpenOptions();
-      __step = "opts.resolution";    opts.resolution = {dpi};
-      __step = "opts.mode";          opts.mode       = {modo_jsx};
-      __step = "opts.antiAlias";     opts.antiAlias  = true;
-      __step = "opts.cropPage";      opts.cropPage   = {crop_jsx};
+      var f          = new File({input_lit});
+      var pastaSaida = {saida_lit};
+      var base       = {base_lit};
+      var nameW = {info.larg_cm}, nameH = {info.alt_cm};
+      var targetDPI = {target_dpi};
+      var TOL_RATIO = {TOL_PROPORCAO};
 
-      __step = "app.open";           var doc = app.open(f, opts);
-      __step = "doc.width";          var w = doc.width.as("cm");
-      __step = "doc.height";         var h = doc.height.as("cm");
-      var expW = {info.larg_cm}, expH = {info.alt_cm}, tol = {TOLERANCIA_CM};
+      // ---- passada 1: medir o tamanho natural da caixa configurada ----
+      __step = "pass1.opts";
+      var o1 = new PDFOpenOptions();
+      o1.resolution = 72;
+      o1.mode       = {modo_jsx};
+      o1.antiAlias  = true;
+      o1.cropPage   = {crop_jsx};
 
-      if (Math.abs(w - expW) > tol || Math.abs(h - expH) > tol) {{
-        __step = "doc.close";        doc.close(SaveOptions.DONOTSAVECHANGES);
-        __resultado = "FORA|" + w.toFixed(2) + "|" + h.toFixed(2);
+      __step = "pass1.open";
+      var doc = app.open(f, o1);
+      __step = "pass1.measure";
+      var natW = doc.width.as("cm");
+      var natH = doc.height.as("cm");
+      __step = "pass1.close";
+      doc.close(SaveOptions.DONOTSAVECHANGES);
+
+      // ---- decide se a proporcao bate ----
+      __step = "ratio";
+      var natRatio  = natW / natH;
+      var nameRatio = nameW / nameH;
+      var proporcional =
+        Math.abs(natRatio - nameRatio) / nameRatio < TOL_RATIO;
+
+      // ---- passada 2: render final ----
+      var openDPI = proporcional ? (targetDPI * nameW / natW) : targetDPI;
+
+      __step = "pass2.opts";
+      var o2 = new PDFOpenOptions();
+      o2.resolution = openDPI;
+      o2.mode       = {modo_jsx};
+      o2.antiAlias  = true;
+      o2.cropPage   = {crop_jsx};
+
+      __step = "pass2.open";
+      doc = app.open(f, o2);
+
+      var nomeArq;
+      if (proporcional) {{
+        __step = "relabel";
+        // ajusta apenas a metadata (cm/dpi) sem mexer no pixel
+        doc.resizeImage(undefined, undefined, targetDPI, ResampleMethod.NONE);
+        nomeArq = base + ".tif";
       }} else {{
-        __step = "new File(out)";    var out = new File("{_jsx_path(destino)}");
-        __step = "new TiffSaveOptions"; var tif = new TiffSaveOptions();
-        __step = "tif.imageCompression"; tif.imageCompression  = {comp_jsx};
-        __step = "tif.byteOrder";    tif.byteOrder         = ByteOrder.IBM;
-        __step = "tif.embedProfile"; tif.embedColorProfile = {embed};
-        __step = "tif.transparency"; tif.transparency      = false;
-        __step = "doc.saveAs";       doc.saveAs(out, tif, true);
-        __resultado = "OK|" + w.toFixed(2) + "|" + h.toFixed(2);
+        nomeArq = base + " (" + natW.toFixed(2) + "x" + natH.toFixed(2) + ").tif";
       }}
+
+      __step = "saveAs";
+      var out = new File(pastaSaida + "/" + nomeArq);
+      var tif = new TiffSaveOptions();
+      tif.imageCompression  = {comp_jsx};
+      tif.byteOrder         = ByteOrder.IBM;
+      tif.embedColorProfile = {embed};
+      tif.transparency      = false;
+      doc.saveAs(out, tif, true);
+
+      __resultado = "OK|" + (proporcional ? "PROP" : "NAT") + "|"
+                  + natW.toFixed(2) + "|" + natH.toFixed(2) + "|" + nomeArq;
     }} catch (e) {{
       __resultado = "ERRO|step=" + __step + "|" + e.toString();
     }}
@@ -261,17 +328,16 @@ def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
     """
 
     resultado = str(ps.DoJavaScript(jsx)).strip()
-    status, _, resto = resultado.partition("|")
+    partes = resultado.split("|")
 
-    if status == "OK":
-        return f"[OK]   {info.caminho.name}: {dpi} dpi -> {destino}"
-    if status == "FORA":
-        larg_real, _, alt_real = resto.partition("|")
-        larg_real, alt_real = float(larg_real), float(alt_real)
-        novo = marcar_fora_proporcao(info.caminho, larg_real, alt_real)
-        return (f"[FORA] {info.caminho.name}: nome={info.larg_cm}x{info.alt_cm}cm, "
-                f"real={larg_real:.2f}x{alt_real:.2f}cm -> {novo.name}")
-    return f"[ERRO] {info.caminho.name}: {resto or resultado}"
+    if partes[0] == "OK" and len(partes) >= 5:
+        modo, nat_w, nat_h, nome = partes[1], partes[2], partes[3], partes[4]
+        destino = pasta_saida / nome
+        if modo == "PROP":
+            return f"[OK]   {info.caminho.name}: {target_dpi} dpi -> {destino}"
+        return (f"[OK*]  {info.caminho.name}: proporcao nao bate "
+                f"(natural {nat_w}x{nat_h}cm) -> {destino}")
+    return f"[ERRO] {info.caminho.name}: {resultado}"
 
 
 # ----------------------------------------------------------------- CorelDRAW
