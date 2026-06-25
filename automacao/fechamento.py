@@ -253,9 +253,10 @@ def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
     jsx = f"""
     var __resultado, __step = "inicio";
     try {{
-      __step = "prefs";
+      __step = "prefs.rulerUnits";
       app.preferences.rulerUnits = Units.CM;
-      app.preferences.typeUnits  = TypeUnits.CM;
+      // ATENCAO: TypeUnits NAO tem CM - so PIXELS/MM/POINTS. Como nao
+      // tratamos texto aqui, simplesmente nao mexemos em typeUnits.
 
       var f          = new File({input_lit});
       var pastaSaida = {saida_lit};
