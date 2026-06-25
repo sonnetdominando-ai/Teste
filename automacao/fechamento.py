@@ -924,72 +924,45 @@ def exportar_tif_corel(
         raise RuntimeError("ExportBitmap rodou mas o TIF nao apareceu / vazio")
 
 
-def _salvar_cdr_via_powershell(destino_cdr: Path, versao: int) -> tuple[bool, str]:
-    """Salva o ActiveDocument do Corel rodando como CDR via PowerShell.
-
-    PowerShell usa marshaling COM diferente do pywin32 e em geral
-    sobrevive ao bug "Python instance can not be converted to a COM
-    object" que aparece no pywin32+Corel em alguns Pythons.
-    Pre-requisito: o Corel ja deve estar rodando com o doc aberto
-    (e' o ActiveDocument que vai ser salvo).
+def _criar_save_as_options(corel, versao: int) -> tuple[object | None, str]:
+    """No CorelDRAW 2018+ (incluindo 2024 / 'Vector Graphics Core 25.x'),
+    o segundo argumento de Document.SaveAs nao e' um int de versao,
+    e' um objeto COM StructSaveAsOptions. Tenta criar essa struct por
+    varios caminhos e seta .Version = versao.
     """
-    import subprocess
-    path_ps = str(destino_cdr.resolve()).replace("'", "''")
-    script = (
-        "$ErrorActionPreference='Stop'; "
-        "$c=[Runtime.InteropServices.Marshal]::GetActiveObject('CorelDRAW.Application'); "
-        f"$c.ActiveDocument.SaveAs('{path_ps}', {int(versao)})"
-    )
-    try:
-        r = subprocess.run(
-            ["powershell", "-NoProfile", "-NonInteractive", "-Command", script],
-            capture_output=True, text=True, timeout=120,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return False, f"powershell falhou ao executar: {exc}"
-    if r.returncode != 0:
-        return False, f"powershell rc={r.returncode}: {(r.stderr or r.stdout).strip()}"
-    if destino_cdr.exists() and destino_cdr.stat().st_size > 0:
-        return True, ""
-    return False, "powershell rodou mas o CDR nao apareceu/vazio"
-
-
-def _salvar_cdr_via_vbscript(destino_cdr: Path, versao: int) -> tuple[bool, str]:
-    """Salva o ActiveDocument do Corel rodando como CDR via VBScript.
-
-    VBScript (cscript) usa o automation classico do Windows; e' o que
-    a maioria dos exemplos de Corel macro usa. Quando ate o PowerShell
-    falha, VBScript ainda costuma funcionar.
-    """
-    import subprocess
-    import tempfile
-    path_vbs = str(destino_cdr.resolve()).replace('"', '""')
-    script = (
-        'On Error Resume Next\n'
-        'Set c = GetObject(, "CorelDRAW.Application")\n'
-        'If Err.Number <> 0 Then WScript.Echo "ERRO: " & Err.Description : WScript.Quit 1\n'
-        'On Error Goto 0\n'
-        f'c.ActiveDocument.SaveAs "{path_vbs}", {int(versao)}\n'
-    )
-    tmp = Path(tempfile.gettempdir()) / "fechamento_corel_save.vbs"
-    try:
-        tmp.write_text(script, encoding="utf-8")
-        r = subprocess.run(
-            ["cscript", "//nologo", str(tmp)],
-            capture_output=True, text=True, timeout=120,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return False, f"vbscript falhou ao executar: {exc}"
-    finally:
+    candidatos = [
+        ("win32com.Dispatch('CorelDRAW.StructSaveAsOptions')",
+            lambda: win32com.client.Dispatch("CorelDRAW.StructSaveAsOptions")),
+        ("corel.CreateStructSaveAsOptions()",
+            lambda: corel.CreateStructSaveAsOptions()),
+        ("corel.CreateStructure('StructSaveAsOptions')",
+            lambda: corel.CreateStructure("StructSaveAsOptions")),
+        ("corel.CreateStructure('SaveAsOptions')",
+            lambda: corel.CreateStructure("SaveAsOptions")),
+    ]
+    erros: list[str] = []
+    for desc, factory in candidatos:
         try:
-            tmp.unlink()
-        except Exception:
-            pass
-    if r.returncode != 0:
-        return False, f"vbscript rc={r.returncode}: {(r.stderr or r.stdout).strip()}"
-    if destino_cdr.exists() and destino_cdr.stat().st_size > 0:
-        return True, ""
-    return False, "vbscript rodou mas o CDR nao apareceu/vazio"
+            opts = factory()
+        except Exception as exc:  # noqa: BLE001
+            erros.append(f"{desc}: {exc}")
+            continue
+        # Tenta setar a versao por varios nomes de propriedade conhecidos
+        for prop in ("Version", "VersionNumber", "FileVersion"):
+            try:
+                setattr(opts, prop, int(versao))
+                break
+            except Exception:
+                continue
+        # Algumas versoes pedem Overwrite=True para sobrescrever
+        for prop in ("Overwrite", "OverwriteExisting"):
+            try:
+                setattr(opts, prop, True)
+                break
+            except Exception:
+                continue
+        return opts, desc
+    return None, "; ".join(erros)
 
 
 def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
@@ -1039,36 +1012,32 @@ def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
             erros.append(f"{desc}: {exc}")
         return False
 
-    # ----- SaveAs com varias formas de passar os opcionais ---------------
-    # Em Corel, Document.SaveAs(Filename, [Version], [Reserved], [Options])
-    # As vezes o pywin32 trava no Options=Object/IDispatch ausente. Tentamos
-    # padding posicional com None/0/Missing.
+    # =====================================================================
+    # ESTRATEGIA PRINCIPAL para Corel 2018+ (incluindo 2024 / VG Core 25.x):
+    # SaveAs aceita (filename, StructSaveAsOptions). O int de versao
+    # vai DENTRO da struct, nao como argumento posicional.
+    # =====================================================================
+    opts, opts_origem = _criar_save_as_options(app or doc_alvo, n)
+    if opts is not None:
+        if tentar(f"doc.SaveAs(path, opts) [opts via {opts_origem}, Version={n}]",
+                  lambda: doc_alvo.SaveAs(caminho, opts)):
+            return
+    else:
+        erros.append(f"StructSaveAsOptions nao pode ser criado: {opts_origem}")
+
+    # =====================================================================
+    # FALLBACKS para versoes antigas (X8 e anteriores) ou se StructSaveAsOptions
+    # nao tiver funcionado. Respeitam a assinatura "1 a 3 args".
+    # =====================================================================
     tentativas_saveas = [
-        (f"doc.SaveAs(path, {n}, 0, None)",
-            lambda: doc_alvo.SaveAs(caminho, n, 0, None)),
-        (f"doc.SaveAs(path, {n}, 0, Missing)",
-            lambda: doc_alvo.SaveAs(caminho, n, 0, Missing)),
-        (f"doc.SaveAs(path, {n}, 0)",
-            lambda: doc_alvo.SaveAs(caminho, n, 0)),
-        (f"doc.SaveAs(path, {n})",
+        (f"doc.SaveAs(path, {n}) [int como versao]",
             lambda: doc_alvo.SaveAs(caminho, n)),
-        ("doc.SaveAs(path) [sem versao]",
+        ("doc.SaveAs(path) [sem versao, default do Corel]",
             lambda: doc_alvo.SaveAs(caminho)),
     ]
     for desc, chamada in tentativas_saveas:
         if tentar(desc, chamada):
             return
-
-    # ----- Application.SaveCurrentAs - assinatura mais simples -----------
-    if app is not None:
-        for desc, chamada in (
-            ("app.SaveCurrentAs(path)",
-                lambda: app.SaveCurrentAs(caminho)),
-            (f"app.SaveCurrentAs(path, {n})",
-                lambda: app.SaveCurrentAs(caminho, n)),
-        ):
-            if tentar(desc, chamada):
-                return
 
     # ----- SaveCopy / CopyTo (em algumas versoes existem) ----------------
     for nome_metodo in ("SaveCopy", "CopyTo"):
@@ -1089,17 +1058,14 @@ def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
         if tentar(desc, chamada):
             return
 
-    # ----- Subprocesso PowerShell (marshaling diferente do pywin32) ------
-    ok, msg = _salvar_cdr_via_powershell(destino_cdr, n)
-    if ok:
-        return
-    erros.append(f"powershell SaveAs(path, {n}): {msg}")
-
-    # ----- Subprocesso VBScript (automation classico) --------------------
-    ok, msg = _salvar_cdr_via_vbscript(destino_cdr, n)
-    if ok:
-        return
-    erros.append(f"vbscript SaveAs(path, {n}): {msg}")
+    # ----- FullFileName + Save() -----------------------------------------
+    # Em ultimo caso, tenta setar o nome do arquivo e usar Save() (sem args).
+    try:
+        doc_alvo.FullFileName = caminho
+        if tentar("doc.FullFileName=path; doc.Save()", lambda: doc_alvo.Save()):
+            return
+    except Exception as exc:  # noqa: BLE001
+        erros.append(f"FullFileName setter: {exc}")
 
     raise RuntimeError("; ".join(erros))
 
