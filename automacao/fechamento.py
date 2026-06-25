@@ -224,39 +224,38 @@ def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
 
     jsx = f"""
     var __resultado;
+    var __step = "inicio";
     try {{
-      app.preferences.rulerUnits = Units.CM;
-      app.preferences.typeUnits  = TypeUnits.CM;
+      __step = "prefs.rulerUnits";   app.preferences.rulerUnits = Units.CM;
+      __step = "prefs.typeUnits";    app.preferences.typeUnits  = TypeUnits.CM;
 
-      var f = new File("{_jsx_path(info.caminho)}");
-      var opts = new PDFOpenOptions();
-      opts.resolution = {dpi};
-      opts.mode       = {modo_jsx};
-      opts.antiAlias  = true;
-      opts.cropPage   = {crop_jsx};
-      opts.suppressWarnings = true;
+      __step = "new File(input)";    var f = new File("{_jsx_path(info.caminho)}");
+      __step = "new PDFOpenOptions"; var opts = new PDFOpenOptions();
+      __step = "opts.resolution";    opts.resolution = {dpi};
+      __step = "opts.mode";          opts.mode       = {modo_jsx};
+      __step = "opts.antiAlias";     opts.antiAlias  = true;
+      __step = "opts.cropPage";      opts.cropPage   = {crop_jsx};
 
-      var doc = app.open(f, opts);
-      var w = doc.width.as("cm");
-      var h = doc.height.as("cm");
+      __step = "app.open";           var doc = app.open(f, opts);
+      __step = "doc.width";          var w = doc.width.as("cm");
+      __step = "doc.height";         var h = doc.height.as("cm");
       var expW = {info.larg_cm}, expH = {info.alt_cm}, tol = {TOLERANCIA_CM};
 
       if (Math.abs(w - expW) > tol || Math.abs(h - expH) > tol) {{
-        doc.close(SaveOptions.DONOTSAVECHANGES);
+        __step = "doc.close";        doc.close(SaveOptions.DONOTSAVECHANGES);
         __resultado = "FORA|" + w.toFixed(2) + "|" + h.toFixed(2);
       }} else {{
-        var out = new File("{_jsx_path(destino)}");
-        var tif = new TiffSaveOptions();
-        tif.imageCompression  = {comp_jsx};
-        tif.byteOrder         = ByteOrder.IBM;
-        tif.layerCompression  = LayerCompression.RLE;
-        tif.embedColorProfile = {embed};
-        tif.transparency      = false;
-        doc.saveAs(out, tif, true);
+        __step = "new File(out)";    var out = new File("{_jsx_path(destino)}");
+        __step = "new TiffSaveOptions"; var tif = new TiffSaveOptions();
+        __step = "tif.imageCompression"; tif.imageCompression  = {comp_jsx};
+        __step = "tif.byteOrder";    tif.byteOrder         = ByteOrder.IBM;
+        __step = "tif.embedProfile"; tif.embedColorProfile = {embed};
+        __step = "tif.transparency"; tif.transparency      = false;
+        __step = "doc.saveAs";       doc.saveAs(out, tif, true);
         __resultado = "OK|" + w.toFixed(2) + "|" + h.toFixed(2);
       }}
     }} catch (e) {{
-      __resultado = "ERRO|" + e.toString();
+      __resultado = "ERRO|step=" + __step + "|" + e.toString();
     }}
     __resultado;
     """
