@@ -25,8 +25,12 @@ Uso:
     python fechamento.py "D:\\outra\\pasta"         # outra pasta
     python fechamento.py --arquivo "C:\\...\\1x_vinil_fosco_100x100.pdf"
 
-Requer Windows com Photoshop e/ou CorelDRAW instalados e pywin32:
-    pip install pywin32
+Requer Windows com Photoshop e/ou CorelDRAW instalados, mais:
+    pip install pywin32 pypdf
+
+(pywin32 = controle do Photoshop/Corel via COM;
+ pypdf  = leitura da Art Box do PDF sem precisar abri-lo no Photoshop,
+         para que o Photoshop abra direto na resolucao final.)
 """
 
 from __future__ import annotations
@@ -41,6 +45,11 @@ try:
     import win32com.client  # type: ignore
 except ImportError:
     win32com = None  # checado no main()
+
+try:
+    from pypdf import PdfReader  # type: ignore
+except ImportError:
+    PdfReader = None  # checado em processar_photoshop()
 
 
 # ############################################################################
@@ -245,109 +254,123 @@ def _jsx_path(p: Path) -> str:
     return str(p).replace("\\", "/")
 
 
+# Mapa de qual atributo do pypdf corresponde a cada caixa do PDF.
+_PYPDF_BOX_ATTR = {
+    "ARTBOX":      "artbox",
+    "MEDIABOX":    "mediabox",
+    "CROPBOX":     "cropbox",
+    "BLEEDBOX":    "bleedbox",
+    "TRIMBOX":     "trimbox",
+    "BOUNDINGBOX": "mediabox",  # pypdf nao tem boundingbox: cai pra mediabox
+}
+
+
+def _medir_caixa_pdf(pdf_path: Path, caixa: str) -> tuple[float, float] | None:
+    """Le a largura/altura (em cm) da caixa pedida na primeira pagina do PDF.
+
+    Retorna None se pypdf nao estiver instalado, o PDF nao puder ser lido
+    ou a caixa nao existir.
+    """
+    if PdfReader is None:
+        return None
+    attr = _PYPDF_BOX_ATTR.get(caixa.upper(), "mediabox")
+    try:
+        reader = PdfReader(str(pdf_path))
+        page = reader.pages[0]
+        box = getattr(page, attr, None) or page.mediabox
+        # PDF unit = ponto = 1/72 polegada; 1 polegada = 2,54 cm.
+        w_cm = float(box.width)  / 72.0 * 2.54
+        h_cm = float(box.height) / 72.0 * 2.54
+        return (w_cm, h_cm)
+    except Exception:
+        return None
+
+
 def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
     """
-    Duas passadas no PDF:
-      1) abre em 72 dpi so para ler a dimensao natural da caixa configurada
-      2) se a PROPORCAO da caixa bate com o nome do arquivo:
-           re-abre num DPI calculado de forma que os pixels finais
-           correspondam exatamente a (largura_nome x altura_nome) @ DPI alvo,
-           depois ajusta apenas a metadata (sem reamostrar) -> qualidade
-           vetorial preservada e arquivo salvo com o nome puro.
-         se NAO bate:
-           re-abre no DPI alvo no tamanho natural e salva o TIF com o
-           tamanho real entre parenteses no nome:
-             1X VINIL FOSCO 60X75 (29.69x37.09).tif
+    Passada UNICA no Photoshop. A caixa do PDF e lida antes via pypdf
+    (sem abrir o arquivo no Photoshop), o que permite calcular o DPI de
+    abertura de forma que o documento aberto ja tenha o tamanho final
+    correto - nao ha render em resolucao menor seguido de ampliacao.
+
+    Se a proporcao da caixa bate com o nome:
+        DPI de abertura = DPI_alvo * largura_nome / largura_da_caixa
+        -> apos abrir, relabela a metadata para nameW x nameH @ DPI_alvo
+           sem reamostrar (mesmos pixels).
+    Se NAO bate:
+        DPI de abertura = DPI_alvo
+        -> abre no tamanho natural e salva com a medida real entre
+           parenteses no nome do TIF. Arquivo jamais e distorcido.
     """
     import json
+
+    if PdfReader is None:
+        return (f"[ERRO] {info.caminho.name}: pypdf nao instalado. "
+                "Rode: pip install pypdf")
+
+    medida = _medir_caixa_pdf(info.caminho, PHOTOSHOP_CROP_PDF)
+    if medida is None:
+        return (f"[ERRO] {info.caminho.name}: nao consegui ler a "
+                f"{PHOTOSHOP_CROP_PDF} do PDF.")
+    nat_w, nat_h = medida
+
+    name_ratio = info.larg_cm / info.alt_cm
+    nat_ratio  = nat_w / nat_h
+    proporcional = abs(nat_ratio - name_ratio) / name_ratio < TOL_PROPORCAO
+
+    target_dpi = dpi_para(info.larg_cm, info.alt_cm)
+    open_dpi = (target_dpi * info.larg_cm / nat_w) if proporcional else target_dpi
+
+    pasta_saida.mkdir(parents=True, exist_ok=True)
+    if proporcional:
+        nome_arq = info.caminho.with_suffix(".tif").name
+    else:
+        nome_arq = f"{info.caminho.stem} ({nat_w:.2f}x{nat_h:.2f}).tif"
+    destino = pasta_saida / nome_arq
 
     ps = win32com.client.Dispatch("Photoshop.Application")
     ps.Visible = APLICATIVOS_VISIVEIS
 
-    target_dpi = dpi_para(info.larg_cm, info.alt_cm)
-    pasta_saida.mkdir(parents=True, exist_ok=True)
-
     modo_jsx = _PS_MODE_JSX[PHOTOSHOP_MODO_COR.upper()]
     comp_jsx = _PS_TIF_COMPRESSION_JSX[TIF_COMPRESSAO.upper()]
     crop_jsx = _PS_CROP_JSX[PHOTOSHOP_CROP_PDF.upper()]
-    embed = "true" if TIF_EMBUTIR_PERFIL else "false"
+    embed    = "true" if TIF_EMBUTIR_PERFIL else "false"
 
-    input_lit = json.dumps(_jsx_path(info.caminho))
-    saida_lit = json.dumps(_jsx_path(pasta_saida))
-    base_lit  = json.dumps(info.caminho.stem)
+    input_lit   = json.dumps(_jsx_path(info.caminho))
+    destino_lit = json.dumps(_jsx_path(destino))
+    relabel = "true" if proporcional else "false"
 
     jsx = f"""
     var __resultado, __step = "inicio";
     try {{
       __step = "prefs.rulerUnits";
       app.preferences.rulerUnits = Units.CM;
-      // ATENCAO: TypeUnits NAO tem CM - so PIXELS/MM/POINTS. Como nao
-      // tratamos texto aqui, simplesmente nao mexemos em typeUnits.
 
-      var f          = new File({input_lit});
-      var pastaSaida = {saida_lit};
-      var base       = {base_lit};
-      var nameW = {info.larg_cm}, nameH = {info.alt_cm};
-      var targetDPI = {target_dpi};
-      var TOL_RATIO = {TOL_PROPORCAO};
+      __step = "open.opts";
+      var opts = new PDFOpenOptions();
+      opts.resolution = {open_dpi};
+      opts.mode       = {modo_jsx};
+      opts.antiAlias  = true;
+      opts.cropPage   = {crop_jsx};
 
-      // ---- passada 1: medir o tamanho natural da caixa configurada ----
-      __step = "pass1.opts";
-      var o1 = new PDFOpenOptions();
-      o1.resolution = 72;
-      o1.mode       = {modo_jsx};
-      o1.antiAlias  = true;
-      o1.cropPage   = {crop_jsx};
+      __step = "app.open";
+      var doc = app.open(new File({input_lit}), opts);
 
-      __step = "pass1.open";
-      var doc = app.open(f, o1);
-      __step = "pass1.measure";
-      var natW = doc.width.as("cm");
-      var natH = doc.height.as("cm");
-      __step = "pass1.close";
-      doc.close(SaveOptions.DONOTSAVECHANGES);
-
-      // ---- decide se a proporcao bate ----
-      __step = "ratio";
-      var natRatio  = natW / natH;
-      var nameRatio = nameW / nameH;
-      var proporcional =
-        Math.abs(natRatio - nameRatio) / nameRatio < TOL_RATIO;
-
-      // ---- passada 2: render final ----
-      var openDPI = proporcional ? (targetDPI * nameW / natW) : targetDPI;
-
-      __step = "pass2.opts";
-      var o2 = new PDFOpenOptions();
-      o2.resolution = openDPI;
-      o2.mode       = {modo_jsx};
-      o2.antiAlias  = true;
-      o2.cropPage   = {crop_jsx};
-
-      __step = "pass2.open";
-      doc = app.open(f, o2);
-
-      var nomeArq;
-      if (proporcional) {{
+      if ({relabel}) {{
         __step = "relabel";
-        // ajusta apenas a metadata (cm/dpi) sem mexer no pixel
-        doc.resizeImage(undefined, undefined, targetDPI, ResampleMethod.NONE);
-        nomeArq = base + ".tif";
-      }} else {{
-        nomeArq = base + " (" + natW.toFixed(2) + "x" + natH.toFixed(2) + ").tif";
+        // mesma quantidade de pixels, ajusta apenas cm/dpi na metadata
+        doc.resizeImage(undefined, undefined, {target_dpi}, ResampleMethod.NONE);
       }}
 
       __step = "saveAs";
-      var out = new File(pastaSaida + "/" + nomeArq);
       var tif = new TiffSaveOptions();
       tif.imageCompression  = {comp_jsx};
       tif.byteOrder         = ByteOrder.IBM;
       tif.embedColorProfile = {embed};
       tif.transparency      = false;
-      doc.saveAs(out, tif, true);
+      doc.saveAs(new File({destino_lit}), tif, true);
 
-      __resultado = "OK|" + (proporcional ? "PROP" : "NAT") + "|"
-                  + natW.toFixed(2) + "|" + natH.toFixed(2) + "|" + nomeArq;
+      __resultado = "OK";
     }} catch (e) {{
       __resultado = "ERRO|step=" + __step + "|" + e.toString();
     }}
@@ -355,15 +378,14 @@ def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
     """
 
     resultado = str(ps.DoJavaScript(jsx)).strip()
-    partes = resultado.split("|")
-
-    if partes[0] == "OK" and len(partes) >= 5:
-        modo, nat_w, nat_h, nome = partes[1], partes[2], partes[3], partes[4]
-        destino = pasta_saida / nome
-        if modo == "PROP":
-            return f"[OK]   {info.caminho.name}: {target_dpi} dpi -> {destino}"
+    if resultado == "OK":
+        if proporcional:
+            return (f"[OK]   {info.caminho.name}: ArtBox {nat_w:.2f}x{nat_h:.2f}cm "
+                    f"-> {info.larg_cm}x{info.alt_cm}cm @ {target_dpi} dpi "
+                    f"(abriu @ {open_dpi:.0f} dpi, sem reamostragem) -> {destino.name}")
         return (f"[OK*]  {info.caminho.name}: proporcao nao bate "
-                f"(natural {nat_w}x{nat_h}cm) -> {destino}")
+                f"(natural {nat_w:.2f}x{nat_h:.2f}cm) @ {target_dpi} dpi "
+                f"-> {destino.name}")
     return f"[ERRO] {info.caminho.name}: {resultado}"
 
 
