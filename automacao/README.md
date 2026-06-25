@@ -2,8 +2,18 @@
 
 Roteiro em Python (Windows) que processa arquivos enviados pelo cliente,
 abre no Photoshop ou no CorelDRAW de acordo com a extensão, confere se a
-dimensão do arquivo bate com o nome e, se estiver correto, exporta um PDF
-final na subpasta `Saida`.
+dimensão do arquivo bate com o nome e, se estiver correto, gera o
+arquivo final de produção na subpasta `Saida`:
+
+- Photoshop → **TIF** para impressão.
+- CorelDRAW → **CDR** para corte em router / corte e contorno.
+
+### Regra de DPI do TIF
+
+| Lado maior   | DPI  |
+|--------------|-----:|
+| até 60 cm    | 300  |
+| acima de 60 cm | 100 |
 
 ## Convenção de nome
 
@@ -34,7 +44,8 @@ Roteamento por extensão:
 3. Abre o arquivo no programa correto.
 4. Compara a dimensão real do documento com a do nome
    (tolerância de **1 mm**).
-5. **Se bater** → exporta um PDF final em `C:\2026\Fechamento\Saida\`
+5. **Se bater** → gera o arquivo final em `C:\2026\Fechamento\Saida\`
+   (TIF para PDFs no Photoshop, CDR para CDR/EPS/AI no CorelDRAW)
    e deixa o arquivo aberto para você terminar a arte.
 6. **Se NÃO bater** → fecha o documento sem salvar e renomeia o
    original com o prefixo `FORA_PROPORCAO_real_<L>x<A>_…`.
@@ -67,10 +78,11 @@ python fechamento.py --arquivo "C:\...\1x_vinil_fosco_100x100.pdf"
 Abra `fechamento.py` e edite no topo:
 
 - `RAIZ_PADRAO`     — pasta monitorada.
-- `SUBPASTA_SAIDA`  — onde caem os PDFs finais (padrão `Saida`).
+- `SUBPASTA_SAIDA`  — onde caem os arquivos finais (padrão `Saida`).
 - `TOLERANCIA_CM`   — folga aceita na conferência (padrão `0.1` cm = 1 mm).
-- `DPI_PDF`         — resolução com que o Photoshop rasteriza o PDF de
-  entrada (padrão 300).
+- `LIMITE_DPI_CM`   — corte para mudar o DPI do TIF (padrão `60` cm).
+- `DPI_PEQUENO`     — DPI usado abaixo do limite (padrão `300`).
+- `DPI_GRANDE`      — DPI usado acima do limite (padrão `100`).
 - No bloco do Photoshop, o modo de cor está em **CMYK** (`Mode = 3`).
   Troque para `2` para abrir em RGB.
 

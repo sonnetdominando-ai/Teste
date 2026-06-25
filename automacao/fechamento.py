@@ -4,7 +4,9 @@ Automacao de fechamento de arquivos de producao.
 Le arquivos da pasta raiz (C:\\2026\\Fechamento por padrao), interpreta o nome
 no padrao  <qtd>x_<produto>_<largura>x<altura>.<ext>  (medidas em cm), abre no
 Photoshop (PDF) ou CorelDRAW (CDR/EPS/AI), valida se a proporcao do arquivo
-bate com o nome e, se bater, exporta um PDF final para a subpasta "Saida".
+bate com o nome e, se bater, gera o arquivo final na subpasta "Saida":
+    - PDF  -> Photoshop -> TIF (300 dpi ate 60x60 cm; 100 dpi acima disso)
+    - CDR/EPS/AI -> CorelDRAW -> CDR (corte router / corte contorno)
 
 Se a dimensao real NAO bater com o nome o arquivo de origem e renomeado com o
 prefixo  FORA_PROPORCAO_  e nada e exportado. O arquivo nunca e redimensionado.
@@ -36,10 +38,20 @@ RAIZ_PADRAO = r"C:\2026\Fechamento"
 SUBPASTA_SAIDA = "Saida"
 PREFIXO_FORA = "FORA_PROPORCAO_"
 TOLERANCIA_CM = 0.1  # 1 mm de folga na conferencia de proporcao
-DPI_PDF = 300
+
+# Regra de DPI do TIF final:
+#   - lado maior ate LIMITE_DPI_CM cm  -> DPI_PEQUENO
+#   - lado maior acima desse valor     -> DPI_GRANDE
+LIMITE_DPI_CM = 60.0
+DPI_PEQUENO = 300
+DPI_GRANDE = 100
 
 EXT_PHOTOSHOP = {".pdf"}
 EXT_COREL = {".cdr", ".eps", ".ai"}
+
+
+def dpi_para(larg_cm: float, alt_cm: float) -> int:
+    return DPI_GRANDE if max(larg_cm, alt_cm) > LIMITE_DPI_CM else DPI_PEQUENO
 
 # 1x_vinil_fosco_100x100.pdf  -> qtd=1, produto="vinil_fosco", larg=100, alt=100
 PADRAO_NOME = re.compile(
@@ -104,8 +116,10 @@ def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
     ps.Preferences.RulerUnits = 3  # psCm
     ps.Preferences.TypeUnits = 3
 
+    dpi = dpi_para(info.larg_cm, info.alt_cm)
+
     opcoes = win32com.client.Dispatch("Photoshop.PDFOpenOptions")
-    opcoes.Resolution = DPI_PDF
+    opcoes.Resolution = dpi
     opcoes.Mode = 3  # psOpenCMYK; mude para 2 (RGB) se preferir
     opcoes.AntiAlias = True
     opcoes.CropPage = 1  # psBoundingBox
@@ -129,15 +143,17 @@ def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
         )
 
     pasta_saida.mkdir(parents=True, exist_ok=True)
-    destino_pdf = pasta_saida / info.caminho.with_suffix(".pdf").name
+    destino_tif = pasta_saida / info.caminho.with_suffix(".tif").name
 
-    pdf_opts = win32com.client.Dispatch("Photoshop.PDFSaveOptions")
-    pdf_opts.EmbedColorProfile = True
-    pdf_opts.PDFStandard = 0
-    pdf_opts.PreserveEditing = False
-    doc.SaveAs(str(destino_pdf), pdf_opts, True)
+    tif_opts = win32com.client.Dispatch("Photoshop.TiffSaveOptions")
+    tif_opts.ImageCompression = 2  # psTiffLZW
+    tif_opts.ByteOrder = 2          # psIBMByteOrder
+    tif_opts.LayerCompression = 2
+    tif_opts.EmbedColorProfile = True
+    tif_opts.Transparency = False
+    doc.SaveAs(str(destino_tif), tif_opts, True)
 
-    return f"[OK]   {info.caminho.name}: exportado para {destino_pdf}"
+    return (f"[OK]   {info.caminho.name}: {dpi} dpi -> {destino_tif}")
 
 
 # ----------------------------------------------------------------- CorelDRAW
@@ -167,10 +183,11 @@ def processar_corel(info: InfoArquivo, pasta_saida: Path) -> str:
         )
 
     pasta_saida.mkdir(parents=True, exist_ok=True)
-    destino_pdf = pasta_saida / info.caminho.with_suffix(".pdf").name
-    doc.PublishToPDF(str(destino_pdf))
+    destino_cdr = pasta_saida / info.caminho.with_suffix(".cdr").name
+    # SaveAs do CorelDRAW detecta o formato pela extensao (.cdr)
+    doc.SaveAs(str(destino_cdr))
 
-    return f"[OK]   {info.caminho.name}: exportado para {destino_pdf}"
+    return f"[OK]   {info.caminho.name}: exportado para {destino_cdr}"
 
 
 # --------------------------------------------------------------------- loop
