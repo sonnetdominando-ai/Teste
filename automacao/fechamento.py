@@ -106,14 +106,15 @@ PALAVRAS_SAIDA_VETORIAL = {
     "CORTE LASER",
 }
 
-# V17: corte/router/laser tambem sai TIF (era CDR na V16).
-# O SaveAs CDR ficou instavel em pywin32+Corel mesmo com EnsureDispatch,
-# entao usamos o mesmo caminho: Corel abre o arquivo, seleciona tudo e
-# o ExportBitmap gera o TIF direto. ATENCAO: TIF nao preserva o caminho
-# de corte/contorno vetorial. Se sua maquina precisar do vetor para a
-# router/laser, troque FORMATO_VETORIAL_CORTE de volta para "cdr" e
-# tente regenerar %TEMP%/gen_py.
-FORMATO_VETORIAL_CORTE = "tif"
+# V18: corte/router/laser sai CDR vetorial (a cortadora precisa do caminho).
+# Impressao normal continua TIF.
+FORMATO_VETORIAL_CORTE = "cdr"
+
+# Versao Corel a usar no SaveAs do CDR. O numero corresponde a versao
+# da linha CorelDRAW (X3=13, X4=14, X5=15, X6=16, X7=17, X8=18,
+# 2017=19, 2018=20, 2019=21, 2020=22). Internamente o enum cdrFileVersion
+# multiplica por 100, ex.: cdrVersion18 = 1800 = CorelDRAW X8.
+COREL_CDR_VERSAO = 18  # X8
 
 MOSTRAR_EXTENSOES_NAO_SUPORTADAS = True
 
@@ -139,12 +140,6 @@ TIF_EMBUTIR_PERFIL = True
 # Para impressao normal o Corel publica PDF temporario e o Photoshop vira TIF.
 # A caixa que o Corel publica costuma ser MEDIABOX = tamanho da pagina.
 COREL_PDF_CROP_PHOTOSHOP = "MEDIABOX"
-
-# Versao de CDR para tentar no SaveAs (lista de fallbacks; a primeira que
-# funcionar e usada). Numeros maiores = arquivos compativeis somente com
-# Corel novo. Coloque a versao do Corel da sua maquina no topo.
-COREL_CDR_VERSOES_TENTAR = [None, 2020, 2019, 2018, 17, 16, 15, 14]
-
 
 # ---- 7) AJUSTES INTERNOS ---------------------------------------------------
 APLICATIVOS_VISIVEIS = True
@@ -930,15 +925,21 @@ def exportar_tif_corel(
 
 
 def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
-    """SaveAs como CDR. Depende do Corel ter sido aberto via
-    abrir_corel() -> EnsureDispatch (early-binding); caso contrario o
-    pywin32 nao consegue marshalar o SaveAs.
+    """SaveAs como CDR na versao COREL_CDR_VERSAO (padrao 18 = X8).
 
-    Estrategias em cascata:
-        1) doc.SaveAs(path)
-        2) doc.Application.ActiveDocument.SaveAs(path)  (caso doc esteja stale)
-        3) doc.SaveAs(path, versao) para cada versao em COREL_CDR_VERSOES_TENTAR
+    Depende do Corel ter sido aberto via abrir_corel() (EnsureDispatch),
+    senao o pywin32 nao conhece o tipo do enum cdrFileVersion e quebra
+    com "Python instance can not be converted to a COM object".
+
+    Estrategias em cascata, da mais especifica para a mais geral:
+        1) doc.SaveAs(path, constants.cdrVersionN) - constante nomeada
+        2) doc.SaveAs(path, N * 100)                - valor do enum
+        3) doc.SaveAs(path, N)                      - numero simples
+        4) doc.SaveAs(path)                         - versao default do Corel
+        5) ActiveDocument.SaveAs(path)              - caso doc esteja stale
     """
+    from win32com.client import constants
+
     destino_cdr.parent.mkdir(parents=True, exist_ok=True)
     if destino_cdr.exists():
         try:
@@ -948,6 +949,7 @@ def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
 
     caminho = str(destino_cdr.resolve())
     erros: list[str] = []
+    n = int(COREL_CDR_VERSAO)
 
     def tentar(desc: str, chamada) -> bool:
         try:
@@ -959,11 +961,31 @@ def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
             erros.append(f"{desc}: {exc}")
         return False
 
-    # 1) SaveAs simples no doc atual
-    if tentar("doc.SaveAs(path)", lambda: doc.SaveAs(caminho)):
+    # 1) constante nomeada (precisa de EnsureDispatch e da constante existir)
+    nome_const = f"cdrVersion{n}"
+    versao_const = getattr(constants, nome_const, None)
+    if versao_const is not None:
+        if tentar(f"SaveAs(path, constants.{nome_const}={versao_const})",
+                  lambda v=versao_const: doc.SaveAs(caminho, v)):
+            return
+
+    # 2) valor de enum (N*100 = 1800 para X8)
+    valor_enum = n * 100
+    if tentar(f"SaveAs(path, {valor_enum})",
+              lambda: doc.SaveAs(caminho, valor_enum)):
         return
 
-    # 2) Re-pega o ActiveDocument (defensivo)
+    # 3) numero simples
+    if tentar(f"SaveAs(path, {n})",
+              lambda: doc.SaveAs(caminho, n)):
+        return
+
+    # 4) sem versao - usa a default do Corel rodando
+    if tentar("SaveAs(path) [versao default]",
+              lambda: doc.SaveAs(caminho)):
+        return
+
+    # 5) ActiveDocument
     try:
         active = doc.Application.ActiveDocument
         if tentar("ActiveDocument.SaveAs(path)",
@@ -971,14 +993,6 @@ def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
             return
     except Exception as exc:  # noqa: BLE001
         erros.append(f"ActiveDocument acesso: {exc}")
-
-    # 3) Com versao explicita
-    for versao in COREL_CDR_VERSOES_TENTAR:
-        if versao is None:
-            continue
-        if tentar(f"doc.SaveAs(path, v={versao})",
-                  lambda v=versao: doc.SaveAs(caminho, int(v))):
-            return
 
     raise RuntimeError("; ".join(erros))
 
@@ -1065,8 +1079,20 @@ def processar_corel(info: InfoArquivo, pasta_saida: Path) -> str:
 
 # ---- CORTE/ROUTER/LASER: Corel -> CDR vetorial -----------------------------
 
-def _ajustar_corel_para_medida(doc, larg_cm: float, alt_cm: float) -> str:
-    """Coloca a pagina e o desenho no tamanho pedido (proporcao bate)."""
+def _ajustar_corel_para_medida(
+    doc,
+    larg_cm: float,
+    alt_cm: float,
+    redimensionar_shapes: bool = True,
+) -> str:
+    """Coloca a pagina no tamanho pedido. Opcionalmente redimensiona shapes.
+
+    - redimensionar_shapes=True (proporcao bate): scaleia objetos para
+      preencher a pagina, sem distorcer.
+    - redimensionar_shapes=False (proporcao nao bate): so muda o tamanho
+      da pagina; objetos ficam onde estao (a cortadora vai ler a area
+      total da pagina como area de corte).
+    """
     erros: list[str] = []
     try:
         doc.Unit = CDR_CENTIMETER
@@ -1074,15 +1100,22 @@ def _ajustar_corel_para_medida(doc, larg_cm: float, alt_cm: float) -> str:
         erros.append(f"doc.Unit: {exc}")
 
     pagina = doc.ActivePage
+    pagina_ok = False
     try:
         pagina.SetSize(float(larg_cm), float(alt_cm))
+        pagina_ok = True
     except Exception as exc:  # noqa: BLE001
         erros.append(f"SetSize: {exc}")
         try:
             pagina.SizeWidth = float(larg_cm)
             pagina.SizeHeight = float(alt_cm)
+            pagina_ok = True
         except Exception as exc2:  # noqa: BLE001
             erros.append(f"SizeWidth/Height: {exc2}")
+
+    if not redimensionar_shapes:
+        return "pagina ajustada (objetos preservados)" if pagina_ok \
+            else "falha ao ajustar pagina (" + "; ".join(erros) + ")"
 
     try:
         sr = pagina.Shapes.All
@@ -1113,13 +1146,16 @@ def _ajustar_corel_para_medida(doc, larg_cm: float, alt_cm: float) -> str:
 
 
 def processar_corel_vetor(info: InfoArquivo, pasta_saida: Path) -> str:
-    """Corte/router/laser. V17: abre no Corel, seleciona tudo e exporta TIF.
+    """Corte/router/laser. V18: salva CDR vetorial na versao COREL_CDR_VERSAO.
 
-    Antes (V16): tentava SaveAs CDR, mas o pywin32 quebra na marshalizacao
-    dos parametros opcionais (cdrFileVersion etc.). Mesmo com EnsureDispatch
-    o SaveAs ficou instavel.
-    Agora (V17): usa ExportBitmap igual ao que voce faria manualmente:
-    Edit > Select All > File > Export TIF.
+    Comportamento:
+        - SEMPRE coloca a pagina na medida do nome do arquivo (a cortadora
+          le essa pagina como area de corte).
+        - Se a proporcao bate, escala os objetos para preencher a pagina,
+          sem distorcer.
+        - Se a proporcao NAO bate, os objetos ficam onde estao. O arquivo
+          ainda sai com a pagina correta (sem marcador FORA no nome),
+          mas a mensagem de log avisa.
     """
     corel = abrir_corel()
     doc = None
@@ -1135,39 +1171,31 @@ def processar_corel_vetor(info: InfoArquivo, pasta_saida: Path) -> str:
                  and dentro_da_tolerancia(info.alt_cm, alt_real))
         prop_ok = proporcao_bate(larg_real, alt_real, info.larg_cm, info.alt_cm)
 
-        ajustou_info = ""
-        if bateu:
-            larg_final, alt_final = info.larg_cm, info.alt_cm
-            nome_final = info.caminho.with_suffix(".tif").name
-            status = "MATCH"
-        elif prop_ok:
-            step = "ajustar_vetor"
-            ajustou_info = _ajustar_corel_para_medida(doc, info.larg_cm, info.alt_cm)
-            larg_final, alt_final = info.larg_cm, info.alt_cm
-            nome_final = info.caminho.with_suffix(".tif").name
-            status = "AJUSTADO"
-        else:
-            larg_final, alt_final = larg_real, alt_real
-            nome_final = nome_saida_fora(info.caminho, larg_real, alt_real, ".tif")
-            status = "FORA"
+        step = "ajustar_pagina_para_nome"
+        ajustou_info = _ajustar_corel_para_medida(
+            doc, info.larg_cm, info.alt_cm,
+            redimensionar_shapes=(bateu or prop_ok),
+        )
 
+        nome_final = info.caminho.with_suffix("." + FORMATO_VETORIAL_CORTE).name
         destino = pasta_saida / nome_final
-        dpi = dpi_para(larg_final, alt_final)
 
-        step = "exportar_tif"
-        exportar_tif_corel(doc, destino, larg_final, alt_final, dpi,
-                           modo_cor=PHOTOSHOP_MODO_COR)
+        step = "salvar_cdr"
+        salvar_cdr_corel(doc, destino)
 
-        if status == "MATCH":
-            return (f"[OK-VETOR] {info.caminho.name}: corte/router/laser, pagina bateu; "
-                    f"Corel ExportBitmap TIF LZW {dpi} dpi -> {destino}")
-        if status == "AJUSTADO":
-            return (f"[OK-VETOR] {info.caminho.name}: corte/router/laser, proporcao bateu; "
-                    f"{ajustou_info}; Corel ExportBitmap TIF LZW {dpi} dpi -> {destino}")
-        return (f"[FORA-VETOR] {info.caminho.name}: corte/router/laser, nao deu para colocar em "
-                f"{info.larg_cm:g}x{info.alt_cm:g}cm sem risco; "
-                f"Corel ExportBitmap TIF LZW {dpi} dpi no tamanho real "
-                f"{larg_real:.2f}x{alt_real:.2f}cm -> {destino}")
+        if bateu:
+            tag, descr = "OK-VETOR", "pagina ja batia"
+        elif prop_ok:
+            tag, descr = "OK-VETOR", "proporcao bateu; objetos ajustados"
+        else:
+            tag, descr = "OK-VETOR-FORA", (
+                "proporcao do arquivo nao bate com o nome; pagina foi setada para "
+                f"{info.larg_cm:g}x{info.alt_cm:g}cm mas os objetos ficaram no tamanho "
+                f"original (pagina veio {larg_real:.2f}x{alt_real:.2f}cm)"
+            )
+
+        return (f"[{tag}] {info.caminho.name}: CorelDRAW SaveAs CDR v{COREL_CDR_VERSAO}, "
+                f"{descr}; {ajustou_info} -> {destino}")
     except Exception as exc:  # noqa: BLE001
         return f"[ERRO] {info.caminho.name}: CorelDRAW VETOR step={step}: {exc}"
     finally:
