@@ -743,7 +743,32 @@ def _como_float(valor) -> float:
 
 
 def abrir_corel():
-    corel = win32com.client.Dispatch("CorelDRAW.Application")
+    """Abre o CorelDRAW preferindo EARLY-binding (gencache.EnsureDispatch).
+
+    Por que EnsureDispatch e nao Dispatch?
+        O CorelDRAW SaveAs tem parametros opcionais com tipos de enum
+        proprios (cdrFileVersion, cdrFilter etc.). Em late-binding o
+        pywin32 nao conhece esses tipos e gera o erro:
+            "The Python instance can not be converted to a COM object"
+        EnsureDispatch gera stubs Python a partir do type library do
+        Corel e o pywin32 passa a saber marshallar tudo direito.
+
+    Primeira chamada pode demorar 10-30s gerando %TEMP%/gen_py/...
+    Se a geracao falhar (permissao, typelib quebrada), cai para
+    Dispatch tardio com aviso - nesse caso o SaveAs CDR pode falhar
+    e a unica saida e regenerar manualmente:
+        python -m win32com.client.makepy "CorelDRAW.Application"
+    ou apagar a pasta %TEMP%/gen_py e rodar de novo.
+    """
+    try:
+        from win32com.client import gencache
+        corel = gencache.EnsureDispatch("CorelDRAW.Application")
+    except Exception as exc:  # noqa: BLE001
+        sys.stderr.write(
+            f"[AVISO] EnsureDispatch falhou ({exc}); usando Dispatch tardio. "
+            "SaveAs como CDR pode falhar. Tente apagar %TEMP%/gen_py e rodar de novo.\n"
+        )
+        corel = win32com.client.Dispatch("CorelDRAW.Application")
     corel.Visible = APLICATIVOS_VISIVEIS
     return corel
 
@@ -811,13 +836,14 @@ def publicar_corel_pdf_temporario(doc, destino_pdf: Path) -> None:
 
 
 def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
-    """SaveAs como CDR com varias estrategias de fallback.
+    """SaveAs como CDR. Depende do Corel ter sido aberto via
+    abrir_corel() -> EnsureDispatch (early-binding); caso contrario o
+    pywin32 nao consegue marshalar o SaveAs.
 
-    O SaveAs do Corel via COM varia bastante entre versoes. Tentamos:
-        1) doc.SaveAs(path)            - infere CDR pela extensao
-        2) doc.SaveAs(path, version)   - para cada versao em COREL_CDR_VERSOES_TENTAR
-        3) doc.Application.ActiveDocument.SaveAs(...) - mesmas tentativas
-    Se nada funcionar, levanta com a lista de erros.
+    Estrategias em cascata:
+        1) doc.SaveAs(path)
+        2) doc.Application.ActiveDocument.SaveAs(path)  (caso doc esteja stale)
+        3) doc.SaveAs(path, versao) para cada versao em COREL_CDR_VERSOES_TENTAR
     """
     destino_cdr.parent.mkdir(parents=True, exist_ok=True)
     if destino_cdr.exists():
@@ -829,27 +855,36 @@ def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
     caminho = str(destino_cdr.resolve())
     erros: list[str] = []
 
-    def tentar(alvo, descricao: str) -> bool:
-        for versao in COREL_CDR_VERSOES_TENTAR:
-            try:
-                if versao is None:
-                    alvo.SaveAs(caminho)
-                else:
-                    alvo.SaveAs(caminho, int(versao))
-                if destino_cdr.exists() and destino_cdr.stat().st_size > 0:
-                    return True
-                erros.append(f"{descricao} SaveAs(v={versao}): arquivo nao apareceu")
-            except Exception as exc:  # noqa: BLE001
-                erros.append(f"{descricao} SaveAs(v={versao}): {exc}")
+    def tentar(desc: str, chamada) -> bool:
+        try:
+            chamada()
+            if destino_cdr.exists() and destino_cdr.stat().st_size > 0:
+                return True
+            erros.append(f"{desc}: arquivo nao apareceu")
+        except Exception as exc:  # noqa: BLE001
+            erros.append(f"{desc}: {exc}")
         return False
 
-    if tentar(doc, "doc"):
+    # 1) SaveAs simples no doc atual
+    if tentar("doc.SaveAs(path)", lambda: doc.SaveAs(caminho)):
         return
+
+    # 2) Re-pega o ActiveDocument (defensivo)
     try:
-        if tentar(doc.Application.ActiveDocument, "ActiveDocument"):
+        active = doc.Application.ActiveDocument
+        if tentar("ActiveDocument.SaveAs(path)",
+                  lambda: active.SaveAs(caminho)):
             return
     except Exception as exc:  # noqa: BLE001
         erros.append(f"ActiveDocument acesso: {exc}")
+
+    # 3) Com versao explicita
+    for versao in COREL_CDR_VERSOES_TENTAR:
+        if versao is None:
+            continue
+        if tentar(f"doc.SaveAs(path, v={versao})",
+                  lambda v=versao: doc.SaveAs(caminho, int(v))):
+            return
 
     raise RuntimeError("; ".join(erros))
 
