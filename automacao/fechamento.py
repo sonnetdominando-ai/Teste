@@ -106,8 +106,14 @@ PALAVRAS_SAIDA_VETORIAL = {
     "CORTE LASER",
 }
 
-# V16: corte/router/laser sai CDR vetorial (era PDF na V15).
-FORMATO_VETORIAL_CORTE = "cdr"
+# V17: corte/router/laser tambem sai TIF (era CDR na V16).
+# O SaveAs CDR ficou instavel em pywin32+Corel mesmo com EnsureDispatch,
+# entao usamos o mesmo caminho: Corel abre o arquivo, seleciona tudo e
+# o ExportBitmap gera o TIF direto. ATENCAO: TIF nao preserva o caminho
+# de corte/contorno vetorial. Se sua maquina precisar do vetor para a
+# router/laser, troque FORMATO_VETORIAL_CORTE de volta para "cdr" e
+# tente regenerar %TEMP%/gen_py.
+FORMATO_VETORIAL_CORTE = "tif"
 
 MOSTRAR_EXTENSOES_NAO_SUPORTADAS = True
 
@@ -835,6 +841,94 @@ def publicar_corel_pdf_temporario(doc, destino_pdf: Path) -> None:
     raise RuntimeError("; ".join(erros))
 
 
+def _const(constants_mod, nome: str, fallback: int) -> int:
+    """Le uma constante do Corel via win32com.client.constants com fallback."""
+    try:
+        return int(getattr(constants_mod, nome))
+    except Exception:
+        return fallback
+
+
+def exportar_tif_corel(
+    doc,
+    destino_tif: Path,
+    larg_cm: float,
+    alt_cm: float,
+    dpi: int,
+    modo_cor: str = "CMYK",
+) -> None:
+    """Equivale a, dentro do Corel: Edit > Select All > File > Export TIF.
+
+    Requer que `doc` venha de abrir_corel() (EnsureDispatch). Os enums
+    cdrTIFF, cdrCurrentPage, cdrSelection, cdrCMYKColorImage,
+    cdrNormalAntiAliasing, cdrCompressionLZW etc. ficam em
+    win32com.client.constants depois que o gencache gerou os stubs.
+    """
+    from win32com.client import constants
+
+    destino_tif.parent.mkdir(parents=True, exist_ok=True)
+    if destino_tif.exists():
+        try:
+            destino_tif.unlink()
+        except Exception:
+            pass
+
+    caminho = str(destino_tif.resolve())
+
+    cdrTIFF              = _const(constants, "cdrTIFF",              857)
+    cdrCurrentPage       = _const(constants, "cdrCurrentPage",       1)
+    cdrSelection         = _const(constants, "cdrSelection",         2)
+    cdrCMYK              = _const(constants, "cdrCMYKColorImage",    5)
+    cdrRGB               = _const(constants, "cdrRGBColorImage",     4)
+    cdrAntiAlias         = _const(constants, "cdrNormalAntiAliasing", 2)
+    cdrCompLZW           = _const(constants, "cdrCompressionLZW",    4)
+
+    image_type = cdrCMYK if modo_cor.upper() == "CMYK" else cdrRGB
+
+    # Numero de pixels para sair na largura/altura pedidas no DPI alvo.
+    larg_px = int(round(larg_cm / 2.54 * dpi))
+    alt_px  = int(round(alt_cm  / 2.54 * dpi))
+
+    # Tenta selecionar TUDO da pagina ativa. Se conseguir, usa cdrSelection;
+    # se nao, exporta a pagina inteira (cdrCurrentPage). O resultado pratico
+    # costuma ser o mesmo quando a arte ja preenche a pagina.
+    export_range = cdrCurrentPage
+    try:
+        try:
+            doc.ClearSelection()
+        except Exception:
+            pass
+        pagina = doc.ActivePage
+        shapes_all = pagina.Shapes.All
+        if callable(shapes_all):
+            shapes_all = shapes_all()
+        if int(shapes_all.Count) > 0:
+            shapes_all.CreateSelection()
+            export_range = cdrSelection
+    except Exception:
+        export_range = cdrCurrentPage
+
+    # ExportBitmap(FileName, Filter, ExportRange, ImageType, Width, Height,
+    #              ResolutionX, ResolutionY, AntiAliasingType, Transparent,
+    #              UseColorProfile, MaintainAspect, Compression)
+    doc.ExportBitmap(
+        caminho,
+        cdrTIFF,
+        export_range,
+        image_type,
+        larg_px, alt_px,
+        int(dpi), int(dpi),
+        cdrAntiAlias,
+        False,            # Transparent
+        True,             # UseColorProfile
+        True,             # MaintainAspect
+        cdrCompLZW,
+    )
+
+    if not destino_tif.exists() or destino_tif.stat().st_size == 0:
+        raise RuntimeError("ExportBitmap rodou mas o TIF nao apareceu / vazio")
+
+
 def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
     """SaveAs como CDR. Depende do Corel ter sido aberto via
     abrir_corel() -> EnsureDispatch (early-binding); caso contrario o
@@ -1019,7 +1113,14 @@ def _ajustar_corel_para_medida(doc, larg_cm: float, alt_cm: float) -> str:
 
 
 def processar_corel_vetor(info: InfoArquivo, pasta_saida: Path) -> str:
-    """Corte/router/laser. Saida CDR vetorial. NUNCA vira TIF."""
+    """Corte/router/laser. V17: abre no Corel, seleciona tudo e exporta TIF.
+
+    Antes (V16): tentava SaveAs CDR, mas o pywin32 quebra na marshalizacao
+    dos parametros opcionais (cdrFileVersion etc.). Mesmo com EnsureDispatch
+    o SaveAs ficou instavel.
+    Agora (V17): usa ExportBitmap igual ao que voce faria manualmente:
+    Edit > Select All > File > Export TIF.
+    """
     corel = abrir_corel()
     doc = None
     step = "inicio"
@@ -1036,32 +1137,37 @@ def processar_corel_vetor(info: InfoArquivo, pasta_saida: Path) -> str:
 
         ajustou_info = ""
         if bateu:
-            nome_final = info.caminho.with_suffix("." + FORMATO_VETORIAL_CORTE).name
+            larg_final, alt_final = info.larg_cm, info.alt_cm
+            nome_final = info.caminho.with_suffix(".tif").name
             status = "MATCH"
         elif prop_ok:
             step = "ajustar_vetor"
             ajustou_info = _ajustar_corel_para_medida(doc, info.larg_cm, info.alt_cm)
-            nome_final = info.caminho.with_suffix("." + FORMATO_VETORIAL_CORTE).name
+            larg_final, alt_final = info.larg_cm, info.alt_cm
+            nome_final = info.caminho.with_suffix(".tif").name
             status = "AJUSTADO"
         else:
-            nome_final = nome_saida_fora(info.caminho, larg_real, alt_real,
-                                         "." + FORMATO_VETORIAL_CORTE)
+            larg_final, alt_final = larg_real, alt_real
+            nome_final = nome_saida_fora(info.caminho, larg_real, alt_real, ".tif")
             status = "FORA"
 
         destino = pasta_saida / nome_final
+        dpi = dpi_para(larg_final, alt_final)
 
-        step = "salvar_cdr"
-        salvar_cdr_corel(doc, destino)
+        step = "exportar_tif"
+        exportar_tif_corel(doc, destino, larg_final, alt_final, dpi,
+                           modo_cor=PHOTOSHOP_MODO_COR)
 
         if status == "MATCH":
             return (f"[OK-VETOR] {info.caminho.name}: corte/router/laser, pagina bateu; "
-                    f"saiu CDR vetorial -> {destino}")
+                    f"Corel ExportBitmap TIF LZW {dpi} dpi -> {destino}")
         if status == "AJUSTADO":
             return (f"[OK-VETOR] {info.caminho.name}: corte/router/laser, proporcao bateu; "
-                    f"{ajustou_info}; saiu CDR vetorial -> {destino}")
-        return (f"[FORA-VETOR] {info.caminho.name}: corte/router/laser nao pode virar TIF e "
-                f"nao deu para colocar em {info.larg_cm:g}x{info.alt_cm:g}cm sem risco; "
-                f"saiu CDR {larg_real:.2f}x{alt_real:.2f}cm -> {destino}")
+                    f"{ajustou_info}; Corel ExportBitmap TIF LZW {dpi} dpi -> {destino}")
+        return (f"[FORA-VETOR] {info.caminho.name}: corte/router/laser, nao deu para colocar em "
+                f"{info.larg_cm:g}x{info.alt_cm:g}cm sem risco; "
+                f"Corel ExportBitmap TIF LZW {dpi} dpi no tamanho real "
+                f"{larg_real:.2f}x{alt_real:.2f}cm -> {destino}")
     except Exception as exc:  # noqa: BLE001
         return f"[ERRO] {info.caminho.name}: CorelDRAW VETOR step={step}: {exc}"
     finally:
