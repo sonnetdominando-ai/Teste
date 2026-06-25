@@ -223,42 +223,42 @@ def processar_photoshop(info: InfoArquivo, pasta_saida: Path) -> str:
     embed = "true" if TIF_EMBUTIR_PERFIL else "false"
 
     jsx = f"""
-    (function() {{
-      try {{
-        app.preferences.rulerUnits = Units.CM;
-        app.preferences.typeUnits  = TypeUnits.CM;
+    var __resultado;
+    try {{
+      app.preferences.rulerUnits = Units.CM;
+      app.preferences.typeUnits  = TypeUnits.CM;
 
-        var f = new File("{_jsx_path(info.caminho)}");
-        var opts = new PDFOpenOptions();
-        opts.resolution = {dpi};
-        opts.mode       = {modo_jsx};
-        opts.antiAlias  = true;
-        opts.cropPage   = {crop_jsx};
-        opts.suppressWarnings = true;
+      var f = new File("{_jsx_path(info.caminho)}");
+      var opts = new PDFOpenOptions();
+      opts.resolution = {dpi};
+      opts.mode       = {modo_jsx};
+      opts.antiAlias  = true;
+      opts.cropPage   = {crop_jsx};
+      opts.suppressWarnings = true;
 
-        var doc = app.open(f, opts);
-        var w = doc.width.as("cm");
-        var h = doc.height.as("cm");
-        var expW = {info.larg_cm}, expH = {info.alt_cm}, tol = {TOLERANCIA_CM};
+      var doc = app.open(f, opts);
+      var w = doc.width.as("cm");
+      var h = doc.height.as("cm");
+      var expW = {info.larg_cm}, expH = {info.alt_cm}, tol = {TOLERANCIA_CM};
 
-        if (Math.abs(w - expW) > tol || Math.abs(h - expH) > tol) {{
-          doc.close(SaveOptions.DONOTSAVECHANGES);
-          "FORA|" + w.toFixed(2) + "|" + h.toFixed(2);
-        }} else {{
-          var out = new File("{_jsx_path(destino)}");
-          var tif = new TiffSaveOptions();
-          tif.imageCompression  = {comp_jsx};
-          tif.byteOrder         = ByteOrder.IBM;
-          tif.layerCompression  = LayerCompression.RLE;
-          tif.embedColorProfile = {embed};
-          tif.transparency      = false;
-          doc.saveAs(out, tif, true);
-          "OK|" + w.toFixed(2) + "|" + h.toFixed(2);
-        }}
-      }} catch (e) {{
-        "ERRO|" + e.toString();
+      if (Math.abs(w - expW) > tol || Math.abs(h - expH) > tol) {{
+        doc.close(SaveOptions.DONOTSAVECHANGES);
+        __resultado = "FORA|" + w.toFixed(2) + "|" + h.toFixed(2);
+      }} else {{
+        var out = new File("{_jsx_path(destino)}");
+        var tif = new TiffSaveOptions();
+        tif.imageCompression  = {comp_jsx};
+        tif.byteOrder         = ByteOrder.IBM;
+        tif.layerCompression  = LayerCompression.RLE;
+        tif.embedColorProfile = {embed};
+        tif.transparency      = false;
+        doc.saveAs(out, tif, true);
+        __resultado = "OK|" + w.toFixed(2) + "|" + h.toFixed(2);
       }}
-    }})();
+    }} catch (e) {{
+      __resultado = "ERRO|" + e.toString();
+    }}
+    __resultado;
     """
 
     resultado = str(ps.DoJavaScript(jsx)).strip()
