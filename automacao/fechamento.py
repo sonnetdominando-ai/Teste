@@ -924,6 +924,74 @@ def exportar_tif_corel(
         raise RuntimeError("ExportBitmap rodou mas o TIF nao apareceu / vazio")
 
 
+def _salvar_cdr_via_powershell(destino_cdr: Path, versao: int) -> tuple[bool, str]:
+    """Salva o ActiveDocument do Corel rodando como CDR via PowerShell.
+
+    PowerShell usa marshaling COM diferente do pywin32 e em geral
+    sobrevive ao bug "Python instance can not be converted to a COM
+    object" que aparece no pywin32+Corel em alguns Pythons.
+    Pre-requisito: o Corel ja deve estar rodando com o doc aberto
+    (e' o ActiveDocument que vai ser salvo).
+    """
+    import subprocess
+    path_ps = str(destino_cdr.resolve()).replace("'", "''")
+    script = (
+        "$ErrorActionPreference='Stop'; "
+        "$c=[Runtime.InteropServices.Marshal]::GetActiveObject('CorelDRAW.Application'); "
+        f"$c.ActiveDocument.SaveAs('{path_ps}', {int(versao)})"
+    )
+    try:
+        r = subprocess.run(
+            ["powershell", "-NoProfile", "-NonInteractive", "-Command", script],
+            capture_output=True, text=True, timeout=120,
+        )
+    except Exception as exc:  # noqa: BLE001
+        return False, f"powershell falhou ao executar: {exc}"
+    if r.returncode != 0:
+        return False, f"powershell rc={r.returncode}: {(r.stderr or r.stdout).strip()}"
+    if destino_cdr.exists() and destino_cdr.stat().st_size > 0:
+        return True, ""
+    return False, "powershell rodou mas o CDR nao apareceu/vazio"
+
+
+def _salvar_cdr_via_vbscript(destino_cdr: Path, versao: int) -> tuple[bool, str]:
+    """Salva o ActiveDocument do Corel rodando como CDR via VBScript.
+
+    VBScript (cscript) usa o automation classico do Windows; e' o que
+    a maioria dos exemplos de Corel macro usa. Quando ate o PowerShell
+    falha, VBScript ainda costuma funcionar.
+    """
+    import subprocess
+    import tempfile
+    path_vbs = str(destino_cdr.resolve()).replace('"', '""')
+    script = (
+        'On Error Resume Next\n'
+        'Set c = GetObject(, "CorelDRAW.Application")\n'
+        'If Err.Number <> 0 Then WScript.Echo "ERRO: " & Err.Description : WScript.Quit 1\n'
+        'On Error Goto 0\n'
+        f'c.ActiveDocument.SaveAs "{path_vbs}", {int(versao)}\n'
+    )
+    tmp = Path(tempfile.gettempdir()) / "fechamento_corel_save.vbs"
+    try:
+        tmp.write_text(script, encoding="utf-8")
+        r = subprocess.run(
+            ["cscript", "//nologo", str(tmp)],
+            capture_output=True, text=True, timeout=120,
+        )
+    except Exception as exc:  # noqa: BLE001
+        return False, f"vbscript falhou ao executar: {exc}"
+    finally:
+        try:
+            tmp.unlink()
+        except Exception:
+            pass
+    if r.returncode != 0:
+        return False, f"vbscript rc={r.returncode}: {(r.stderr or r.stdout).strip()}"
+    if destino_cdr.exists() and destino_cdr.stat().st_size > 0:
+        return True, ""
+    return False, "vbscript rodou mas o CDR nao apareceu/vazio"
+
+
 def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
     """Salva CDR usando varias APIs do Corel - SaveAs e' notoriamente
     instavel via pywin32 (mesmo com EnsureDispatch falha com
@@ -1020,6 +1088,18 @@ def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
     for desc, chamada in tentativas_export:
         if tentar(desc, chamada):
             return
+
+    # ----- Subprocesso PowerShell (marshaling diferente do pywin32) ------
+    ok, msg = _salvar_cdr_via_powershell(destino_cdr, n)
+    if ok:
+        return
+    erros.append(f"powershell SaveAs(path, {n}): {msg}")
+
+    # ----- Subprocesso VBScript (automation classico) --------------------
+    ok, msg = _salvar_cdr_via_vbscript(destino_cdr, n)
+    if ok:
+        return
+    erros.append(f"vbscript SaveAs(path, {n}): {msg}")
 
     raise RuntimeError("; ".join(erros))
 
@@ -1208,21 +1288,8 @@ def processar_corel_vetor(info: InfoArquivo, pasta_saida: Path) -> str:
         destino = pasta_saida / nome_final
 
         step = "salvar_cdr"
-        formato_real = "cdr"
-        try:
-            salvar_cdr_corel(doc, destino)
-        except Exception as cdr_exc:  # noqa: BLE001
-            # Fallback: nenhum metodo de salvar CDR funcionou nessa
-            # combinacao Corel + pywin32. Publica PDF vetorial - a cortadora
-            # normalmente le PDF de corte tambem.
-            destino_pdf = destino.with_suffix(".pdf")
-            publicar_corel_pdf_temporario(doc, destino_pdf)
-            destino = destino_pdf
-            formato_real = "pdf"
-            ajustou_info = (
-                f"CDR SaveAs/Export falharam ({cdr_exc}); fallback PDF vetorial. "
-                + ajustou_info
-            )
+        # NAO ha fallback para PDF: se nada salvar como CDR, erro mesmo.
+        salvar_cdr_corel(doc, destino)
 
         if bateu:
             tag, descr = "OK-VETOR", "pagina ja batia"
@@ -1235,9 +1302,7 @@ def processar_corel_vetor(info: InfoArquivo, pasta_saida: Path) -> str:
                 f"original (pagina veio {larg_real:.2f}x{alt_real:.2f}cm)"
             )
 
-        formato_label = (f"CDR v{COREL_CDR_VERSAO}" if formato_real == "cdr"
-                         else "PDF vetorial (CDR indisponivel)")
-        return (f"[{tag}] {info.caminho.name}: CorelDRAW {formato_label}, "
+        return (f"[{tag}] {info.caminho.name}: CorelDRAW SaveAs CDR v{COREL_CDR_VERSAO}, "
                 f"{descr}; {ajustou_info} -> {destino}")
     except Exception as exc:  # noqa: BLE001
         return f"[ERRO] {info.caminho.name}: CorelDRAW VETOR step={step}: {exc}"
