@@ -925,20 +925,17 @@ def exportar_tif_corel(
 
 
 def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
-    """SaveAs como CDR na versao COREL_CDR_VERSAO (padrao 18 = X8).
+    """Salva CDR usando varias APIs do Corel - SaveAs e' notoriamente
+    instavel via pywin32 (mesmo com EnsureDispatch falha com
+    "Python instance can not be converted to a COM object" em algumas
+    versoes), entao tambem tentamos Export, SaveCurrentAs, SaveCopy
+    e CopyTo, com varias formas de passar os argumentos opcionais.
 
-    Depende do Corel ter sido aberto via abrir_corel() (EnsureDispatch),
-    senao o pywin32 nao conhece o tipo do enum cdrFileVersion e quebra
-    com "Python instance can not be converted to a COM object".
-
-    Estrategias em cascata, da mais especifica para a mais geral:
-        1) doc.SaveAs(path, constants.cdrVersionN) - constante nomeada
-        2) doc.SaveAs(path, N * 100)                - valor do enum
-        3) doc.SaveAs(path, N)                      - numero simples
-        4) doc.SaveAs(path)                         - versao default do Corel
-        5) ActiveDocument.SaveAs(path)              - caso doc esteja stale
+    Se TODAS falharem, levanta RuntimeError com a lista completa de
+    erros - o caller deve cair para o fallback de PublishToPDF.
     """
     from win32com.client import constants
+    import pythoncom
 
     destino_cdr.parent.mkdir(parents=True, exist_ok=True)
     if destino_cdr.exists():
@@ -950,6 +947,19 @@ def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
     caminho = str(destino_cdr.resolve())
     erros: list[str] = []
     n = int(COREL_CDR_VERSAO)
+    Missing = pythoncom.Missing
+
+    # Re-pega o ActiveDocument: as vezes o doc fica stale apos um SetSize
+    # em pagina/ShapeRange.
+    try:
+        app = doc.Application
+        doc_alvo = app.ActiveDocument
+    except Exception:
+        app = None
+        doc_alvo = doc
+
+    cdrCDR         = _const(constants, "cdrCDR", 1284)
+    cdrCurrentPage = _const(constants, "cdrCurrentPage", 1)
 
     def tentar(desc: str, chamada) -> bool:
         try:
@@ -961,38 +971,55 @@ def salvar_cdr_corel(doc, destino_cdr: Path) -> None:
             erros.append(f"{desc}: {exc}")
         return False
 
-    # 1) constante nomeada (precisa de EnsureDispatch e da constante existir)
-    nome_const = f"cdrVersion{n}"
-    versao_const = getattr(constants, nome_const, None)
-    if versao_const is not None:
-        if tentar(f"SaveAs(path, constants.{nome_const}={versao_const})",
-                  lambda v=versao_const: doc.SaveAs(caminho, v)):
+    # ----- SaveAs com varias formas de passar os opcionais ---------------
+    # Em Corel, Document.SaveAs(Filename, [Version], [Reserved], [Options])
+    # As vezes o pywin32 trava no Options=Object/IDispatch ausente. Tentamos
+    # padding posicional com None/0/Missing.
+    tentativas_saveas = [
+        (f"doc.SaveAs(path, {n}, 0, None)",
+            lambda: doc_alvo.SaveAs(caminho, n, 0, None)),
+        (f"doc.SaveAs(path, {n}, 0, Missing)",
+            lambda: doc_alvo.SaveAs(caminho, n, 0, Missing)),
+        (f"doc.SaveAs(path, {n}, 0)",
+            lambda: doc_alvo.SaveAs(caminho, n, 0)),
+        (f"doc.SaveAs(path, {n})",
+            lambda: doc_alvo.SaveAs(caminho, n)),
+        ("doc.SaveAs(path) [sem versao]",
+            lambda: doc_alvo.SaveAs(caminho)),
+    ]
+    for desc, chamada in tentativas_saveas:
+        if tentar(desc, chamada):
             return
 
-    # 2) valor de enum (N*100 = 1800 para X8)
-    valor_enum = n * 100
-    if tentar(f"SaveAs(path, {valor_enum})",
-              lambda: doc.SaveAs(caminho, valor_enum)):
-        return
+    # ----- Application.SaveCurrentAs - assinatura mais simples -----------
+    if app is not None:
+        for desc, chamada in (
+            ("app.SaveCurrentAs(path)",
+                lambda: app.SaveCurrentAs(caminho)),
+            (f"app.SaveCurrentAs(path, {n})",
+                lambda: app.SaveCurrentAs(caminho, n)),
+        ):
+            if tentar(desc, chamada):
+                return
 
-    # 3) numero simples
-    if tentar(f"SaveAs(path, {n})",
-              lambda: doc.SaveAs(caminho, n)):
-        return
-
-    # 4) sem versao - usa a default do Corel rodando
-    if tentar("SaveAs(path) [versao default]",
-              lambda: doc.SaveAs(caminho)):
-        return
-
-    # 5) ActiveDocument
-    try:
-        active = doc.Application.ActiveDocument
-        if tentar("ActiveDocument.SaveAs(path)",
-                  lambda: active.SaveAs(caminho)):
+    # ----- SaveCopy / CopyTo (em algumas versoes existem) ----------------
+    for nome_metodo in ("SaveCopy", "CopyTo"):
+        metodo = getattr(doc_alvo, nome_metodo, None)
+        if metodo is None:
+            continue
+        if tentar(f"doc.{nome_metodo}(path)", lambda m=metodo: m(caminho)):
             return
-    except Exception as exc:  # noqa: BLE001
-        erros.append(f"ActiveDocument acesso: {exc}")
+
+    # ----- Export com filtro cdrCDR --------------------------------------
+    tentativas_export = [
+        ("doc.Export(path, cdrCDR, cdrCurrentPage)",
+            lambda: doc_alvo.Export(caminho, cdrCDR, cdrCurrentPage)),
+        ("doc.Export(path, cdrCDR)",
+            lambda: doc_alvo.Export(caminho, cdrCDR)),
+    ]
+    for desc, chamada in tentativas_export:
+        if tentar(desc, chamada):
+            return
 
     raise RuntimeError("; ".join(erros))
 
@@ -1181,7 +1208,21 @@ def processar_corel_vetor(info: InfoArquivo, pasta_saida: Path) -> str:
         destino = pasta_saida / nome_final
 
         step = "salvar_cdr"
-        salvar_cdr_corel(doc, destino)
+        formato_real = "cdr"
+        try:
+            salvar_cdr_corel(doc, destino)
+        except Exception as cdr_exc:  # noqa: BLE001
+            # Fallback: nenhum metodo de salvar CDR funcionou nessa
+            # combinacao Corel + pywin32. Publica PDF vetorial - a cortadora
+            # normalmente le PDF de corte tambem.
+            destino_pdf = destino.with_suffix(".pdf")
+            publicar_corel_pdf_temporario(doc, destino_pdf)
+            destino = destino_pdf
+            formato_real = "pdf"
+            ajustou_info = (
+                f"CDR SaveAs/Export falharam ({cdr_exc}); fallback PDF vetorial. "
+                + ajustou_info
+            )
 
         if bateu:
             tag, descr = "OK-VETOR", "pagina ja batia"
@@ -1194,7 +1235,9 @@ def processar_corel_vetor(info: InfoArquivo, pasta_saida: Path) -> str:
                 f"original (pagina veio {larg_real:.2f}x{alt_real:.2f}cm)"
             )
 
-        return (f"[{tag}] {info.caminho.name}: CorelDRAW SaveAs CDR v{COREL_CDR_VERSAO}, "
+        formato_label = (f"CDR v{COREL_CDR_VERSAO}" if formato_real == "cdr"
+                         else "PDF vetorial (CDR indisponivel)")
+        return (f"[{tag}] {info.caminho.name}: CorelDRAW {formato_label}, "
                 f"{descr}; {ajustou_info} -> {destino}")
     except Exception as exc:  # noqa: BLE001
         return f"[ERRO] {info.caminho.name}: CorelDRAW VETOR step={step}: {exc}"
