@@ -133,14 +133,40 @@ APLICATIVOS_VISIVEIS = True
 # ############################################################################
 
 
-# 1x_vinil_fosco_100x100  ->  qtd=1, produto="vinil_fosco", larg=100, alt=100
+# Exemplos validos (e como o script interpreta):
+#   1x_vinil_fosco_100x100.pdf
+#       -> qtd=1, produto="vinil fosco", 100x100
+#   1X ADESIVO FOSCO 145X87 - COLLER NETSHOES.pdf
+#       -> qtd=1, produto="ADESIVO FOSCO", 145x87  (resto: cliente)
+#   1X_LONA_-_MV_-_120X310.pdf
+#       -> qtd=1, produto="LONA MV", 120x310
+#   1X LONA FOSCA 120X320 _-_MV_-_120X310 - (EXEMPLO).pdf
+#       -> qtd=1, produto="LONA FOSCA", 120x320   (pega o PRIMEIRO L x A;
+#                                                  120x310 e a referencia
+#                                                  interna do cliente)
+#   1X VINIL FOSCO 145X87 1X ADESIVO FOSCO 145X87 - COLLER NETSHOES.pdf
+#       -> qtd=1, produto="VINIL FOSCO", 145x87   (pega o PRIMEIRO; o
+#                                                  segundo item precisa
+#                                                  ser um arquivo separado)
+#
+# Aceita como separadores: "_", "-" e espaco (em qualquer combinacao).
+# Medidas SEMPRE em centimetros.
 _PADRAO_NOME = re.compile(
-    r"^(?P<qtd>\d+)x[_\-\s]+"
-    r"(?P<produto>.+?)[_\-\s]+"
+    r"^"
+    r"(?P<qtd>\d+)x[_\-\s]+"
+    r"(?P<produto>.+?)"
+    r"[_\-\s]+"
     r"(?P<larg>\d+(?:[.,]\d+)?)x(?P<alt>\d+(?:[.,]\d+)?)"
-    r"$",
-    re.IGNORECASE,
+    r"(?![0-9])",          # garante que largura/altura nao sao prefixo
+    re.IGNORECASE,         #   de outro numero maior
 )
+
+
+def _limpar_produto(s: str) -> str:
+    # transforma separadores soltos ("_-_", "_-", " - ", etc.) em espaco
+    s = re.sub(r"[_\-\s]+", " ", s).strip()
+    # tira pedacos vazios entre separadores (ex.: "LONA - - MV" -> "LONA MV")
+    return re.sub(r"\s+", " ", s)
 
 
 def dpi_para(larg_cm: float, alt_cm: float) -> int:
@@ -177,7 +203,7 @@ def parse_nome(caminho: Path) -> InfoArquivo | None:
     return InfoArquivo(
         caminho=caminho,
         qtd=int(m.group("qtd")),
-        produto=m.group("produto").strip("_- "),
+        produto=_limpar_produto(m.group("produto")),
         larg_cm=float(m.group("larg").replace(",", ".")),
         alt_cm=float(m.group("alt").replace(",", ".")),
     )
