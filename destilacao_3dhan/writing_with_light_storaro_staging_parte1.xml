@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Schaefer & Salvato,                          -->
+<!-- "Writing with Light: An Interview with Vittorio Storaro"        -->
+<!-- Film Quarterly 35(3):15-25 (Spring 1982) · JSTOR 1211923        -->
+<!-- PARTE 1/2 — VIS-S01..S10 + EST-S01 — A LUZ COMO ESCRITA         -->
+<!-- Fonte [V] de ofício (fala de mestre); tier N2/N3. NÃO é N1.     -->
+<!-- STAGING: renumerar a partir do último ID real de cada domínio.  -->
+<!-- ids S01+ por-obra; colidem por desenho com Rogers/Goel/Cérebro  -->
+<!-- vivo — a INGESTÃO renumera/deduplica/merge.                     -->
+<!-- ============================================================== -->
+<unidades>
+
+<!-- ALVO: cinematografia_cor_visual.xml -->
+
+<regra id="VIS-S01" tipo="principio">
+  <gatilho>Ao definir o que a fotografia/iluminação de uma cena deve FAZER — quando se está prestes a tratar luz e cor como acabamento estético em vez de como portadores de significado.</gatilho>
+  <mecanismo>Luz e cor não decoram a história: constroem uma SEGUNDA história que corre em paralelo à trama e é decodificada pela audiência consciente E inconscientemente, fazendo-a sentir e entender mais claramente do que é a história. É "escrever com luz", não "pintar com luz" — a diferença é semântica, não decorativa: cada escolha de tonalidade/brilho/cor é um signo que diz algo sobre o estado dramático, não um ornamento agradável. Como o canal é sub-consciente, ele comunica por baixo do diálogo e da ação, adicionando uma camada de sentido que o espectador absorve sem perceber que a absorveu. Transferível a qualquer mídia visual (vídeo, design, ilustração): toda decisão visual deve carregar carga narrativa, não só beleza.</mecanismo>
+  <condicoes>
+    <vale_quando>Há uma história/intenção a comunicar e a luz pode ser desenhada para espelhá-la (cinema, vídeo narrativo, fotografia editorial).</vale_quando>
+    <enfraquece_quando>A escolha visual é feita por beleza isolada ("pintar com luz") sem ancoragem no que a história precisa dizer — vira ornamento mudo.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIS-S03">O belo-local atrai e compete com a fidelidade à história; a escrita-com-luz exige subordinar o belo ao significado (ver unidade).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro: "trying to describe the story of the film through the light... a parallel story... so that through light and color you can feel and understand, consciously and unconsciously, much more clearly what the story is about."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIS-S02">A escrita-com-luz exige primeiro um conceito reitor que diga O QUÊ escrever.</relacao>
+    <relacao tipo="sinergia" alvo="EST-S01">O canal paralelo age tanto por símbolo (VIS-S07) quanto por fisiologia (EST-S01).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982 (Univ. of California Press). JSTOR 1211923. p.15. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S02" tipo="principio">
+  <gatilho>No início de um projeto visual, antes de tomar qualquer decisão de luz/cor/lente — quando se sente a tentação de começar a filmar/produzir sem um eixo definido.</gatilho>
+  <mecanismo>Antes de produzir, extrai-se da história sua IDEIA central e decide-se como representá-la de cinco formas simultâneas — simbólica, emocional, psicológica, realista e física. Esse conceito reitor, pré-comprometido, vira o FILTRO de toda decisão posterior: reduz o espaço de escolha, dá um critério objetivo de "serve / não serve" e protege contra a deriva. Sem ele, não há como saber o que se está fazendo ("se não acho isso primeiro, não consigo fazer o filme"). O mecanismo é cognitivo: uma intenção única e explícita ancora milhares de microdecisões e impede que cada uma seja renegociada do zero. O conceito é proposto de volta (contraproposto) ao diretor e, acordado, torna-se a estrutura — clara desde o começo, mas viva (pode evoluir dia a dia).</mecanismo>
+  <condicoes>
+    <vale_quando>Há uma história ou mensagem com uma ideia central identificável da qual derivar o conceito.</vale_quando>
+    <enfraquece_quando>O conceito não foi achado antes de começar — então não há critério e cada decisão fica à mercê do que parece bonito no momento.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIS-S03">O conceito reitor só funciona se sustentado pela disciplina de unidade (rejeitar o belo que o contradiz).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro: "I try to find what is the main idea and how it can be represented in a symbolic, emotional, psychological, realistic and physical way... if I don't find that first, I don't think I can do the picture."</aplicacao>
+    <aplicacao>*Apocalypse Now*: conceito reitor = "imposição de uma cultura sobre outra" (Conrad) traduzido em conflito energia natural × energia artificial.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIS-S03">Achar o conceito (S02) precede mantê-lo unido (S03).</relacao>
+    <relacao tipo="generaliza" alvo="GAB-S01">A "Declaração de Conceito Visual" é a instância-receita deste princípio.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.17. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S03" tipo="principio">
+  <gatilho>Durante a execução, quando surge algo mais bonito do que o planejado — e se está prestes a incluí-lo só por ser belo.</gatilho>
+  <mecanismo>A força de uma obra é a UNIDADE: cada elemento deve servir e conectar-se ao conceito do todo, como cada página de um livro deve ajudar a entender a seguinte — "se uma página não contribui para a próxima, não contribuiu para o todo". Por isso o critério de seleção não é o apelo local ("isso é mais bonito") e sim a CONTRIBUIÇÃO-AO-TODO: o belo que distrai do conceito é ERRADO, porque desvia da ideia central. A obra é "um arco" contínuo — do roteiro até a cópia-resposta (answer print) — em que nunca se para de somar a serviço da mesma intenção. O mecanismo é de coerência: rejeitar localmente-ótimo-mas-globalmente-incoerente preserva o sinal e evita ruído acumulado.</mecanismo>
+  <condicoes>
+    <vale_quando>Existe um conceito reitor claro contra o qual medir cada elemento (depende de VIS-S02).</vale_quando>
+    <enfraquece_quando>Não há conceito definido — então "contribuição ao todo" não tem referência e a disciplina vira gosto arbitrário.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIS-S01">O belo isolado ("pintar com luz") é exatamente o que esta disciplina sacrifica em favor do significado.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro: "Sometimes you see something that can be more beautiful than what you want to do... But it would be wrong because it would distract you from the main idea."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIS-S02">Sem o conceito reitor não há padrão de unidade.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.17. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S04" tipo="principio">
+  <gatilho>Ao estruturar o desenvolvimento visual de uma obra inteira — quando se quer que a fotografia tenha arco dramático e não seja uniforme do início ao fim.</gatilho>
+  <mecanismo>Organiza-se a narrativa visual em torno de uma DIALÉTICA de duas energias/polos opostos (natural × artificial, luz × sombra, dia × noite, branco × preto, tecnologia × natureza). O motor é: dois polos estão em conflito SÓ PORQUE estão separados; enquanto separados, a tensão se mantém; no momento em que se reúnem, há EQUILÍBRIO — "a coisa mais bela que pode acontecer". Assim a oposição visual carrega a tensão dramática e a sua resolução (reunião dos polos) coincide com a catarse/desfecho. O mecanismo é estrutural: transforma um eixo abstrato do roteiro num gradiente visual manipulável (mais separação = mais tensão; convergência = resolução). Símbolo recorrente: o círculo/globo (lâmpada redonda) = duas metades reunidas.</mecanismo>
+  <condicoes>
+    <vale_quando>A história tem uma oposição temática nuclear (liberdade×opressão, natureza×tecnologia, etc.) que pode ser mapeada em polos visuais.</vale_quando>
+    <reverte_quando>Manter os polos separados até o fim sustenta tensão não-resolvida (deliberadamente) — a "reunião" produz alívio/equilíbrio; portanto adiar ou negar a reunião é a alavanca para sustentar desconforto, e antecipá-la dissolve a tensão cedo demais.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIS-S05">A separação luz×sombra (S05) é uma instância concreta desta dialética abstrata.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro: "two different poles are in conflict only because they are separated. And the moment the two poles are reunited, there will be balance."</aplicacao>
+    <aplicacao>*Apocalypse Now*: conflito energia natural × artificial. *O Conformista*: preto-e-branco no início → cor; sombra separada → luz na sombra = duas seções reunidas.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIS-S05">É o princípio-mãe da separação luz×sombra como confinamento/liberdade.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.18. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S05" tipo="principio">
+  <gatilho>Ao iluminar uma cena/personagem cujo estado psicológico é de aprisionamento, opressão, ou — ao contrário — de libertação e abertura.</gatilho>
+  <mecanismo>O GRAU de interpenetração entre luz e sombra é uma variável controlável que mapeia diretamente estados psicológicos: separação DURA (sombras nítidas, sem preenchimento, a luz nunca alcança a sombra) codifica claustrofobia / estar enjaulado; deixar a luz INVADIR a sombra codifica liberdade / alívio. O mecanismo é perceptivo-simbólico: a fronteira rígida entre zonas claras e escuras é lida como divisão/contenção; sua dissolução é lida como continuidade/escape. Como é um contínuo, dá-se ao diretor de fotografia um dial dramático — endurecer ou amolecer o contato luz/sombra conforme o personagem se prende ou se solta.</mecanismo>
+  <condicoes>
+    <vale_quando>O estado dramático em jogo é da família confinamento↔liberdade (opressão, vigilância, fuga, abertura).</vale_quando>
+    <enfraquece_quando>A cena pede outra dimensão emocional (paixão, melancolia) melhor servida por cor/temperatura do que por dureza de sombra.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>*O Conformista*: na 1ª metade (ditadura/Itália), sombras e luz muito nítidas e separadas = claustrofobia; em Paris (nação livre), "I expressed this sense of freedom by letting the light go into the shadows."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIS-S04">Caso concreto da dialética separação/reunião de polos.</relacao>
+    <relacao tipo="sinergia" alvo="VIS-S06">A passagem de luz-separada para luz-na-sombra também MARCA o limiar narrativo (Itália→Paris).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.20. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S06" tipo="heuristica">
+  <gatilho>Quando a história cruza um limiar (ato, mudança de lugar, transformação do personagem) e se quer que a audiência SINTA a virada.</gatilho>
+  <mecanismo>Marca-se a virada narrativa rompendo deliberadamente o estilo visual estabelecido e introduzindo cores/elementos visuais AINDA NÃO VISTOS no filme. O mecanismo é de contraste perceptivo: o espectador foi condicionado à paleta/estilo anterior, então a quebra é registrada (mesmo sub-conscientemente) como sinal de que algo mudou de regime. Reservar certos recursos visuais para depois do limiar cria um "antes e depois" legível sem precisar explicá-lo.</mecanismo>
+  <condicoes>
+    <vale_quando>Existe uma transição dramática nítida a sinalizar e uma paleta/estilo anterior consistente do qual divergir.</vale_quando>
+    <enfraquece_quando>O estilo anterior não foi mantido consistente — sem linha de base, a "quebra" não é perceptível como evento.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>*O Conformista*: "almost a black and white picture in the beginning. But in the last half in Paris... I gave the audience colors that they hadn't seen in the film before."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIS-S05">A introdução de luz-na-sombra é simultaneamente recurso de estado (S05) e marca de limiar (S06).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.20. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S07" tipo="principio">
+  <gatilho>Ao definir a paleta de um personagem ou tema — quando se quer que a cor CARREGUE caracterização, não só ambiente.</gatilho>
+  <mecanismo>Atribui-se a cor a personagens/temas a partir de suas associações SIMBÓLICAS (psicanalíticas/culturais) estabelecidas, de modo que a paleta passe a significar o personagem. O mecanismo é semiótico: cada cor tem um sentido emocional codificado culturalmente/no inconsciente (como na interpretação de sonhos), e usar essa cor evoca esse sentido sem dizê-lo. Distingue-se nitidamente do registro FISIOLÓGICO (EST-S01): aqui a cor opera como SÍMBOLO (representa algo), não como estímulo corporal. Storaro separa os dois explicitamente.</mecanismo>
+  <condicoes>
+    <vale_quando>Há uma associação simbólica reconhecível (cultural ou arquetípica) entre a cor e o que o personagem encarna.</vale_quando>
+    <enfraquece_quando>A associação simbólica é idiossincrática/privada do autor e não compartilhada pela audiência — então o signo não é decodificado e a escolha vira ruído.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="EST-S01">Símbolo (representar) vs. fisiologia (agir sobre o corpo) são dois usos distintos — e às vezes concorrentes — da mesma cor.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>*Luna*: "Luna means mother" (símbolo psicanalítico) → cor do personagem usada para exprimir o próprio personagem. Storaro: "every color represents something specific in an emotional sense... it's something that scientists and researchers have studied."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="antagonista" alvo="EST-S01">Registro simbólico da cor, oposto/complementar ao registro fisiológico.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.19. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S08" tipo="principio">
+  <gatilho>Ao iluminar um personagem que precisa ter peso/presença dramática — quando a imagem está chapada e o sujeito não "existe" no quadro.</gatilho>
+  <mecanismo>Modelar o sujeito com luz (envolvê-lo, dar espessura e profundidade) cria uma PRESENÇA tátil que o espectador lê como a SUBSTÂNCIA PSICOLÓGICA do personagem — algo que se poderia "tocar fisicamente na tela". O mecanismo é perceptivo: o gradiente de luz que revela volume gera a ilusão de tridimensionalidade tátil, e essa tatilidade é interpretada como presença de personalidade, não apenas como forma geométrica. Storaro distingue: não se trata de "ter três dimensões" e sim de dar VOLUME/presença — uma qualidade dramática, não meramente óptica.</mecanismo>
+  <condicoes>
+    <vale_quando>O personagem precisa adquirir peso/densidade dramática e a iluminação pode envolvê-lo (controle sobre direção e difusão da luz).</vale_quando>
+    <enfraquece_quando>A intenção é justamente achatar/desmaterializar o sujeito (alienação, irrealidade) — aí o volume contraria o conceito.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>*Luna*: "I tried to give thickness to the characters; I tried to build the volume of them up... such a presence that you could touch them physically on the screen... not three dimensions, I'm talking about giving volume, a personality presence."</aplicacao>
+  </aplicacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.19. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S09" tipo="principio">
+  <gatilho>Quando se quer entregar cor e som com intensidade/pureza máximas — ou entender por que um ambiente "lava" a percepção.</gatilho>
+  <mecanismo>O "ruído" ambiental (fumaça, névoa, poluição visual; ruído urbano constante) age como um FILTRO que mascara e dessatura a percepção — não se vê o vermelho real do pôr do sol nem se ouve a folha cair. Remover essa camada de máscara REVELA a cor e o som em pureza saturada. O mecanismo é de adaptação/mascaramento perceptivo: o sistema sensorial se calibra ao ruído de fundo e perde resolução; baixando o piso de ruído, o sinal (cor, som) reaparece intenso. Logo, projeta-se a paleta/ambiência de uma obra REDUZINDO a máscara para entregar uma pureza perceptiva intensificada — ou, ao contrário, adicionando máscara para abafar deliberadamente.</mecanismo>
+  <condicoes>
+    <vale_quando>Há uma camada de ruído removível (atmosférica ou sonora) entre a fonte e o observador.</vale_quando>
+    <enfraquece_quando>O conceito pede o oposto — a névoa/abafamento como expressão (mistério, opressão urbana) — então a máscara é recurso, não obstáculo.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>*A Estratégia da Aranha*: sair da cidade enevoada para o campo de ar limpo revelou "the pure color of nature" (vermelho do pôr do sol, azul da água, verde do campo) e o som das folhas — daí a paleta forte e pura do filme.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="">Mesmo mecanismo de mascaramento vale no áudio (SND): baixar o piso de ruído revela o detalhe sonoro.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.21. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S10" tipo="principio">
+  <gatilho>Ao tratar a etapa de finalização (laboratório, revelação, color grading, masterização) — quando se a considera mera reprodução técnica neutra.</gatilho>
+  <mecanismo>A renderização final NÃO é reprodução neutra: é um ato AUTORAL que transforma a imagem (do negativo ao positivo) de um jeito específico para cada obra, e que injeta a SENSIBILIDADE de outra pessoa (o técnico do laboratório escolhe a luz de cópia conforme a personalidade dele). Logo a imagem final é "emoção minha + tudo o que é técnico + emoção dele" = uma imagem NOVA. Consequência operacional: a obra não está pronta até a cópia-resposta (answer print); a cadeia inteira da captura à cópia é expressão acumulada, e cada elo (incluindo quem finaliza) é coautor. O mecanismo é que toda transformação técnica carrega escolha, e escolha carrega autoria.</mecanismo>
+  <condicoes>
+    <vale_quando>A finalização permite tratamento bespoke e há relação contínua com quem a executa (o técnico "quase parte da equipe").</vale_quando>
+    <enfraquece_quando>O pipeline de finalização é padronizado para nivelar tudo (ver MSB-S06) — aí a autoria do elo final é suprimida e a imagem perde a marca pessoal.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Storaro levou o mesmo técnico da Technicolor Roma para *One from the Heart*: "He puts his emotion on top of my emotion and knowledge and so this image becomes a new image." A imagem só está feita "at that moment" da cópia-resposta.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="antagonista" alvo="MSB-S06">A homogeneização industrial da finalização é o ataque direto a esta autoria.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. pp.17,23-24. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<!-- ALVO: estetica_cientifica.xml -->
+
+<regra id="EST-S01" tipo="principio">
+  <gatilho>Ao escolher a paleta/temperatura de luz de uma cena para induzir um ESTADO (não para simbolizar) — quando se quer que a cor mude como o espectador se sente fisicamente.</gatilho>
+  <mecanismo>Cor e luz agem sobre o CORPO do observador abaixo da consciência, deslocando seu estado fisiológico-emocional: luz/quente (amarelo) tende à ATIVAÇÃO (atividade, vigília, trabalho); escuro/frio (azul) tende ao REPOUSO; comprimentos de onda altos (laranja) carregam carga de excitação/paixão. O corpo, exposto a luz e cor por milênios em ciclo dia/noite, reage com mudanças autonômicas (até pressão sanguínea), tornando-se mais ativo, relaxado ou deprimido. Por isso a paleta pode ser escolhida para INDUZIR um estado corporal no espectador, não apenas para representar algo. Distingue-se do registro simbólico (VIS-S07): aqui a cor é ESTÍMULO fisiológico, não signo. [Fronteira epistêmica: o autor afirma lastro científico ("scientists have proven that your body changes in the presence of a particular color") mas NÃO cita estudo — tratar como [C]-referenciado / convenção de mestre aplicada, não lei empírica demonstrada.]</mecanismo>
+  <condicoes>
+    <vale_quando>O objetivo é mood/arousal do espectador e há controle sobre temperatura de cor e intensidade da luz dominante.</vale_quando>
+    <enfraquece_quando>Generalizar o efeito como lei exata: a magnitude/direção depende de contexto, adaptação e cultura; a obra afirma o fenômeno mas não fornece n, p-valor ou condições — não extrapolar além disso.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIS-S07">A cor "certa" pelo símbolo pode ser a "errada" pela fisiologia (e vice-versa) — os dois registros podem puxar a paleta em direções opostas.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>*One from the Heart* (Las Vegas): cassinos inundam luz e pintam janelas de azul para apagar a noção de noite e manter o corpo ativo/jogando — "using these color principles to have a particular unconscious stimulus to the human body." Storaro usou a fisiologia da cor para fixar o mood do filme.</aplicacao>
+    <aplicacao>*Último Tango em Paris*: laranja escolhido pelo "comprimento de onda/energia" alto = impressão de paixão.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="antagonista" alvo="VIS-S07">Registro fisiológico da cor, par complementar/concorrente do registro simbólico.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. pp.19-21. (fala de V. Storaro; ciência invocada sem citação)</fonte>
+  </evidencia>
+</regra>
+
+</unidades>

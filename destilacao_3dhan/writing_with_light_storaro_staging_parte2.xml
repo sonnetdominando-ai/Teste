@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Schaefer & Salvato,                          -->
+<!-- "Writing with Light: An Interview with Vittorio Storaro"        -->
+<!-- Film Quarterly 35(3):15-25 (Spring 1982) · JSTOR 1211923        -->
+<!-- PARTE 2/2 — MSB-S01..S08 + EPI-S01..S02 + GAB-S01              -->
+<!-- PRÁTICA CRIATIVA, EPISTEMOLOGIA DO OFÍCIO, MOLDE DE OUTPUT      -->
+<!-- Fonte [V] de ofício (fala de mestre); tier N2/N3. NÃO é N1.     -->
+<!-- STAGING: renumerar a partir do último ID real de cada domínio.  -->
+<!-- ids S01+ por-obra; colidem por desenho — INGESTÃO concilia.     -->
+<!-- ============================================================== -->
+<unidades>
+
+<!-- ALVO: metodologia_segundo_cerebro.xml -->
+
+<regra id="MSB-S01" tipo="principio">
+  <gatilho>Depois de concluir um projeto de grande dispêndio criativo, quando falta energia/ideia para começar o próximo e a tentação é forçar a partida.</gatilho>
+  <mecanismo>A criatividade não é linear (ponto A → ponto B); a energia "sobe e desce". Após um grande gasto, uma REGRESSÃO deliberada às próprias raízes — voltar aos livros, ao conhecimento anterior, ao estado de estudante — regenera a energia e produz o próximo salto. Quanto mais fundo se "desce" para dentro das próprias bases, mais alto se "sobe a colina" depois. O mecanismo é de recarga por reimersão na fonte: o repertório profundo é re-ativado e recombinado, gerando material novo que o esforço contínuo não geraria (só esgotaria). "Recomeçar do começo" é parte essencial do ciclo, não fracasso.</mecanismo>
+  <condicoes>
+    <vale_quando>Houve um pico de dispêndio criativo e existe um repertório/raiz pessoal ao qual regressar.</vale_quando>
+    <enfraquece_quando>Há prazo rígido que impede a pausa — a involução exige tempo morto deliberado, que nem todo contexto de produção permite.</enfraquece_quando>
+    <reverte_quando>Insistir em produzir sem a regressão tende a repetir o já feito (tédio/esgotamento), o oposto do salto pretendido.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Após *Apocalypse Now*, Storaro parou, "escaped into my past... all my books", e pesquisou todas as teorias da cor — o que lhe deu força e direção para o capítulo seguinte (*Luna*, *One from the Heart*). Também o hiato 1963-64 que precedeu o encontro com Bertolucci.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="MSB-S02">Involução (recarregar) e mente-de-principiante (recomeçar fresco) são faces do mesmo ciclo de renovação.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.16. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="MSB-S02" tipo="principio">
+  <gatilho>Ao começar um novo projeto quando já se domina o ofício — quando a competência convida a repetir a fórmula que funcionou.</gatilho>
+  <mecanismo>Descartar deliberadamente a maestria/hábito no início de cada projeto — entrar "como se nunca tivesse feito um filme antes" — preserva o risco e o frescor que produzem crescimento. O mecanismo é anti-automatização: a competência cria atalhos que levam a repetir o conhecido, o que gera tédio e estagnação; ao recusar o piloto-automático e tentar "um passo adiante" a cada vez, paga-se com medo/sofrimento inicial mas compra-se evolução. A tensão é produtiva: o desconforto do começo é o preço da não-repetição.</mecanismo>
+  <condicoes>
+    <vale_quando>O criador já é competente o bastante para que o risco de repetição/estagnação seja real.</vale_quando>
+    <enfraquece_quando>Em contexto de pura execução padronizada (onde consistência importa mais que evolução), o "recomeçar do zero" custa eficiência sem ganho proporcional.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="MSB-S04">Querer o FRESCOR do recomeço convive em tensão com querer a CONTINUIDADE da mesma equipe/linguagem (S04).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro endossa Conrad Hall/Ted McCord: "every time Ted started a new film, he came onto the set as if he'd never shot a film before." E: "each time I'm trying to take a step forward... otherwise you just get bored doing the same things."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="MSB-S01">Par do ciclo de renovação (regredir para recarregar / recomeçar para arriscar).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. pp.16-17. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="MSB-S03" tipo="principio">
+  <gatilho>Ao liderar uma equipe criativa — quando a tentação é controlar cada detalhe para garantir o resultado.</gatilho>
+  <mecanismo>Existe um trade-off direto entre controle e emoção/liberdade: quanto mais controle se exerce, mais se LIMITA a emoção e a liberdade dos colaboradores — no limite, "um filme feito por prisioneiros", sem vida. O único controle real é (a) escolher as pessoas certas ao lado e (b) dar a elas a direção/energia certa; dentro de seu campo, cada um deve poder se expressar. O mecanismo é que a riqueza emocional e as raras grandes ideias vêm da contribuição autônoma distribuída — de 19 ideias medíocres podem sair 2-3 excelentes que o líder sozinho não teria. Liderança = direção + seleção, não dominação. Paga-se com previsibilidade reduzida em troca de vida e de upside criativo.</mecanismo>
+  <condicoes>
+    <vale_quando>Há colaboradores competentes e confiáveis cuja expressão autônoma agrega (equipe escolhida).</vale_quando>
+    <reverte_quando>Controle ZERO inverte o efeito: sem um "capitão/maestro" dando direção, "you will be doing a hundred different movies at the same time" — caos, não riqueza. Logo o ponto ótimo é direção firme + autonomia no papel, nem dominação nem ausência.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="">Controle (previsibilidade) × emoção/liberdade (vida e upside) — eixo a calibrar, não a maximizar.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro: "the more control you exert, the more you limit emotion and freedom... a movie made by prisoners." Mas: "you need a captain, you need a conductor... a leader to give the right direction."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="MSB-S07">A autonomia distribuída funciona porque a emoção coletiva da equipe se registra na obra (S07).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. pp.22-23. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="MSB-S04" tipo="principio">
+  <gatilho>Ao decidir entre manter um time estável de longo prazo ou rotacionar colaboradores a cada projeto.</gatilho>
+  <mecanismo>Colaboradores estáveis de longo prazo desenvolvem uma LINGUAGEM tácita compartilhada ("ground rules") que elimina o custo de renegociar o básico a cada projeto. Com a mesma equipe, o líder não precisa checar abertura, filtro, foco, pan do operador — "it's like a language between us" — e pode então concentrar toda a energia na obra em si. O mecanismo é redução de sobrecarga de coordenação: a confiança e as convenções implícitas liberam banda cognitiva/criativa que, com equipe nova, seria gasta em alinhamento. "Estabelecidas as regras, podemos voar."</mecanismo>
+  <condicoes>
+    <vale_quando>O trabalho recompensa profundidade de entrosamento e há continuidade suficiente para formar convenções tácitas.</vale_quando>
+    <enfraquece_quando>Em tensão com a renovação (MSB-S02): estabilidade demais pode reduzir o frescor/risco que a mente-de-principiante busca — o entrosamento poupa banda mas pode cristalizar hábito.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="MSB-S02">Continuidade da equipe (linguagem, banda livre) × frescor do recomeço (risco, evolução).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro: mesma equipe desde o primeiro filme ("my professional family"); mesmo técnico de laboratório levado de Roma para Hollywood — "almost part of my crew."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIS-S10">A continuidade com o técnico do laboratório é o que viabiliza a finalização como autoria (S10).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.23. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="MSB-S05" tipo="principio">
+  <gatilho>Ao usar referências/influências do passado — quando a tentação é reproduzir um estilo consagrado ou pedir que se "faça no estilo de X".</gatilho>
+  <mecanismo>A tradição (toda a história da pintura e do cinema, presente em cada imagem queira-se ou não) deve servir como REFERÊNCIA de navegação — para localizar a própria posição e DECIDIR em que direção ir (e em qual NÃO) — nunca como gabarito a copiar. Copiar um estilo do passado falha porque "os mesmos elementos, a mesma história não existem mais do mesmo modo": o contexto que gerou aquele estilo já não está presente, então a reprodução é vazia. O mecanismo é que estilo é função de contexto irrepetível; a referência consciente orienta a diferenciação, a cópia produz pastiche sem raiz. Ser consciente do que já foi feito é o que permite ir adiante, não repetir.</mecanismo>
+  <condicoes>
+    <vale_quando>Usa-se a referência para orientar direção e contraste (situar-se e diferenciar-se).</vale_quando>
+    <enfraquece_quando>Pede-se reprodução fiel de um estilo histórico como receita — o contexto ausente esvazia o resultado.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Storaro: "It would be wrong to ask a cinematographer to photograph a film in the same style as another picture because you can never do that... the same history does not exist in the same way. But you can have reference to past work in order to be more clear about where you want to go." Referência = "a reference point" para escolher "this direction rather than that."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="antagonista" alvo="MSB-S06">Tanto a cópia do passado quanto a homogeneização industrial apagam a direção autoral própria.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.21. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="MSB-S06" tipo="principio">
+  <gatilho>Quando um pipeline/ferramenta otimizado para velocidade e vazão promete eficiência — e ameaça padronizar o output de todos que o usam.</gatilho>
+  <mecanismo>A otimização industrial por throughput (máxima quantidade por minuto) HOMOGENEÍZA o output e apaga a distinção autoral: nivela tudo a um "padrão medíocre" onde a peça de um autor fica indistinguível da de outro. Há sempre uma troca — ganha-se tempo, perde-se na qualidade/variação da imagem. Preservar a personalidade (o ativo mais importante) exige RESISTIR ao pipeline padronizado e insistir em tratamento sob medida; é a "pequena mudança no tratamento" que imprime a personalidade na obra. O mecanismo é que distinção exige variância, e sistemas que maximizam vazão suprimem variância por desenho. (Transferível diretamente à era da geração automatizada de conteúdo: o default da ferramenta tende ao genérico.)</mecanismo>
+  <condicoes>
+    <vale_quando>O valor da obra está na distinção autoral e existe margem para tratamento bespoke fora do default.</vale_quando>
+    <reverte_quando>Quando consistência/escala é o objetivo (não distinção), a padronização é virtude, não defeito — o trade-off só dói onde a personalidade é o ativo.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="">Eficiência/vazão × distinção autoral — maximizar uma corrói a outra.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro trocou o laboratório de Hollywood (alta velocidade, alta temperatura → menos variação tonal) por um fora da cidade que mantinha o sistema antigo: "They try to level everything out at a mediocre standard... there will be no distinction between one cinematographer and another."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="antagonista" alvo="VIS-S10">É o ataque direto à finalização-como-autoria (S10).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.24. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="MSB-S07" tipo="principio">
+  <gatilho>Ao avaliar por que duas execuções "tecnicamente iguais" produzem obras que se sentem diferentes — ou ao decidir quanto proteger a integridade emocional do processo.</gatilho>
+  <mecanismo>O artefato final CODIFICA o estado emocional coletivo de quem o fez, via incontáveis micro-decisões de cada pessoa (a velocidade do dolly, a altura da bandeira na frente da luz). Como cada membro decide a cada instante, o resultado registra a emoção agregada — alegria, raiva, paixão — e o espectador a percebe ("you can feel if it was done with joy, anger, or passion"). Trocar UM elemento da equipe muda a emoção coletiva e, portanto, muda a obra. O mecanismo é que a qualidade emergente não está em nenhuma decisão isolada e sim na soma de microescolhas carregadas de estado afetivo — daí proteger a integridade/continuidade emocional do time não é sentimentalismo, é causa material do resultado.</mecanismo>
+  <condicoes>
+    <vale_quando>A obra resulta de muitas micro-decisões humanas distribuídas e sensíveis ao estado afetivo.</vale_quando>
+    <enfraquece_quando>Processos altamente automatizados/determinísticos, onde a margem de micro-decisão humana é mínima, reduzem o canal por onde a emoção entraria.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Storaro: "The film is so sensitive that it can register the emotion of the people present... if you change one element of the crew, the movie will be changed... Pushing the dolly a little faster or slower changes the movie."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="MSB-S03">Justifica a liderança por autonomia (S03): suprimir emoção por controle empobrece o registro coletivo.</relacao>
+  </relacoes>
+  <evidencia tier="N3">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. pp.22-23. (fala de V. Storaro; convicção de ofício)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="MSB-S08" tipo="heuristica">
+  <gatilho>Ao mapear a identidade/voz de um autor ao longo de sua obra — ou ao buscar a própria assinatura criativa.</gatilho>
+  <mecanismo>O vocabulário nuclear de um artista se fixa CEDO e INTEIRO (a primeira obra como "impressão digital"); a obra madura não inventa novas sementes, ela ELABORA a semente original — torna cada elemento mais claro, maior, mais evidente. O mecanismo descritivo é que os temas/obsessões/símbolos de um autor são um conjunto pequeno e estável estabelecido no início, e a carreira é sua clarificação progressiva, não substituição. Útil para entender consistência/assinatura autoral (e para localizar, na própria obra inicial, o material a desenvolver).</mecanismo>
+  <condicoes>
+    <vale_quando>Há um corpo de obra de um mesmo autor com continuidade de sensibilidade.</vale_quando>
+    <enfraquece_quando>Observação de mestre sobre si, não lei geral — autores com rupturas/reinvenções radicais a contrariam; tratar como padrão frequente, não universal.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Storaro: "my first film is like an imprint... like my fingerprint. After my first film, I just took any single element that was there and tried to evolve it... make it clearer, bigger, more evident." Tudo desde então é "a branch of things that were born on my first picture."</aplicacao>
+  </aplicacoes>
+  <evidencia tier="N3">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.18. (fala de V. Storaro; introspecção de ofício)</fonte>
+  </evidencia>
+</regra>
+
+<!-- ALVO: epistemologia_metodo_cientifico.xml -->
+
+<regra id="EPI-S01" tipo="principio">
+  <gatilho>Quando uma escolha criativa "se impõe" sem que se consiga justificá-la racionalmente — e a tentação é descartá-la por falta de explicação, ou exigir a razão antes de agir.</gatilho>
+  <mecanismo>A escolha do especialista emerge de conhecimento INCONSCIENTE acumulado (intuição) ANTES de qualquer justificação racional — às vezes anos antes. "Chega por intuição e você faz." A racionalização vem depois: só se consegue ARTICULAR plenamente uma escolha quando a obra "já está feita" (no estado criativo, falar sobre ela é difícil porque ela ainda está sendo descoberta). O mecanismo é que a expertise comprime padrões em julgamento tácito que dispara mais rápido do que a explicação verbal; milhões de elementos sub-conscientes empurram a decisão (até as sombras dos papéis sobre a mesa "afetam a mente"). Operacional: confiar na intuição calibrada do especialista e tratar a explicação como produto posterior, não pré-condição da ação.</mecanismo>
+  <condicoes>
+    <vale_quando>O agente tem expertise real e longa exposição ao domínio (a intuição é destilado de experiência, não palpite de novato).</vale_quando>
+    <enfraquece_quando>Sem expertise, "intuição" é só viés/ruído — o mecanismo pressupõe o repertório que a torna confiável.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Storaro escolheu azul para as noites de *O Conformista* e laranja para *Último Tango* "by intuition", sem saber por quê; só 8 anos depois entendeu o que essas cores representavam. "It arrives to you by intuition and you do it... Afterwards you can talk about it. Before, it is only an intuition."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="EPI-S02">A intuição opera sob incerteza calibrada (S02): age-se sem garantia.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. pp.21-22. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<regra id="EPI-S02" tipo="principio">
+  <gatilho>Ao estimar a confiança de que um resultado criativo sairá como imaginado — ou ao tentar reproduzir exatamente um efeito que deu certo antes.</gatilho>
+  <mecanismo>O profissional conhece suas PROBABILIDADES (pode ser 10% ou 90% de chance de realizar o que imaginou) mas NUNCA 100% — a certeza total não existe no ato criativo. E o output JAMAIS se reproduz idêntico, porque cada elo da cadeia é uma variável à deriva: a intuição/emoção do momento muda, e a tecnologia muda (o padrão do laboratório, a tolerância, a estrutura da emulsão, a projeção de cada sala, a própria lâmpada que perde energia a cada instante). "Dia a dia você tem uma imagem diferente." O mecanismo é dupla fonte de variância — cognitiva (a intuição não é replicável sob comando) e material (a cadeia técnica drifta) — que torna o resultado não-determinístico e único. Operacional: calibrar confiança como probabilidade, gerir/abraçar a variância, e não esperar reprodução exata.</mecanismo>
+  <condicoes>
+    <vale_quando>Qualquer produção criativa que passa por uma cadeia de elos variáveis (humanos e técnicos) entre intenção e resultado.</vale_quando>
+    <reverte_quando>Quanto mais se tenta forçar reprodução exata (controle determinístico), mais se esbarra na irreprodutibilidade e se perde a emoção viva — buscar o idêntico falha por definição ("never... in the same way").</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="MSB-S06">A indústria tenta eliminar essa variância (padronizar) — ao custo da distinção (S06).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro: "you know rationally what your odds are; it can be ten percent or ninety percent. But it can never be one hundred percent. If you want to do it over again exactly as you did it the first time, it is impossible." A tecnologia "comes between your thought and the screen."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="EPI-S01">Par epistêmico: intuição (como se decide) + incerteza/irreprodutibilidade (com que garantia).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.22. (fala de V. Storaro)</fonte>
+  </evidencia>
+</regra>
+
+<!-- ALVO: modelos_output.xml -->
+
+<regra id="GAB-S01" tipo="gabarito">
+  <no_alvo>diretor_visual</no_alvo>
+  <gatilho>Na pré-produção de qualquer peça visual com várias áreas/departamentos (fotografia, arte, figurino) que precisam convergir para a mesma intenção.</gatilho>
+  <mecanismo>Sustenta-se nas leis do conceito reitor (VIS-S02) e da unidade (VIS-S03): um conceito único e explícito é o que ancora milhares de decisões e impede divergência entre colaboradores. Externalizar o conceito por ESCRITO força clareza (o que não se consegue escrever ainda não está claro) e cria um referente comum contra o qual todos alinham — sem o documento, cada departamento preenche as lacunas na própria direção.</mecanismo>
+  <aplicacoes>
+    <aplicacao>RECEITA — Declaração de Conceito Visual (1-2 páginas, antes de produzir):
+      (1) IDEIA CENTRAL: em uma frase, o conceito nuclear da história/mensagem (ex.: "imposição de uma cultura sobre outra").
+      (2) REPRESENTAÇÃO nos cinco registros: como a ideia se traduz em forma (a) simbólica, (b) emocional, (c) psicológica, (d) realista, (e) física.
+      (3) DIALÉTICA/ARCO: qual oposição visual (luz×sombra, quente×frio, natural×artificial) carrega a tensão e onde/como os polos se reúnem.
+      (4) PALETA: cores-chave e se operam por SÍMBOLO (VIS-S07) ou por FISIOLOGIA/estado (EST-S01); o que fica RESERVADO para depois de um limiar (VIS-S06).
+      (5) REGRA DE UNIDADE: o critério explícito de "serve / não serve" para rejeitar o belo que distrai (VIS-S03).
+      (6) CIRCULAÇÃO: entregue e discuta com diretor, designer de produção e figurino até haver acordo — "everyone needs to be going in the same direction."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIS-S02">É a receita executável do princípio do conceito reitor.</relacao>
+    <relacao tipo="instancia_de" alvo="VIS-S03">Operacionaliza a disciplina de unidade via critério escrito.</relacao>
+  </relacoes>
+  <evidencia tier="N3">
+    <fonte>Schaefer D &amp; Salvato L — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 35(3):15-25, 1982. JSTOR 1211923. p.17. (fala de V. Storaro: "I've tried writing out these ideas... to be very concrete with the director, the production designer, the costume designer")</fonte>
+  </evidencia>
+</regra>
+
+</unidades>
