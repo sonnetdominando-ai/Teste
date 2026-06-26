@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Goel, Anderson, Hofman & Watts,             -->
+<!-- "The Structural Virality of Online Diffusion"                  -->
+<!-- Management Science 62(1):180-196 (2016) · DOI 10.1287/mnsc.2015.2158 -->
+<!-- PARTE 2/2 — EPI-S01..S05 + EXP-S01..S02 — MÉTODO E VALIDAÇÃO   -->
+<!-- STAGING: renumerar a partir do último ID real de cada domínio.  -->
+<!-- ============================================================== -->
+<unidades>
+
+<!-- ALVO: epistemologia_metodo_cientifico.xml -->
+
+<regra id="EPI-S01" tipo="modelo_mental">
+  <gatilho>Ao operacionalizar um conceito difuso (ex.: "virality") numa métrica quantitativa.</gatilho>
+  <mecanismo>Primeiro declare os AXIOMAS que a métrica deve satisfazer; depois teste candidatos contra casos-limite construídos e fique com o que sobrevive. Os desiderata aqui: a tamanho fixo, a virality deve crescer com o fator de ramificação; a ramificação fixa, crescer com a profundidade/gerações; e, para broadcast puro, ser ~independente do tamanho. Proxies ingênuos falham: a PROFUNDIDADE bruta é destruída por uma única cadeia longa pendurada num broadcast (profundidade alta, não viral); a PROFUNDIDADE MÉDIA é enganada por um caminho longo que então faz broadcast (a maioria dos nós longe da raiz, embora dirigidos por um único nó influente). O índice de Wiener (distância média entre pares) satisfaz os axiomas. Projetar a partir de desiderata + casos adversariais vence escolher uma estatística-resumo intuitivamente apelativa.</mecanismo>
+  <condicoes>
+    <vale_quando>O construto é estrutural e dá para enumerar modos de falha.</vale_quando>
+    <enfraquece_quando>Mesmo a métrica escolhida tem casos patológicos raros (duas estrelas + caminho longo) — aceite a imperfeição residual e julgue empiricamente.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Ao inventar qualquer KPI, escreva as invariâncias que ele deve obedecer e quebre cada candidato com um contraexemplo antes de adotá-lo.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIR-S01">É o raciocínio que produziu a definição de virality estrutural.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §2 e Apêndice B. DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="EPI-S02" tipo="modelo_mental">
+  <gatilho>Quando a grandeza de interesse depende de um processo gerador cujos parâmetros não se observam.</gatilho>
+  <mecanismo>Defina a medida puramente sobre o padrão final OBSERVÁVEL, deliberadamente NÃO sobre o mecanismo presumido. O valor ainda dependerá do processo (desconhecido), mas a DEFINIÇÃO não — então ela não carrega suposições de modelagem, não precisa de parâmetros não observados e é computável em dados reais. Isso COMPLEMENTA, não substitui, os modelos geradores: a medida estrutural caracteriza O QUE aconteceu; os modelos geradores propõem O PORQUÊ. Separar descrição de explicação mantém a descrição utilizável mesmo quando a explicação está em disputa.</mecanismo>
+  <condicoes>
+    <vale_quando>O observável carrega o sinal de interesse (aqui, a estrutura da árvore codifica o mecanismo).</vale_quando>
+    <enfraquece_quando>Só agregados são observáveis (a estrutura se perde) — aí a estratégia não recupera o sinal.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Preferir métricas definidas pelo resultado a estimativas de parâmetros de modelo quando se precisa de robustez a disputas de modelagem.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S01">É a filosofia de desenho por trás da métrica ν.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S05">Junto blindam contra inferir mecanismo do resultado.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §1, §2. DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="EPI-S03" tipo="principio">
+  <gatilho>Ao estudar eventos raros e de alto impacto (viral hits, fraude, falhas) extraídos de uma cauda pesada.</gatilho>
+  <mecanismo>Se eventos interessantes ocorrem a uma taxa de ~1 em 1 milhão, uma amostra representativa de algumas centenas deles exige uma base amostral da ordem de 1 bilhão. Conjuntos de dados subdimensionados não dão apenas estimativas mais ruidosas — eles PERDEM sistematicamente a cauda estruturalmente interessante por completo, gerando um retrato qualitativamente incompleto (estudos prévios de ~1 milhão de eventos só viram cascatas pequenas e rasas). Dois exemplos célebres de corrente (Liben-Nowell &amp; Kleinberg) são poucos demais para inferir estrutura geral. Escala aqui não é luxo; é a pré-condição para observar o fenômeno.</mecanismo>
+  <condicoes>
+    <vale_quando>O alvo é evento de cauda pesada/raro; a quantidade de interesse vive nos extremos.</vale_quando>
+    <enfraquece_quando>O fenômeno é comum (então amostras pequenas bastam e a escala não compra nada).</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Orçar a coleta de dados pela TAXA da cauda, não pela média; um estudo dimensionado para casos típicos será cego aos gigantes raros.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S09">É a consequência metodológica da difusão ser de cauda pesada.</relacao>
+    <relacao tipo="sinergia" alvo="EXP-S01">A escala só vale se a reconstrução de cada cascata for confiável.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §1, §6. DOI 10.1287/mnsc.2015.2158.</fonte>
+    <fonte_primaria tier="N1">Goel et al. (2012); Liben-Nowell D, Kleinberg J (2008) Tracing information flow on a global scale using Internet chain-letter data. PNAS 105(12):4633-4638.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="EPI-S04" tipo="principio">
+  <gatilho>Quando uma conclusão poderia ser um artefato da métrica específica que você escolheu.</gatilho>
+  <mecanismo>Recompute o resultado sob várias formalizações alternativas razoáveis; se elas forem altamente correlacionadas e derem conclusões qualitativamente idênticas, o achado é robusto à escolha operacional, não um artefato de definição. Aqui, quatro medidas de virality (distância média entre pares; fração do maior broadcast; probabilidade de dois nós terem pais distintos; profundidade média) tiveram correlações de posto absolutas ≥0,73 e deram as mesmas conclusões sobre tamanho×virality. Operacionalizações convergentes compram credibilidade que nenhuma métrica isolada compra.</mecanismo>
+  <condicoes>
+    <vale_quando>Existem múltiplas métricas defensáveis para o mesmo construto.</vale_quando>
+    <enfraquece_quando>As métricas são quase idênticas por construção — aí a concordância é trivial e não prova robustez.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Antes de publicar "X se correlaciona com Y", reexecute com 2–3 medidas alternativas de X e relate a concordância.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S03">É o que blinda o achado central (baixa correlação tamanho×virality) contra crítica de métrica.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. Apêndice B, Tabela B.1. DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="EPI-S05" tipo="principio">
+  <gatilho>Quando um modelo gerador reproduz com sucesso os padrões observados.</gatilho>
+  <mecanismo>Casar com os resultados empíricos NÃO estabelece que o modelo captura o verdadeiro processo gerador — múltiplos mecanismos podem produzir o mesmo padrão (equifinalidade). O poder assimétrico da modelagem é NEGATIVO: um modelo que NÃO consegue reproduzir traços robustos é falseado e descartado (como os modelos ER aqui). Use simulação para ELIMINAR candidatos e trate os modelos sobreviventes como ainda-não-rejeitados, não como confirmados. Isso disciplina o salto de "ajusta" para "é verdadeiro". Reforço prático: busque ativamente um traço que DISCRIMINE entre modelos (aqui, a diversidade condicional de ν discrimina contra o próprio modelo scale-free — VIR-S13).</mecanismo>
+  <condicoes>
+    <vale_quando>Vários mecanismos são observacionalmente equivalentes nos traços medidos.</vale_quando>
+    <enfraquece_quando>Há um traço discriminante mensurável que só um mecanismo reproduz — então a inferência fica mais forte (mas ainda não é prova dedutiva).</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Relatar o que um modelo bem-sucedido AINDA falha em reproduzir, não apenas seus acertos; a falha é mais informativa que o ajuste.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S13">A diversidade não reproduzida é o caso concreto que impede declarar o modelo "correto".</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §5. DOI 10.1287/mnsc.2015.2158.</fonte>
+    <fonte_primaria tier="N1">Ijiri Y, Simon HA, Bonini CP, van Wormer TA (1977) Skew Distributions and the Sizes of Business Firms (North-Holland).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<!-- ALVO: experimentacao_validacao.xml -->
+
+<regra id="EXP-S01" tipo="heuristica">
+  <gatilho>Quando é preciso inferir a cascata (o "pai" de cada adoção) mas a exposição não é diretamente registrada.</gatilho>
+  <mecanismo>Para cada adotante, restrinja aos "pais potenciais" = amigos cuja adoção apareceu na timeline do adotante ANTES de ele adotar; atribua como pai o amigo que introduziu o conteúdo MAIS RECENTEMENTE. Valide a heurística onde a verdade é conhecida: casos de retweet oficial (65% das instâncias) e reposts creditados via "RT @username" (10%) dão pai quase certo; aplique a regra do mais-recente a esses casos de verdade-base e ela acerta 79% das vezes, rendendo ~95% de acurácia geral. A disciplina transferível: construa a inferência e então faça back-test dela no subconjunto onde a resposta é observável, em vez de confiar cegamente na heurística.</mecanismo>
+  <condicoes>
+    <vale_quando>Há timeline + grafo de seguidores e existe um subconjunto creditado/oficial para validação (ground truth).</vale_quando>
+    <enfraquece_quando>Reposts não creditados dominam (acurácia cai para ~79%); há ambiguidade quando vários amigos postaram em janela temporal próxima.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Qualquer pipeline de atribuição de influência deveria separar uma fatia de verdade-base para estimar a própria taxa de erro, em vez de reportar a inferência como exata.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIR-S01">Sem a árvore reconstruída não há como computar ν.</relacao>
+    <relacao tipo="sinergia" alvo="EPI-S03">A escala de cauda só é útil se cada cascata for reconstruída com erro conhecido.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §3 e Apêndice C. DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="EXP-S02" tipo="heuristica">
+  <gatilho>Quando uma medição observacional de difusão pode estar enviesada por espalhamento fora da plataforma ou por homofilia se passando por influência.</gatilho>
+  <mecanismo>Dois confounds ameaçam a reconstrução de árvore: (1) difusão off-channel — o mesmo conteúdo espalhando-se por email/Facebook pode partir uma árvore real em duas aparentes; (2) homofilia — amigos parecidos adotando independentemente em sequência próxima são lidos erroneamente como influência. Em vez de MODELAR o confound, encontre uma subpopulação onde ele não possa operar: hashtags "longas" em camel case (≥5 palavras, ex.: #ThisIsALongHashtag) dificilmente nascem ou viajam fora do Twitter, então o espalhamento off-channel é largamente impossível. Encontrar resultados qualitativamente idênticos (58.000 dessas cascatas com ≥100 adotantes) mostra que o confound não dirige as conclusões. Princípio: projete um CONTROLE NATURAL onde o viés suspeito esteja estruturalmente ausente, em vez de tentar corrigi-lo estatisticamente.</mecanismo>
+  <condicoes>
+    <vale_quando>Existe uma subpopulação livre-do-confound e numerosa o bastante para análise.</vale_quando>
+    <enfraquece_quando>A subpopulação-controle difere da principal em outras dimensões relevantes (validade externa do controle).</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Para testar se vazamento entre plataformas enviesa um estudo de mídia social, restrinja a artefatos nativos da plataforma (piadas internas, formatos nativos) e reconfira o achado.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="EXP-S01">Complementa a reconstrução de árvore checando o viés que ela poderia herdar.</relacao>
+    <relacao tipo="instancia_de" alvo="">Trata o confound homofilia-vs-influência (Shalizi &amp; Thomas 2011; Aral et al. 2009) por desenho, não por modelo.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. Apêndice D. DOI 10.1287/mnsc.2015.2158.</fonte>
+    <fonte_primaria tier="N1">Shalizi CR, Thomas AC (2011) Homophily and contagion are generically confounded in observational social network studies. Sociol. Methods Res. 40(2):211-239.</fonte_primaria>
+  </evidencia>
+</regra>
+
+</unidades>

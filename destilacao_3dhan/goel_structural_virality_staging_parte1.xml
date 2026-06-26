@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Goel, Anderson, Hofman & Watts,             -->
+<!-- "The Structural Virality of Online Diffusion"                  -->
+<!-- Management Science 62(1):180-196 (2016) · DOI 10.1287/mnsc.2015.2158 -->
+<!-- PARTE 1/2 — VIR-S01..VIR-S13 — A ESTRUTURA DA VIRALIDADE       -->
+<!-- ALVO: viralidade_difusao.xml                                    -->
+<!-- STAGING: renumerar a partir do último ID real de VIR.           -->
+<!-- NOTA: ids S01+ por-obra; colidem por desenho com a destilação   -->
+<!-- Rogers neste folder — a INGESTÃO renumera/deduplica.            -->
+<!-- ============================================================== -->
+<unidades>
+
+<regra id="VIR-S01" tipo="modelo_mental">
+  <gatilho>Quando se precisa caracterizar COMO um conteúdo popular se espalhou — distinguir um único grande broadcast de um contágio interpessoal multigeracional — e os números agregados de popularidade não dão essa resposta.</gatilho>
+  <mecanismo>Virality estrutural ν(T) é a distância média de menor caminho entre TODOS os pares de nós da árvore de difusão (o índice de Wiener da árvore). Mede o quão "espalhados" os adotantes estão uns dos outros. Uma estrela/broadcast (todos adotam direto de uma fonte) dá ν ≈ 2 independentemente do tamanho; uma árvore de ramificação profunda e multigeracional dá ν crescente com a altura (numa árvore k-ária, ν cresce proporcional à altura). Equivale à profundidade média dos nós, calculada com cada nó atuando como raiz por vez. Como é definida SÓ sobre o padrão observado de adoções — e não sobre qualquer modelo de contágio assumido — não depende de parâmetros não observados e é computável em tempo linear. Converte um conceito-folclore binário e cheio de limiar ("foi viral ou não?") num eixo contínuo e mensurável.</mecanismo>
+  <condicoes>
+    <vale_quando>Há a cascata reconstruída com as arestas quem-adotou-de-quem (árvore de difusão completa). Population: cascatas online com n &gt; 1; testado em n ≈ 1,2 bilhão de adoções no Twitter.</vale_quando>
+    <enfraquece_quando>Só há dados agregados (adoções cumulativas no tempo) — então a estrutura é não-identificável e ν não pode ser calculado.</enfraquece_quando>
+    <reverte_quando>Estruturas patológicas (ex.: duas estrelas ligadas por um caminho longo) recebem ν alto sem serem intuitivamente virais; empiricamente, porém, esses casos são raros.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="EPI-S01">Profundidade e profundidade-média são métricas rivais mais simples, mas falham em casos patológicos (ver EPI-S01).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Ordenar uma amostra aleatória de cascatas reais por ν reproduziu a ordenação intuitiva humana de "virality crescente", inclusive em casos intermediários de granularidade fina (Fig. 3).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="">Índice de Wiener, originado na química matemática (Wiener 1947) para pontos de ebulição de parafinas.</relacao>
+    <relacao tipo="pre_requisito" alvo="VIR-S03">É a medida sobre a qual repousam todos os achados estruturais.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel S, Anderson A, Hofman J, Watts DJ — "The Structural Virality of Online Diffusion". Management Science 62(1):180-196, 2016. §2 e Apêndice A. DOI 10.1287/mnsc.2015.2158.</fonte>
+    <fonte_primaria tier="N1">Wiener H (1947) Structural determination of paraffin boiling points. J. Amer. Chem. Soc. 69(1):17-20.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S02" tipo="modelo_mental">
+  <gatilho>Quando algo é chamado de "viral" só porque ficou grande, ou ficou grande rápido.</gatilho>
+  <mecanismo>Alcançar uma audiência grande e alcançá-la POR contágio pessoa-a-pessoa são dimensões ortogonais. O mesmo tamanho final pode ser produzido por (a) um único broadcast a uma audiência direta enorme (estrela, ν≈2) ou (b) boca-a-boca multigeracional (árvore profunda, ν alto) ou qualquer mistura dos dois. O TAMANHO mede popularidade; a VIRALITY ESTRUTURAL mede a assinatura do mecanismo gerador. Logo a popularidade carrega quase nenhuma informação sobre COMO o conteúdo de fato se espalhou — é preciso reconstruir a cascata para saber. Tratar "popular" e "viral" como sinônimos é o erro de raiz que esta obra desfaz.</mecanismo>
+  <condicoes>
+    <vale_quando>Em todos os quatro domínios e todos os tamanhos estudados (vídeos, imagens, news, petições).</vale_quando>
+    <reverte_quando>Nenhuma inversão observada: o desacoplamento entre tamanho e estrutura vale até para os maiores eventos.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S04">Antagoniza o modelo-folclore do tipping point, que pressupõe que grande implica viral.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Uma audiência do tamanho do Superbowl (100M) é broadcast puro; uma corrente (chain letter) é altamente viral. Ambos "populares", estruturas opostas.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S03">É o princípio-mãe do achado empírico de que popularidade ≈ maior broadcast.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S05">Junto explicam por que não se pode inferir mecanismo do resultado.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §1, §4. DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S03" tipo="principio">
+  <gatilho>Ao decidir de onde a popularidade realmente vem, ou como engenheirar alcance.</gatilho>
+  <mecanismo>Empiricamente, a virality estrutural permanece BAIXA e tem correlação no máximo fraca com o tamanho da cascata (news r=0.2; petições 0.04; imagens/vídeos ≈0). Em todos os domínios e tamanhos — inclusive os maiores e mais raros eventos (≥10.000 reposts) — o ν mediano é baixo (imagens/vídeos &lt;3, mal acima do piso de broadcast que é 2). Ou seja: eventos maiores NÃO são sistematicamente mais virais; se a popularidade acompanha algum traço único, é o TAMANHO DO MAIOR BROADCAST dentro da árvore. O "viral hit" que cresce exponencialmente por boca-a-boca profundo é exceção, não o motor dos grandes eventos.</mecanismo>
+  <condicoes>
+    <vale_quando>Difusão de conteúdo online (Twitter, 4 domínios), cascatas grandes n≥100.</vale_quando>
+    <enfraquece_quando>Em petições e news, onde grandes canais de broadcast são mais escassos, ν sobe e (para news) a correlação tamanho×ν fica positiva (0.2).</enfraquece_quando>
+    <reverte_quando>Os autores enfatizam NÃO ter encontrado domínio em que tamanho grande implicasse alta virality — não há reversão no sentido "quanto maior, mais viral".</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S08">O domínio modula este princípio: onde faltam broadcasters, a popularidade depende mais de cadeia viral.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Para fazer algo grande, garantir um broadcaster de grande alcance (celebridade/canal de massa) em vez de apostar numa reação em cadeia — implicação direta para estratégia de distribuição.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="antagonista" alvo="VIR-S04">Contraria a expectativa de tipping point: grande não é mais viral.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S08">A disponibilidade de canal explica as exceções por domínio.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §4.3, Figs. 5 e 6. DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S04" tipo="principio">
+  <gatilho>Quando se assume que grandes eventos de difusão caem em poucos tipos limpos (broadcast puro vs viral puro) ou cruzam um limiar nítido de viralidade.</gatilho>
+  <mecanismo>A qualquer tamanho fixo, cascatas reais cobrem essencialmente todo o contínuo, de broadcast puro (ν≈2) a ramificação profunda (ν≈34+), com todas as misturas intermediárias povoadas. Não há bimodalidade, não há um pequeno conjunto de "formas canônicas" e não há evidência de um ponto crítico (tipping point) separando viral de não-viral. Saber o tamanho de uma cascata diz quase nada sobre sua estrutura. A difusão é uma mistura CONTÍNUA de broadcast e espalhamento interpessoal, não uma categoria. A intuição clássica do "ponto de virada" é, no melhor dos casos, irrelevante para os eventos reais aqui estudados.</mecanismo>
+  <condicoes>
+    <vale_quando>Eventos grandes (n≥100), na faixa de ~1 em 4.000 (n=100) a ~1 em 100.000 (n=1.000).</vale_quando>
+    <enfraquece_quando>As &gt;99% de cascatas pequenas não têm estrutura para diversificar (terminam em uma geração) — a diversidade é um fenômeno da cauda grande.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="">Literatura clássica de "tipping point" / limiar (Granovetter; narrativa popular tipo Gladwell) que pressupõe ruptura nítida.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Duas notícias com 500 reposts cada podem ser, respectivamente, um megafone puro e uma cadeia boca-a-boca profunda — mesmo tamanho, estruturas opostas.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S12">O colapso do limiar epidêmico em redes scale-free explica a ausência de tipping point.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S02">Decorre do desacoplamento popularidade/estrutura.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §4.1, Fig. 3. DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S05" tipo="modelo_mental">
+  <gatilho>Quando se está tentado a concluir "espalhou-se por boca-a-boca" a partir do mero fato de ter ficado popular (mesmo que rapidamente).</gatilho>
+  <mecanismo>Observar popularidade — mesmo popularidade rápida — é insuficiente para estabelecer contágio pessoa-a-pessoa, porque mecanismos de broadcast (mídia de massa, marketing, post de celebridade) podem produzir crescimento igualmente grande e igualmente veloz. O mecanismo gerador deixa sua impressão digital APENAS na estrutura fina da árvore, que os dados agregados de resultado não contêm. Sem reconstruir a sequência real de adoções + os laços sociais, afirmações de "viral vs broadcast" são infalsificáveis. Corolário: o ônus da prova de viralidade é estrutural, não de audiência.</mecanismo>
+  <condicoes>
+    <vale_quando>Só há dados agregados/de resultado (tamanho, velocidade, picos).</vale_quando>
+    <reverte_quando>A cascata completa é reconstruída — então o mecanismo torna-se identificável via ν.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Hotmail, Gmail e Facebook são descritos como sucessos de boca-a-boca, mas também receberam ampla cobertura de mídia que pode ter dirigido adoções por broadcast — indecidível sem a cascata.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIR-S06">É o caso geral do qual a armadilha da curva-S é instância.</relacao>
+    <relacao tipo="sinergia" alvo="EPI-S02">Liga-se ao princípio de medir o observável, não o mecanismo presumido.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §1, §6 (Discussion). DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S06" tipo="principio">
+  <gatilho>Quando uma curva de adoção em S (crescimento rápido seguido de saturação) é lida como prova de contágio social.</gatilho>
+  <mecanismo>A curva-S é classicamente tomada como assinatura do contágio social (Rogers), mas a MESMA forma surge de distribuição por broadcast puro — marketing ou mídia de massa saturam a audiência endereçável e produzem a sigmoide idêntica. A saturação pode vir de esgotar um mercado tão bem quanto de esgotar suscetíveis num processo de contato. Logo a FORMA da curva subdetermina o mecanismo: ver uma S não autoriza inferir contágio. É um caso particular do princípio de que o resultado agregado não revela o gerador.</mecanismo>
+  <condicoes>
+    <vale_quando>A inferência repousa apenas em adoção-agregada-no-tempo.</vale_quando>
+    <enfraquece_quando>A estrutura da cascata em nível individual também é observada — aí o mecanismo deixa de ser ambíguo.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="">Leitura Rogers/Bass da curva-S como evidência de difusão por contágio.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Um produto cujas vendas traçam uma curva-S pode ter sido empurrado inteiramente por publicidade, sem nenhum boca-a-boca.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S05">É a forma concreta e clássica do erro de inferir mecanismo do resultado.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §1. DOI 10.1287/mnsc.2015.2158.</fonte>
+    <fonte_primaria tier="N1">Van den Bulte C, Lilien GL (2001) Medical innovation revisited: Social contagion versus marketing effort. Amer. J. Sociol. 106(5):1409-1435.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S07" tipo="principio">
+  <gatilho>Ao tentar ler a estrutura subjacente de uma cascata a partir de sua série temporal de adoção cumulativa (velocidade, forma de crescimento).</gatilho>
+  <mecanismo>Empiricamente (Fig. 3), cascatas com curvas de adoção cumulativa quase idênticas podem ter estruturas opostas: o evento menos viral e o mais viral da amostra tinham curvas visualmente indistinguíveis, e os timescales iam de &lt;1 hora a 3 dias sem relação consistente com ν. Traços temporais agregados (velocidade, "burstiness", forma de crescimento) são cegos à estrutura de ramificação. A estrutura é uma dimensão genuinamente ADICIONAL, que só a reconstrução em nível de aresta revela. Velocidade não é virality.</mecanismo>
+  <condicoes>
+    <vale_quando>Cascatas online grandes (n≥100), nos 4 domínios.</vale_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Não inferir "isto viralizou" de uma curva de crescimento rápida ou íngreme; a forma e a velocidade não contam nada sobre a estrutura.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S05">Reforça que o resultado agregado não identifica o mecanismo.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S02">Outra face do desacoplamento popularidade/estrutura.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §4.1, Fig. 3. DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S08" tipo="principio">
+  <gatilho>Ao prever se um tipo de conteúdo vai se espalhar por broadcast ou por boca-a-boca.</gatilho>
+  <mecanismo>Quanto MAIS grandes canais de broadcast um domínio tem, MENOR sua virality estrutural — porque um único grande broadcaster curto-circuita o espalhamento multigeracional. Imagens/vídeos, empurrados por celebridades com dezenas de milhões de seguidores, são quase broadcast puro (ν mediano &lt;3). Petições, carentes de grandes broadcasters, são forçadas ao espalhamento pessoa-a-pessoa (ν mediano 7–8) e são as mais virais. News fica no meio, com a única correlação tamanho×ν positiva (0.2). O mecanismo: capacidade de broadcast SUBSTITUI e expulsa profundidade viral. ATENÇÃO: o achado (ν por domínio) é [C] empírico; a EXPLICAÇÃO causal por "disponibilidade de canal" é declarada pelos autores como especulação ("we can only speculate") — trate-a como hipótese de menor confiança.</mecanismo>
+  <condicoes>
+    <vale_quando>A disponibilidade de canais de broadcast difere entre domínios/contextos.</vale_quando>
+    <enfraquece_quando>É interpretação dos autores, não medida diretamente; a relação causal canal→virality não foi testada experimentalmente.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S03">Explica as exceções ao princípio de que popularidade ≈ maior broadcast.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Um tema de nicho sem gatekeepers de mídia de massa, se se espalhar, tenderá a parecer estruturalmente mais viral (mais profundo).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S03">Fornece a condição de contorno que modula o achado central.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §4.2-4.3, Figs. 4-6. (Explicação causal: especulação declarada dos autores, §4.3.) DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S09" tipo="principio">
+  <gatilho>Ao raciocinar sobre as taxas-base de espalhamento — com que frequência um conteúdo "decola".</gatilho>
+  <mecanismo>A distribuição de tamanho de cascata é de cauda pesada (tipo lei de potência): tamanho médio ≈1,3; ~99% das adoções são a raiz ou seus seguidores imediatos (morrem em uma geração); eventos moderadamente populares ocorrem ~1 em 1.000 e "viral hits" ~1 em 1 milhão. Quase toda tentativa de espalhamento fracassa; o gigante raro vem do extremo da cauda. Essa é a assinatura natural de contágio de baixa infecciosidade (subcrítico), não de uma população à beira de um tipping point. Consequência: viralizar é uma loteria de cauda, não uma alavanca confiável.</mecanismo>
+  <condicoes>
+    <vale_quando>Conteúdo online em redes sociais; resultado consistente com trabalho prévio (Goel et al. 2012).</vale_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Esperar que ~todos os posts morram em um salto; planejar com base na cauda, não no caso mediano.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="EPI-S03">É por isso que amostras enormes são necessárias para observar a cauda.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S10">A cauda pesada emerge do modelo subcrítico em rede scale-free.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §4, Fig. 2. DOI 10.1287/mnsc.2015.2158.</fonte>
+    <fonte_primaria tier="N1">Goel S, Watts DJ, Goldstein DG (2012) The structure of online diffusion networks. Proc. 13th ACM Conf. Electronic Commerce, 623-638.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S10" tipo="principio">
+  <gatilho>Ao modelar espalhamento viral ou escolher um modelo gerador para difusão online.</gatilho>
+  <mecanismo>Um contágio simples tipo SIR/Bass com infecciosidade CONSTANTE e BAIXA (melhor ajuste r = beta·grau_médio ≈ 0,5, ou seja, subcrítico, abaixo do "tipping point" do uso cotidiano) espalhando-se sobre uma rede scale-free (distribuição de grau em lei de potência, expoente α≈2,3, compatível com o Twitter) reproduz, a partir de um único mecanismo: a distribuição de tamanho de cauda pesada, a taxa de popularidade empírica (~1 em 1.000 alcança ≥100), a virality estrutural média ≈5 e a baixa correlação tamanho×ν. NÃO é preciso dinâmica supercrítica/exponencial nem tipping point para gerar cascatas grandes e raras — espalhamento de baixa infecciosidade que ocasionalmente passa por um hub de altíssimo grau já basta.</mecanismo>
+  <condicoes>
+    <vale_quando>A distribuição de grau é de cauda pesada (redes sociais reais).</vale_quando>
+    <enfraquece_quando>O modelo ainda FALHA em reproduzir a DIVERSIDADE plena de ν a tamanho fixo (ver VIR-S13).</enfraquece_quando>
+    <reverte_quando>A rede é homogênea/ER — então o ajuste se quebra (ver VIR-S11).</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="">Tradição de modelagem supercrítica / tipping point para explicar "viral hits".</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Modelar virality online como contágio subcrítico numa rede com hubs, não como epidemia supercrítica; o ajuste r≈0,5 é coerente com estimativas subcríticas prévias (Leskovec SIS r≈0,14 em blogs; correntes/chain letters, Golub &amp; Jackson 2010).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S09">Gera a cauda pesada e a raridade observadas.</relacao>
+    <relacao tipo="pre_requisito" alvo="VIR-S11">Depende crucialmente da rede ser scale-free.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §5, Figs. 7-8. DOI 10.1287/mnsc.2015.2158.</fonte>
+    <fonte_primaria tier="N1">Barabási AL, Albert R (1999) Emergence of scaling in random networks. Science 286(5439):509-512.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S11" tipo="principio">
+  <gatilho>Ao decidir qual ingrediente de um modelo de difusão importa para reproduzir cascatas realistas.</gatilho>
+  <mecanismo>Duas falhas diagnósticas isolam a causa. (1) Beta constante numa rede Erdős–Rényi (homogênea) dá tamanhos de cascata estreitamente centrados na média — sem cauda pesada. (2) Deixar a infecciosidade variar (beta em lei de potência) sobre ER recupera a cauda pesada MAS força uma ALTA correlação tamanho×ν, porque numa rede homogênea uma cascata grande TEM necessariamente de ser profunda/multigeracional. Só trocar a REDE por scale-free quebra essa trava e gera baixa correlação tamanho×ν. Portanto é a HETEROGENEIDADE de grau (poucos hubs com até milhões de seguidores), não a variância na qualidade/apelo do conteúdo, que reproduz os dados. Mecanismo do hub: um contágio de baixa infecciosidade que morreria é resgatado sempre que alcança um hub de altíssimo grau, que o transmite amplamente em uma geração — produzindo cascatas grandes-mas-rasas (ν baixo).</mecanismo>
+  <condicoes>
+    <vale_quando>Redes sociais reais (grau de cauda pesada).</vale_quando>
+    <reverte_quando>A rede é homogênea (ER) — aí tamanho e virality ficam mecanicamente acoplados (correlação alta).</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="">Atribuir a variação de tamanho de cascata só à "qualidade"/infecciosidade do conteúdo.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Uma peça mediana retuitada por uma única megaconta pode superar uma peça intrinsecamente melhor que nunca alcança um hub — o gargalo é a topologia, não só o mérito.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S10">Explica POR QUE o modelo scale-free de baixa infecciosidade funciona.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S12">A topologia scale-free também colapsa o limiar epidêmico.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §5. DOI 10.1287/mnsc.2015.2158.</fonte>
+    <fonte_primaria tier="N1">Pastor-Satorras R, Vespignani A (2001) Epidemic spreading in scale-free networks. Phys. Rev. Lett. 86(14):3200-3203.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S12" tipo="principio">
+  <gatilho>Ao aplicar raciocínio de tipping point / limiar crítico ao espalhamento em redes sociais reais.</gatilho>
+  <mecanismo>O limiar epidêmico clássico r=c separa um regime subcrítico (o contágio morre) de um supercrítico (epidemia exponencial). Mas o limiar depende da rede: para redes ER, c~1, enquanto para redes scale-free a variância de grau diverge e o limiar c→0 conforme a rede cresce — significando que efetivamente TODOS os contágios são tecnicamente "supercríticos" mesmo enquanto estão morrendo. A dicotomia nítida viral/não-viral em que a metáfora do tipping point se apoia é um artefato de assumir mistura homogênea; em redes com hubs ela se dissolve. É por isso que nenhum tipping point empírico aparece (VIR-S04) e por que contágio de baixo r ainda produz gigantes raros (VIR-S10).</mecanismo>
+  <condicoes>
+    <vale_quando>A variância de grau é grande (scale-free).</vale_quando>
+    <enfraquece_quando>A rede é homogênea/ER — só aí o limiar tem significado nítido (contágios com r&gt;1 viram epidemia).</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="">Enquadramento Gladwell/Granovetter de tipping point como ruptura limpa.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Parar de perguntar "cruzou o limiar para viralizar?" — em redes reais não há essa linha limpa; há um contínuo de cascatas quase sempre subcríticas.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S04">Fundamenta teoricamente a ausência de formas canônicas e de tipping point.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §5. DOI 10.1287/mnsc.2015.2158.</fonte>
+    <fonte_primaria tier="N1">Pastor-Satorras R, Vespignani A (2001); Lloyd AL, May RM (2001) How viruses spread among computers and people. Science 292(5520):1316-1317.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S13" tipo="principio">
+  <gatilho>Quando se afirma que um modelo gerador "explica" a virality online.</gatilho>
+  <mecanismo>Mesmo o modelo de melhor ajuste (contágio subcrítico em rede scale-free) falha num eixo: NÃO reproduz a DISPERSÃO empírica de virality estrutural entre cascatas DO MESMO TAMANHO. Variar a infecciosidade do conteúdo muda o TAMANHO dos eventos, não a diversidade de estrutura a um dado tamanho — beta maior faz eventos maiores, não eventos diferentemente conformados. Assim, a rica diversidade estrutural (VIR-S04) permanece inexplicada por qualquer mecanismo único atual; provavelmente exige heterogeneidade que os modelos omitem (ex.: variação no processo de adoção, múltiplas sementes, contágio complexo). É a fronteira honesta da ciência aqui: o que sabemos NÃO modelar ainda.</mecanismo>
+  <condicoes>
+    <vale_quando>Comparação a tamanho fixo (distribuição de ν condicional ao tamanho).</vale_quando>
+    <enfraquece_quando>É um resultado negativo declarado — não há mecanismo proposto que o satisfaça nesta obra.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S10">Limita o sucesso do modelo scale-free: bate nas marginais, falha na condicional.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Tratar como incompleto qualquer modelo que reproduza as distribuições marginais de tamanho e virality mas não a diversidade condicional a tamanho fixo.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="EPI-S05">Exemplifica que reproduzir parte dos dados não valida o mecanismo.</relacao>
+  </relacoes>
+  <evidencia tier="N1">
+    <fonte>Goel et al. — Management Science 62(1):180-196, 2016. §5, §6. DOI 10.1287/mnsc.2015.2158.</fonte>
+  </evidencia>
+</regra>
+
+</unidades>
