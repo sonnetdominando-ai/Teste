@@ -126,4 +126,25 @@ Não enxergo o Cérebro vivo; ids provisórios PREFIXO-S##. Anti-duplicata/renum
 
 **TOTAL = 59 unidades (56 VIR + 3 GAB).** Arquivos staging: parte1 (S01–S20), parte2 (S21–S40), parte3 (S41–S56 + GAB-S01–S03).
 
+## 8. SEGUNDA CAÇA À PROFUNDIDADE (addendum — EXTRAÇÃO MÁXIMA)
+Revisão da cobertura contra a fonte revelou que o **cap. 4 (The Generation of Innovations)** estava quase ausente da 1ª passada e que algumas distinções densas do autor não viraram unidade. Cada candidato abaixo foi **re-verificado verbatim no EPUB** antes de destilar (anti-fabricação): innovation-development process (cap. 4), redes radial vs. interlocking (cap. 8: "radial networks... reach out into the entire system"), descontinuância replacement/disenchantment (cap. 5), tecnologia = hardware + software (cap. 1), lead users / von Hippel 1988 (cap. 4), paradoxo inovatividade/necessidade ("units who adopt first generally least need the benefits", cap. 8/3), guarda-chuva da taxa de adoção (Fig. 6-1, "49 to 87 percent... five attributes"), e o modelo de extensão agrícola como GAB (cap. 4: cópias falham ao omitir o elo de agente local).
+
+### MANIFESTO ADICIONAL (Parte 4 — 8 unidades)
+60. VIR-S57 modelo_mental — Processo de desenvolvimento da inovação (6 fases; difusão é fase tardia)
+61. VIR-S58 principio — Redes pessoais radiais vs. interlocking (alcance × densidade)
+62. VIR-S59 principio — Descontinuância: replacement vs. disenchantment (adoção líquida)
+63. VIR-S60 modelo_mental — Tecnologia = hardware + software (software puro → baixa observabilidade)
+64. VIR-S61 principio — Lead users são fonte de inovação (von Hippel)
+65. VIR-S62 principio — Paradoxo inovatividade/necessidade (quem adota primeiro precisa menos)
+66. VIR-S63 modelo_mental — Cinco classes de variáveis governam a taxa de adoção (Fig. 6-1)
+67. GAB-S04 gabarito — Sistema de difusão tipo extensão agrícola → instancia_de VIR-S57
+
+**TOTAL CONSOLIDADO = 67 unidades (63 VIR + 4 GAB).** Arquivos staging: parte1 (S01–S20), parte2 (S21–S40), parte3 (S41–S56 + GAB-S01–S03), parte4 (S57–S63 + GAB-S04).
+
+### Candidatos avaliados e DESCARTADOS (densidade > cobertura, sem inchaço)
+- "Diffusion effect" como unidade própria — já coberto por threshold/massa crítica (S18/S19); não duplicar.
+- Serendipidade (Warfarin) — densa, mas é sub-caso do desenvolvimento → dobrada como `<aplicacao>` em VIR-S57.
+- Mizoguchi/Toshiba — já é `<aplicacao>` de VIR-S46 (campeão); não recriar.
+- Umbrella "rate of adoption" só foi mantida (S63) por ser modelo diagnóstico distinto que corrige o erro de tratar atributos como tudo; caso contrário seria diluição.
+
 </scratchpad_phd>

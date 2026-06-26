@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Rogers, Diffusion of Innovations (5ª ed, 2003) -->
+<!-- PARTE 4/4 — VIR-S57..VIR-S63 + GAB-S04                          -->
+<!-- 2ª CAÇA À PROFUNDIDADE: geração/desenvolvimento (cap. 4),        -->
+<!-- redes pessoais, descontinuância, hardware/software, lead users, -->
+<!-- paradoxo inovatividade/necessidade, guarda-chuva da taxa.       -->
+<!-- ALVO: viralidade_difusao.xml + modelos_output.xml              -->
+<!-- STAGING: renumerar a partir do último ID real de cada domínio   -->
+<!-- ============================================================== -->
+<unidades>
+
+<!-- ALVO: viralidade_difusao.xml -->
+<!-- STAGING: renumerar a partir do último ID real de VIR -->
+
+<regra id="VIR-S57" tipo="modelo_mental">
+  <gatilho>Ao investigar de onde uma inovação vem e por que decisões tomadas ANTES da difusão já fixam o teto dela.</gatilho>
+  <mecanismo>A difusão é apenas a 5ª de SEIS fases de um processo maior de desenvolvimento da inovação: (1) reconhecer um problema/necessidade; (2) pesquisa básica e aplicada; (3) desenvolvimento (dar à ideia uma forma que atenda à necessidade percebida do adotante); (4) comercialização; (5) difusão e adoção; (6) consequências. Mecanismo causal-chave: "diffusion is but a later phase of the larger sequence" — as decisões a montante (em quem se ouviu para definir o problema, que atributos se embutiram no design, como se nomeou/posicionou) já determinam grande parte da adotabilidade. Logo, muitos gargalos de difusão nasceram lá atrás, no laboratório, não no marketing. A serendipidade (descoberta acidental) e o gap de status de quem financia P&amp;D (que decide QUAIS inovações chegam a existir) também operam nesta cadeia. Transferível: projete a adotabilidade na origem — difusão é colher o que o desenvolvimento plantou.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações com cadeia de desenvolvimento rastreável (produtos, tecnologias, programas, metodologias).</vale_quando>
+    <enfraquece_quando>Inovações emergentes/de usuário sem fase formal de P&amp;D, em que a sequência linear não se aplica (ver lead users, VIR-S61).</enfraquece_quando>
+    <reverte_quando>Comercializar cedo demais (antes de o design resolver a necessidade real) ou tarde demais mata a difusão de uma inovação tecnicamente superior.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S04">Uma inovação gerada com mérito objetivo ainda não difunde se as fases iniciais ignoraram a percepção do adotante.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Xerox PARC ("Fumbling the Future"): inventou interface gráfica, mouse e ethernet, mas falhou na comercialização — outros colheram a difusão.</aplicacao>
+    <aplicacao>Warfarin: serendipidade — um veneno de rato virou o anticoagulante humano mais usado (a descoberta acidental antecede a necessidade definida).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIR-S35">O processo de DESENVOLVIMENTO (criador) antecede o processo de DECISÃO (adotante).</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S31">Nomear/posicionar são decisões da fase de desenvolvimento que pré-condicionam a difusão.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S61">Lead users são uma rota alternativa de geração à P&amp;D formal.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 4 (The Innovation-Development Process).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S58" tipo="principio">
+  <gatilho>Ao avaliar se a rede pessoal de um nó AJUDA ou TRAVA a propagação para fora do seu grupo.</gatilho>
+  <mecanismo>Redes pessoais têm dois formatos de efeito oposto na difusão. INTERLOCKING (entrelaçada): todos os contatos do indivíduo também interagem entre si — densa, homófila, "ingrown", alto reforço mas informação redundante. RADIAL: os contatos ligam-se ao indivíduo focal mas NÃO entre si — menos densa, mais heterófila, e por isso "reaches out into the entire system". Mecanismo: a rede radial expõe o nó a um ambiente informacional mais amplo e interliga cliques distintas, sendo desproporcionalmente importante para a difusão; a rede interlocking acelera o reforço local mas confina a ideia. Transferível: para propagar AMPLAMENTE, ative nós de rede radial (pessoas com contatos abertos e dispersos), não os núcleos fechados — densidade de rede e alcance de difusão são um trade-off.</mecanismo>
+  <condicoes>
+    <vale_quando>Sistemas com cliques separadas que precisam ser interligadas para a difusão completa.</vale_quando>
+    <enfraquece_quando>A PERSUASÃO final (não só a transferência de informação) ainda exige laços próximos/interlocking — a rede radial abre a porta, a interlocking fecha a venda.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S10">A densidade/homofilia que torna a comunicação eficaz é exatamente o que torna a rede ingrown e de baixo alcance.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Mirar o conector de rede radial (muitos contatos que não se conhecem entre si) para saltar a bolha, em vez do líder de um grupo coeso cujos contatos já se conhecem.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S12">A rede radial é onde vivem os laços fracos-ponte.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S11">A rede interlocking explica a barreira que prende a ideia num estrato.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8 (Radial vs. Interlocking Personal Networks).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S59" tipo="principio">
+  <gatilho>Quando se mede sucesso só por adoções acumuladas e se ignora quem ABANDONA depois de adotar.</gatilho>
+  <mecanismo>Adoção não é permanente: a descontinuância (rejeitar uma inovação após tê-la adotado) é de dois tipos — REPLACEMENT (trocar por uma ideia melhor que a supera; ondas constantes de inovação) e DISENCHANTMENT (rejeitar por insatisfação com o desempenho). Mecanismo da desilusão: adoção mal-informada (sem how-to/principles) ou inovação inadequada à situação do adotante leva à insatisfação e ao abandono — e isso recai sobretudo nos adotantes TARDIOS e de menor status, que têm menos recursos e frequentemente adotaram sob pressão. Por isso as taxas de descontinuância são MAIORES entre os tardios, espelhando ao contrário a ordem da adoção. Transferível: a saúde de uma difusão é a adoção LÍQUIDA (adoção − descontinuância); volume sem sustentação é ilusão — invista em how-to e em fit para os adotantes vulneráveis.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações cujo desempenho real só se revela com o uso continuado.</vale_quando>
+    <reverte_quando>Descontinuância por REPLACEMENT é sinal SAUDÁVEL (a categoria evoluiu e o adotante migrou para algo melhor), não falha de difusão.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S45">O número de adoções esconde a descontinuância — quantidade alta pode mascarar abandono em massa.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Fazendeiros balineses abandonaram em massa o arroz-milagre e voltaram ao sistema dos templos de água (disenchantment); descontinuância do fumar como meta de anti-difusão.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S35">Ocorre na/após o estágio de Confirmação do processo de decisão.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S40">Os laggards e a maioria tardia descontinuam mais.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5 (Discontinuance) e cap. 7.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S60" tipo="modelo_mental">
+  <gatilho>Ao difundir algo cujo "corpo" é mais ideia/informação do que objeto físico (um método, uma política, uma crença).</gatilho>
+  <mecanismo>Toda tecnologia tem dois componentes: HARDWARE (a ferramenta que materializa a tecnologia como objeto físico) e SOFTWARE (a base de informação que a faz funcionar). Algumas inovações são quase só software/ideia: uma religião, uma notícia, uma metodologia, uma lei antifumo. Mecanismo: quanto mais a inovação é "idea-only", MENOR sua observabilidade — não há objeto visível que sinalize a adoção ao redor — e portanto mais LENTA a difusão e mais difícil até de rastrear e medir. O hardware visível é, ele próprio, parte do anúncio; o software invisível depende de tornar o uso explícito. Transferível: para difundir uma ideia/método (software), FABRIQUE observabilidade — dê a ela um corpo visível (selo, artefato, ritual, output demonstrável) que torne a adoção alheia perceptível.</mecanismo>
+  <condicoes>
+    <vale_quando>Comparar e projetar a difusão de objetos físicos vs. ideias/métodos puros.</vale_quando>
+    <enfraquece_quando>Software embutido num hardware popular pega carona na observabilidade do hardware (a ideia viaja no objeto).</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Coletores solares no telhado (hardware visível) difundem por clusters; uma ordenança municipal antifumo ou um método de estudo (software puro) difundem devagar e mal se rastreiam.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S34">É a raiz conceitual do atributo observabilidade.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S20">Software puro é o que mais sofre de ignorância pluralística (adoção invisível).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1 (Technology: Hardware and Software).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S61" tipo="principio">
+  <gatilho>Ao procurar de onde vêm as inovações mais adotáveis — e ao decidir entre criar internamente ou observar os usuários.</gatilho>
+  <mecanismo>A suposição de que inovações são criadas por fabricantes e depois vendidas é com frequência FALSA: em muitos campos, os LEAD USERS (usuários à frente da curva, com necessidades intensas hoje que o mercado terá amanhã) desenvolvem a inovação, criam o protótipo e só então convencem um fabricante a produzi-la. Mecanismo: quem sente a necessidade na própria pele e domina o contexto de uso projeta soluções mais ajustadas à situação real do que um P&amp;D distante — e essas soluções já nascem com alta vantagem relativa e compatibilidade percebidas porque foram forjadas no uso. Transferível: trate seus usuários avançados como fonte de P&amp;D; observe o que eles já adaptaram/gambiarraram por conta própria (é o produto futuro) em vez de só empurrar o que o laboratório imaginou.</mecanismo>
+  <condicoes>
+    <vale_quando>Campos com usuários sofisticados e necessidades de ponta (instrumentos científicos, software, esportes, ferramentas profissionais).</vale_quando>
+    <enfraquece_quando>Mercados de massa passivos, sem usuários capazes de prototipar ou articular a solução.</enfraquece_quando>
+  </condicoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S39">Re-invenção e lead users são o mesmo fenômeno em fases distintas: o usuário modifica na adoção (re-invenção) e gera na origem (lead user).</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S57">É a rota alternativa de geração à fase formal de P&amp;D do processo de desenvolvimento.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 4 e 5.</fonte>
+    <fonte_primaria tier="N1">von Hippel, E. — The Sources of Innovation (1988), MIT.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S62" tipo="principio">
+  <gatilho>Ao decidir quem abordar primeiro e ao avaliar o efeito DISTRIBUTIVO (não só médio) de uma difusão.</gatilho>
+  <mecanismo>Relação paradoxal verificada: as unidades que adotam PRIMEIRO geralmente são as que MENOS precisam dos benefícios da inovação (têm mais recursos, mais informação e mais folga para arriscar); as que mais precisam adotam por último — ou nunca. Mecanismo: inovatividade correlaciona com status/recursos, e status anda inversamente à urgência da necessidade; logo a difusão "natural" serve primeiro quem já está bem. Este é o motor a MONTANTE do alargamento de gaps: não é só que os "ups" correm mais rápido — é que a própria ORDEM de adoção é inversa à ordem da necessidade. Transferível: se a meta é impacto sobre quem mais precisa, a difusão espontânea trabalha CONTRA você; só intervenção deliberada inverte a ordem natural.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações caras/arriscadas introduzidas em populações desiguais.</vale_quando>
+    <reverte_quando>Inovações de baixo/nenhum custo e de urgência aguda e visível para os "downs" podem ser adotadas primeiro por quem mais precisa.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S40">A ordem das categorias de adotantes é, em média, a ordem INVERSA da necessidade — o que tensiona a leitura ingênua da curva-S.</tensao>
+  </tensoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIR-S51">É a causa a montante do communication effects gap.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S54">O "laggard atrasado" é muitas vezes o mais necessitado e sem recursos — system-blame, não culpa.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 3 e 8.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S63" tipo="modelo_mental">
+  <gatilho>Ao diagnosticar a velocidade de adoção sem reduzir tudo a "o produto é bom o bastante?".</gatilho>
+  <mecanismo>A taxa de adoção é função de CINCO classes de variáveis, não só dos atributos da inovação: (1) os cinco ATRIBUTOS percebidos (explicam de 49 a 87% da variância — a classe dominante e a mais estudada); (2) o TIPO de decisão (opcional &lt; coletiva &lt; autoridade, em velocidade); (3) os CANAIS de comunicação por estágio; (4) a natureza do SISTEMA social (normas, interconexão de rede); (5) a extensão dos esforços de PROMOÇÃO dos agentes de mudança. Mecanismo: as cinco classes operam simultaneamente sobre a mesma curva-S; tratar só os atributos (o erro mais comum) ignora que a MESMA inovação, adotada por decisão de autoridade, num sistema de normas pró-mudança e com agentes ativos, difunde muito mais rápido. Transferível: ao diagnosticar difusão lenta, percorra as 5 classes como checklist — o gargalo frequentemente NÃO está no produto.</mecanismo>
+  <condicoes>
+    <vale_quando>Qualquer diagnóstico de taxa de adoção (modelo da Figura 6-1).</vale_quando>
+    <enfraquece_quando>As cinco classes não receberam atenção igual de pesquisa: só os atributos têm peso quantificado robusto; as outras quatro são sustentadas qualitativamente — não as trate como igualmente medidas.</enfraquece_quando>
+  </condicoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S21">Os cinco atributos são apenas 1 das 5 classes que governam a taxa.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S42">Tipo de decisão é a 2ª classe.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S08">Canais de comunicação são a 3ª classe.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S41">Natureza do sistema social é a 4ª classe.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S44">Esforço de promoção dos agentes é a 5ª classe.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6, Fig. 6-1 (Variables Determining the Rate of Adoption).</fonte>
+  </evidencia>
+</regra>
+
+<!-- ============================================================== -->
+<!-- ALVO: modelos_output.xml (GAB)                                 -->
+<!-- STAGING: renumerar a partir do último ID real de GAB           -->
+<!-- ============================================================== -->
+
+<regra id="GAB-S04" tipo="gabarito">
+  <no_alvo>estrategia_canal, arquiteto_comportamental</no_alvo>
+  <gatilho>Ao montar um SISTEMA institucional para difundir inovações em escala e de forma sustentada (não uma campanha pontual).</gatilho>
+  <mecanismo>Sustenta-se na lei de que a difusão exige uma cadeia de LINKAGE completa entre a fonte do conhecimento e o cliente, com agentes homófilos no contato final e feedback de volta à pesquisa. O modelo de extensão agrícola dos EUA — creditado pelo salto de produtividade rural no pós-guerra — integra o processo de desenvolvimento E a difusão num sistema único. Guarda-corpo anti-dogma: as tentativas de copiar o modelo FALHARAM justamente quando omitiram um dos elos (em especial os agentes locais de contato com o cliente). O sistema não é a soma das partes: é a linkage entre elas — replicar só o topo (especialistas) sem a base local não difunde.</mecanismo>
+  <aplicacoes>
+    <aplicacao>Receita executável (não pule nenhum elo): (1) SUBSISTEMA DE PESQUISA — uma fonte que gera e valida as inovações (equivalente às universidades/experiment stations). (2) ESPECIALISTAS DE LIGAÇÃO — traduzem a pesquisa em recomendações práticas e fazem a ponte bidirecional pesquisa↔campo. (3) AGENTES LOCAIS HOMÓFILOS — contato cara a cara com o cliente (county agents/aides), com credibilidade de segurança e coleta de necessidades reais. (4) FEEDBACK — os problemas do campo voltam a pautar a agenda de pesquisa, fechando o ciclo do innovation-development. (5) NÃO copie só os especialistas sem o elo local de contato — é o erro recorrente que faz cópias do modelo fracassarem.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S57">Operacionaliza o processo integrado de desenvolvimento + difusão.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S43">Depende dos aides homófilos para o contato final com o cliente.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S44">Calibra o esforço dos agentes ao longo da curva de adoção.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 4 (The Agricultural Extension Model).</fonte>
+    <fonte_primaria tier="N1">Rogers, Eveland &amp; Bean (1976/1982), análise do sistema de extensão.</fonte_primaria>
+  </evidencia>
+</regra>
+
+</unidades>

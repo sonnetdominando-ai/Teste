@@ -14,7 +14,7 @@ Data da destilação: **2026-06-26**.
 
 ```
 ★★★★★ Everett M. Rogers — Diffusion of Innovations (5ª ed., 2003) [tipo: LIVRO]
-      → viralidade_difusao.xml (VIR-S01..S56) · modelos_output.xml (GAB-S01..S03)
+      → viralidade_difusao.xml (VIR-S01..S63) · modelos_output.xml (GAB-S01..S04)
       [2026-06-26] [renumerar]
 ```
 
@@ -27,23 +27,25 @@ Notas do acervo:
 ## ARTEFATO 4 — DELTA DA LEGENDA (por domínio tocado)
 
 ```
-VIR: +56 unidades — fonte: Everett M. Rogers (Diffusion of Innovations, 5ª ed.)
-GAB:  +3 unidades — fonte: Everett M. Rogers (Diffusion of Innovations, 5ª ed.)
+VIR: +63 unidades — fonte: Everett M. Rogers (Diffusion of Innovations, 5ª ed.)
+GAB:  +4 unidades — fonte: Everett M. Rogers (Diffusion of Innovations, 5ª ed.)
 ```
 
 ---
 
 ## CONFERÊNCIA DE COBERTURA (obrigatória)
 
-- **Manifesto (scratchpad_phd, passo 7): 59 candidatos.**
-- **Unidades gravadas: 59**, distribuídas em **3 arquivos staging**:
+- **Manifesto (scratchpad_phd, passos 7 + 8): 67 candidatos** (59 da 1ª passada + 8 da 2ª caça à profundidade).
+- **Unidades gravadas: 67**, distribuídas em **4 arquivos staging**:
   - `diffusion_of_innovations_rogers_staging_parte1.xml` — 20 unidades (VIR-S01..S20)
   - `diffusion_of_innovations_rogers_staging_parte2.xml` — 20 unidades (VIR-S21..S40)
   - `diffusion_of_innovations_rogers_staging_parte3.xml` — 19 unidades (VIR-S41..S56 + GAB-S01..S03)
-- **59 candidatos do manifesto = 59 unidades gravadas nos 3 arquivos.** Bate unidade a unidade. Zero truncamento.
-- IDs de staging contíguos e únicos (VIR-S01..S56; GAB-S01..S03), cada bloco-alvo com comentário de renumeração para a INGESTÃO.
-- Todos os 3 arquivos validados como XML bem-formado.
-- Distribuição de tipo: 45 `principio`, 11 `modelo_mental`, 3 `gabarito`. Todo `principio` tem `<mecanismo>` causal; todo GAB tem `<no_alvo>` e `instancia_de` apontando à lei VIR de fundo.
+  - `diffusion_of_innovations_rogers_staging_parte4.xml` — 8 unidades (VIR-S57..S63 + GAB-S04)
+- **67 candidatos do manifesto = 67 unidades gravadas nos 4 arquivos.** Bate unidade a unidade. Zero truncamento.
+- IDs de staging contíguos e únicos (VIR-S01..S63; GAB-S01..S04), cada bloco-alvo com comentário de renumeração para a INGESTÃO.
+- Todos os 4 arquivos validados como XML bem-formado.
+- Distribuição de tipo: 49 `principio`, 14 `modelo_mental`, 4 `gabarito`. Todo `principio` tem `<mecanismo>` causal; todo GAB tem `<no_alvo>` e `instancia_de` apontando à lei VIR de fundo.
+- **Nota de auditoria (2026-06-26):** revisão contra a fonte corrigiu VIR-S13 (líderes de opinião ~8%, não ~15%; métrica "sexo anal protegido +45%") e adicionou a Parte 4 (cap. 4 antes sub-representado). ~10 afirmações numéricas conferidas verbatim no EPUB.
 
 ---
 
