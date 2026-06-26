@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Rogers, Diffusion of Innovations (5ª ed, 2003) -->
+<!-- PARTE 2/3 — VIR-S21..VIR-S40                                    -->
+<!-- ATRIBUTOS DA INOVAÇÃO · PROCESSO DE DECISÃO · CATEGORIAS        -->
+<!-- ALVO: viralidade_difusao.xml                                   -->
+<!-- STAGING: renumerar a partir do último ID real de VIR           -->
+<!-- ============================================================== -->
+<unidades>
+
+<regra id="VIR-S21" tipo="modelo_mental">
+  <gatilho>Ao prever ou explicar por que uma inovação é adotada rápido ou devagar — antes de gastar verba para acelerá-la.</gatilho>
+  <mecanismo>Cinco atributos PERCEBIDOS explicam a maior parte da variância na taxa de adoção: (1) vantagem relativa (melhor que o que substitui), (2) compatibilidade (consistente com valores/experiências/necessidades), (3) complexidade (difícil de entender/usar — negativa), (4) trialabilidade (experimentável em escala limitada), (5) observabilidade (resultados visíveis). Inovações vistas como mais vantajosas, compatíveis, triáveis e observáveis, e MENOS complexas, difundem mais rápido. Os dois primeiros (vantagem relativa e compatibilidade) explicam a maior parte. Chave transferível: a taxa não é propriedade do objeto, é da PERCEPÇÃO — logo é projetável. Antes de promover, audite os 5 atributos e ataque o gargalo.</mecanismo>
+  <condicoes>
+    <vale_quando>Toda inovação; é o framework preditivo central de Rogers.</vale_quando>
+    <enfraquece_quando>Medir os atributos num único corte temporal engana: eles mudam ao longo da difusão (ex.: preço do VCR caiu 24x, mudando a vantagem relativa).</enfraquece_quando>
+    <reverte_quando>Arte/estética: maior compatibilidade pode RETARDAR a adoção — obras derivativas demais não difundem; precisam ser algo radicais.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S32">Trialabilidade/observabilidade puxam para cima; complexidade puxa para baixo — desenhar a inovação é arbitrar entre eles.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Teste N-Trak de solo falhou nos 5 eixos (baixa vantagem prática, incompatível com amônia anidra, baixa observabilidade) — vendas caíram de 1.700 para 17 kits/ano.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S22">É o guarda-chuva dos cinco atributos detalhados.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6.</fonte>
+    <fonte_primaria tier="N1">Fliegel &amp; Kivlin (1966), atributos e taxa de adoção.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S22" tipo="principio">
+  <gatilho>Ao construir e comunicar o "por que vale a pena" de uma inovação — e ao perceber quando o motor vira status, não economia.</gatilho>
+  <mecanismo>Vantagem relativa é o grau em que a inovação é percebida como melhor que a que substitui — razão entre benefícios esperados e custos. Subdimensões: lucro econômico, baixo custo inicial, menos desconforto, prestígio social, economia de tempo/esforço e IMEDIATISMO da recompensa. É um dos preditores mais fortes da taxa. Crucial: NÃO importa a vantagem objetiva, e sim a percebida. Em muitos casos o motor é STATUS, não utilidade — para fads de moda, o prestígio é quase o único benefício, e ele se ESGOTA quando muitos adotam (pressionando por novidades ainda mais novas). Daí a superadoção: adotar quando o especialista diria para rejeitar, movido por status ou novidade.</mecanismo>
+  <condicoes>
+    <vale_quando>Sempre; quanto maior a vantagem relativa percebida, mais rápida a adoção (Gen. 6-1).</vale_quando>
+    <enfraquece_quando>A subdimensão que importa varia: pequenos agricultores/peasants valorizam menos lucro e mais "redução de desconforto"/aprovação social.</enfraquece_quando>
+    <reverte_quando>Status como motor inverte-se na saturação: quando muitos adotam, a moda PERDE valor de prestígio para os pioneiros, virando descontinuância.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S04">Vantagem relativa é necessária, mas inovações superiores ainda assim podem não difundir.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Silos Harvestore (azuis, caríssimos, visíveis na paisagem) adotados por status apesar de especialistas recomendarem silos mais baratos — superadoção.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S07">Status como motor de imitação (Tarde).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6, Gen. 6-1.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S23" tipo="principio">
+  <gatilho>Ao promover qualquer coisa cujo benefício é EVITAR um mal futuro incerto (prevenção, seguro, poupança, hábito de saúde).</gatilho>
+  <mecanismo>Inovação preventiva é adotada agora para reduzir a probabilidade de um evento indesejado no futuro. Difunde DEVAGAR por três razões causais encadeadas: (a) a recompensa é ADIADA no tempo; (b) é INCERTA (o mal pode nem ocorrer sem adotar); (c) o benefício é um NÃO-EVENTO — a ausência de algo que poderia ter acontecido, logo invisível e quase incomprensível ("births averted", "não peguei HIV"). Resultado: motivação fraca, baixa observabilidade, baixa vantagem relativa percebida. Transferível: prevenção exige tornar o benefício tangível, imediato e visível — caso contrário a melhor lógica do mundo não move ninguém.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações de recompensa adiada/probabilística (cinto, contracepção, conservação, exames).</vale_quando>
+    <reverte_quando>Um cue-to-action (susto, perda de um parente, gravidez de risco) crystaliza a atitude favorável em ação — sem ele, a adoção empaca.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S22">A vantagem relativa de uma preventiva é estruturalmente difícil de demonstrar (recompensa adiada vs. imediata).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Cinto de segurança: décadas de campanha e mandatos federais para chegar a 73% (EUA, 2002); a ausência de acidente é um não-evento que ninguém "vê".</aplicacao>
+    <aplicacao>Programa de Stanford contra doença cardíaca: campanha longa + role models + formative research conseguiu mudar estilo de vida preventivo.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S38">O cue-to-action é o que fecha o gap atitude→adoção em preventivas.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5 e 6.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S24" tipo="principio">
+  <gatilho>Ao decidir usar bônus/descontos/recompensas para acelerar a adoção.</gatilho>
+  <mecanismo>Incentivos (pagamentos diretos/indiretos para encorajar mudança) funcionam aumentando a VANTAGEM RELATIVA percebida (incentivo ao adotante) ou a OBSERVABILIDADE (incentivo ao difusor/finder's fee) e podem servir de cue-to-action. Mas há três efeitos causais a controlar: (1) aumentam a QUANTIDADE de adoção; (2) MUDAM quem adota (incentivo alto traz gente de menor status, que não adotaria); (3) BAIXAM a QUALIDADE da decisão e a SUSTENTABILIDADE — quem adota pelo prêmio tem menos motivação para continuar. Tática "pump-priming": incentivar só até ~5–20% de adoção (massa crítica) e então cortar, deixando a difusão se auto-sustentar.</mecanismo>
+  <condicoes>
+    <vale_quando>Para disparar trial ou lançar a difusão até a massa crítica.</vale_quando>
+    <reverte_quando>Mantido após a massa crítica, o incentivo vira custo desnecessário e atrai adoção de baixa qualidade que descontinua.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S45">Incentivo agressivo maximiza adoções mas degrada a qualidade/sustentabilidade da decisão.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Rebates de aquecimento solar nos EUA cortados ao atingir 5–10% de adoção; amostras grátis de semente em Iowa só para disparar o trial.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S19">Incentivo como alavanca para atingir a massa crítica.</relacao>
+    <relacao tipo="instancia_de" alvo="GAB-S01">Compõe o playbook de massa crítica.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6 (Effects of Incentives).</fonte>
+    <fonte_primaria tier="N1">Rogers (1973), incentivos em planejamento familiar.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S25" tipo="principio">
+  <gatilho>Ao introduzir algo novo num público com valores, hábitos ou ideias prévias fortes.</gatilho>
+  <mecanismo>Compatibilidade é o grau em que a inovação é percebida como consistente com valores, experiências passadas e necessidades do adotante. Mecanismo: o familiar é a ferramenta mental com que se interpreta o novo; o que é incompatível gera incerteza e exige a adoção PRÉVIA de um novo sistema de valores — processo lento. Três eixos: (a) valores/crenças socioculturais, (b) ideias previamente introduzidas, (c) necessidades sentidas. Incompatibilidade com valores BLOQUEIA; compatibilidade com ideia prévia ACELERA (mas pode causar uso incorreto por transferência indevida do hábito antigo). Transferível: o atrito não está no produto, está no choque com o mapa mental existente do público.</mecanismo>
+  <condicoes>
+    <vale_quando>Sempre; é, com a vantagem relativa, o preditor mais forte da taxa (Gen. 6-2).</vale_quando>
+    <enfraquece_quando>Se a inovação for compatível DEMAIS, não representa mudança nenhuma — não é inovação útil.</enfraquece_quando>
+    <reverte_quando>Compatibilidade com ideia prévia pode causar má-adoção (aplicar fertilizante como esterco; cobrir o trator com cobertor de boi) — a familiaridade gera erro.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Fervura da água em Los Molinas incompatível com o sistema "quente-frio" → fracasso; arroz IRRI rejeitado por sabor incompatível apesar de triplicar a produção.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S26">A incompatibilidade nasce de ignorar o conhecimento prévio do público.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S31">Posicionar = medir e explorar a compatibilidade percebida.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6, Gen. 6-2.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S26" tipo="principio">
+  <gatilho>Quando um especialista trata o público como "tela em branco" que só precisa aprender a verdade nova.</gatilho>
+  <mecanismo>A "falácia dos vasos vazios" é assumir que potenciais adotantes não têm experiência relevante prévia com que associar a ideia nova — negando a compatibilidade. Mecanismo do erro: a crença na vantagem relativa da inovação leva o técnico a desprezar as práticas existentes como inferiores e descartáveis; isso produz uma inovação percebida como incompatível e a rejeição. O antídoto: compreender o SISTEMA DE CONHECIMENTO INDÍGENA (o "vinho novo é despejado em garrafas velhas" das percepções do cliente) e construir a ponte a partir do que o público já sabe. Ignorar os praticantes tradicionais (parteiras, curandeiros) não os neutraliza — eles plantam rumores e disparam descontinuância.</mecanismo>
+  <condicoes>
+    <vale_quando>Introdução intercultural ou para públicos com práticas/crenças estabelecidas.</vale_quando>
+    <reverte_quando>Atacar/ignorar os detentores do conhecimento local converte-os em opositores ativos (dais espalhando rumores sobre o DIU → descontinuância em massa).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Dr. Flavier explicou a pílula via a semente iping-iping que as galinhas locais já conheciam — ponte de compatibilidade; Bali: ignorar o sistema indígena de irrigação derrubou a produção do arroz-milagre.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S25">É o modo de falha do eixo "compatibilidade com valores/ideias prévias".</relacao>
+  </relacoes>
+  <evidencia tier="N3">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6 (Indigenous Knowledge Systems). Convenção de ofício do autor (antropológica), não dado experimental.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S27" tipo="principio">
+  <gatilho>Ao planejar a SEQUÊNCIA de lançamentos para um mesmo público ao longo do tempo.</gatilho>
+  <mecanismo>"Negativismo de inovação" é o grau em que o FRACASSO de uma inovação condiciona o adotante a rejeitar inovações FUTURAS. Mecanismo: uma experiência ruim contamina a expectativa sobre tudo o que vier depois — o público passa a olhar qualquer novidade com apreensão. Implicação estratégica forte: comece a relação com uma inovação de ALTA vantagem relativa e baixo risco, construa o crédito de confiança, e só então introduza ideias menos compatíveis/mais arriscadas sobre essa base de sucesso. A ordem dos lançamentos é causal, não cosmética.</mecanismo>
+  <condicoes>
+    <vale_quando>Relações de longo prazo com um mesmo público/agência de mudança.</vale_quando>
+    <reverte_quando>Sequência inversa (começar pela ideia arriscada que falha) pode inviabilizar TODA a agenda futura.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>O programa de planejamento familiar no norte da Índia começou pelo DIU (amplamente descontinuado nos anos 1960) e nunca se recuperou desse fracasso inicial.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="antagonista" alvo="VIR-S28">Negativismo é o espelho negativo da cunha compatível: um destrói, o outro abre caminho.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6; conceito de Arensberg &amp; Niehoff (1964).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S28" tipo="principio">
+  <gatilho>Ao querer introduzir uma ideia que o público acharia incompatível ou estranha demais de imediato.</gatilho>
+  <mecanismo>Uma inovação altamente compatível, ainda que represente pouca mudança em si, é útil como CUNHA DE ENTRADA: ela pavimenta o caminho para inovações posteriores, menos compatíveis, ao estabelecer familiaridade e confiança e ao iniciar um cluster sequencial. Mecanismo: cada adoção bem-sucedida amplia o repertório mental do público e reduz a incerteza sobre o agente/fonte, deslocando a fronteira do "aceitável". Transferível: não lance a ideia difícil primeiro; lance a ponte fácil e use o crédito gerado para puxar a difícil.</mecanismo>
+  <condicoes>
+    <vale_quando>Quando a meta final é uma inovação incompatível, mas existe uma versão-ponte compatível.</vale_quando>
+    <enfraquece_quando>Se a ponte é compatível DEMAIS (mudança nula), não constrói crédito suficiente para a próxima.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Estratégia de cluster: introduzir a inovação compatível como "primeiro passo" de uma sequência planejada de ideias mais radicais.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S29">A cunha é a porta de entrada de um cluster tecnológico.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6 (Compatibility with Previously Introduced Ideas).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S29" tipo="principio">
+  <gatilho>Ao decidir difundir uma ideia isolada vs. um pacote de ideias inter-relacionadas.</gatilho>
+  <mecanismo>Um cluster tecnológico é um conjunto de elementos percebidos como inter-relacionados. As fronteiras de "uma inovação" são definidas pela percepção do adotante, não pelo criador. Promover um PACOTE pode acelerar a adoção e capturar efeitos SINÉRGICOS — adotar tudo de uma vez entrega o efeito combinado que adotar peças soltas não dá. Risco-espelho: elementos funcionalmente interdependentes adotados parcialmente podem render PIOR que não adotar nada (ex.: plantio mais denso sem fertilizante+híbrido). Transferível: empacote por compatibilidade percebida e cuide das interdependências; o conjunto pode ser mais adotável (e mais potente) que as partes.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações funcionalmente complementares cujo efeito é multiplicativo (pacote da Revolução Verde triplicou a produção).</vale_quando>
+    <reverte_quando>Adoção parcial de um pacote interdependente pode reduzir o resultado abaixo da linha de base (8% dos agricultores do Mississippi usaram combinações que baixaram o rendimento).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Pacote arroz IRRI + fertilizante + pesticida + plantio denso; tie-ins comerciais (lavadora + secadora).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S39">Cluster frouxo (loosely bundled) é mais re-inventável; cluster apertado, menos.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1 e 6 (Technology Clusters).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S30" tipo="principio">
+  <gatilho>Ao escolher o NOME/rótulo de uma inovação, produto ou conceito.</gatilho>
+  <mecanismo>O nome dado a uma inovação afeta sua compatibilidade percebida e, portanto, sua taxa de adoção — as palavras são as unidades de pensamento que estruturam a percepção. Nomes técnicos/científicos (criados na fase de P&amp;D) são pouco significativos para o adotante e geram confusão; um nome receptor-orientado, testado empiricamente, ancora a inovação no mapa mental e nos valores do público. Mecanismo: o símbolo verbal pré-condiciona a interpretação antes mesmo da experiência. Transferível: pré-teste o nome com a audiência real; um nome errado pode condenar uma boa inovação.</mecanismo>
+  <condicoes>
+    <vale_quando>Sempre que o público nomeia/categoriza a inovação ao percebê-la.</vale_quando>
+    <reverte_quando>Nome com conotação negativa/obscena na cultura-alvo derruba a adoção ("Cue" em francês; "Nova"/no-va em espanhol; "Copper-T" na Coreia — "T" inexistente, cobre = metal base).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>As mulheres de Mali chamaram a máquina de "A Nora Que Não Fala" (e não pelo nome técnico do UNDP) — nome compatível com o cotidiano que acelerou a adoção.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S25">Nomear é um sub-mecanismo da compatibilidade percebida.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6 (Naming an Innovation).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S31" tipo="principio">
+  <gatilho>Ao colocar uma novidade no mercado mental do público, relativa a alternativas que ele já conhece.</gatilho>
+  <mecanismo>Posicionar uma inovação parte de uma premissa: o indivíduo se comportará diante do novo de modo SEMELHANTE a como se comporta diante das ideias que percebe como parecidas com ele. Logo, medindo como o público percebe a similaridade entre o novo (X) e o conjunto existente (A, B, C), pode-se posicionar X — via nome, cor, embalagem, sabor, atributos enfatizados — para ocupar um NICHO perceptual único e maximizar a distância das alternativas certas. Mecanismo: posicionamento é compatibilidade percebida operacionalizada; coloca o destilador no papel de co-DESIGNER da inovação (atributos percebidos são dinâmicos, não fixos). A pesquisa de aceitabilidade leva isso ao P&amp;D: descobrir os atributos do "ideal" para então criá-lo.</mecanismo>
+  <condicoes>
+    <vale_quando>Categorias com alternativas conhecidas onde a percepção relativa governa a escolha.</vale_quando>
+    <enfraquece_quando>Sem medir corretamente a compatibilidade percebida com as ideias prévias, o posicionamento é chute.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Copper-T na Coreia: pesquisa de posicionamento recomendou enfatizar vida longa, confiabilidade e não-interferência no sexo — e até alterar a física do produto (a "string").</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S25">Posicionar = explorar a compatibilidade percebida deliberadamente.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6 (Positioning; Acceptability Research).</fonte>
+    <fonte_primaria tier="N1">Harding et al. (1973).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S32" tipo="principio">
+  <gatilho>Quando a inovação exige que o adotante aprenda habilidades ou conceitos novos para usá-la.</gatilho>
+  <mecanismo>Complexidade é o grau em que a inovação é percebida como difícil de entender e usar — negativamente relacionada à taxa de adoção (Gen. 6-3). Mecanismo: a complexidade impõe um CUSTO DE APRENDIZADO que adia/bloqueia a adoção, especialmente para quem não tem expertise prévia. Não é tão decisiva quanto vantagem relativa/compatibilidade na média, mas para certas inovações é a barreira dominante. Transferível: cada unidade de "novo conhecimento exigido para adotar" é fricção; reduzir a curva de aprendizado (tornar user-friendly, dar how-to, comunidade de suporte) é alavanca direta de difusão.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações que exigem desenvolver novas habilidades/entendimentos (Dvorak, computador doméstico nos anos 1980).</vale_quando>
+    <enfraquece_quando>Para os primeiros adotantes-hobbyistas com alta expertise, a complexidade não é percebida — a barreira só aparece nos adotantes seguintes.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Computadores domésticos: hobbyistas não os achavam complexos; o adotante seguinte passava semanas de frustração — a taxa só subiu quando ficaram user-friendly.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S39">Inovações mais complexas tendem a ser mais re-inventadas (simplificadas) pelos adotantes.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6, Gen. 6-3.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S33" tipo="principio">
+  <gatilho>Ao decidir se e como deixar o público "experimentar antes de comprometer".</gatilho>
+  <mecanismo>Trialabilidade é o grau em que a inovação pode ser experimentada em escala limitada — positivamente ligada à taxa (Gen. 6-4). Mecanismo: o trial pessoal dissipa incerteza ("aprender fazendo") e dá significado à inovação nas condições do próprio adotante; o que pode ser testado "na prestação" difunde mais rápido que o indivisível. Importa MAIS para adotantes mais cedo (sem precedente de pares a seguir) e menos para os tardios (que têm o trial vicário dos pares). Transferível: divida a inovação em uma primeira dose pequena e reversível; amostra grátis/freemium/demo é máquina de adoção.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações divisíveis; especialmente para inovadores/early adopters.</vale_quando>
+    <enfraquece_quando>Inovações indivisíveis (têm de ser adotadas ou rejeitadas inteiras) difundem mais devagar.</enfraquece_quando>
+    <reverte_quando>Para laggards o trial pesa pouco — eles vão direto ao uso pleno, pois a incerteza já foi removida pelos pares.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Todo agricultor de Ryan &amp; Gross adotou o milho híbrido testando primeiro em ~1 acre; vendedores davam um saquinho grátis para disparar o trial.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S03">O trial é o redutor de incerteza por experiência direta.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6, Gen. 6-4.</fonte>
+    <fonte_primaria tier="N1">Ryan &amp; Gross (1943); Gross (1942).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S34" tipo="principio">
+  <gatilho>Ao decidir o quanto tornar VISÍVEIS os resultados do uso da inovação.</gatilho>
+  <mecanismo>Observabilidade é o grau em que os resultados da inovação são visíveis a outros — positivamente ligada à taxa (Gen. 6-5). Mecanismo: a visibilidade ESTIMULA a conversa de pares (amigos/vizinhos do adotante pedem avaliação), o que alimenta a difusão interpessoal e gera clusters. Inovações em que o componente "software"/ideia domina têm baixa observabilidade e difundem mais devagar; as de "hardware" visível, mais rápido. Transferível: projete a inovação (e seu uso) para deixar rastro visível — o resultado observável é, ele próprio, anúncio que dispara demanda de avaliação.</mecanismo>
+  <condicoes>
+    <vale_quando>Quando os resultados podem ser tornados visíveis e descritíveis a terceiros.</vale_quando>
+    <enfraquece_quando>Inovações de ideia/abstratas (sexo seguro, software puro) têm baixa observabilidade → difusão lenta.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Aquecedores solares em clusters de quarteirão (visíveis nos telhados) vs. computadores domésticos (baixa observabilidade) que difundiram devagar.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S20">É a observabilidade pelo lado da rede/threshold (visibilidade da adoção alheia).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 6, Gen. 6-5.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S35" tipo="modelo_mental">
+  <gatilho>Ao mapear a jornada mental de um indivíduo do primeiro contato até o uso consolidado.</gatilho>
+  <mecanismo>A decisão de inovar não é um ato instantâneo, é um PROCESSO de cinco estágios no tempo: (1) Conhecimento (exposição + entender como funciona); (2) Persuasão (formar atitude favorável/desfavorável); (3) Decisão (adotar ou rejeitar); (4) Implementação (pôr em uso — onde mais ocorre re-invenção); (5) Confirmação (buscar reforço da decisão, podendo revertê-la se exposto a mensagens conflitantes). O processo é busca-e-processamento de informação para reduzir incerteza, e CADA estágio é um ponto possível de rejeição. Transferível: trate adoção como funil de redução de incerteza, com canal e mensagem específicos por estágio — e saiba que a confirmação pode reverter tudo (descontinuância).</mecanismo>
+  <condicoes>
+    <vale_quando>Decisões opcionais individuais; base para decisões organizacionais.</vale_quando>
+    <reverte_quando>A sequência conhecimento→persuasão→decisão é cultura-dependente: em culturas coletivistas/sob autoridade, ocorre conhecimento→DECISÃO→persuasão (decide-se em grupo antes de formar atitude).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Vila coreana: após a fala do agente sobre o DIU, 18 mulheres levantaram a mão e marcharam à clínica — decisão coletiva precedeu a persuasão individual.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S08">Cada estágio pede canal diferente (media no conhecimento, interpessoal na persuasão).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5.</fonte>
+    <fonte_primaria tier="N1">Ryan &amp; Gross (1943) conceberam os estágios; Rogers &amp; Kincaid (1981).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S36" tipo="principio">
+  <gatilho>Ao criar conteúdo de topo de funil e perceber que a audiência "não vê" sua mensagem.</gatilho>
+  <mecanismo>Há três tipos de conhecimento sobre uma inovação: awareness (que existe), how-to (como usar corretamente — o mais crítico e mais negligenciado) e principles (por que funciona). Mas o conhecimento é filtrado pela EXPOSIÇÃO SELETIVA (atender só mensagens consistentes com atitudes existentes) e pela PERCEPÇÃO SELETIVA (interpretar mensagens conforme crenças existentes) — "venezianas apertadas" especialmente para ideias novas, pois não temos atitudes prévias favoráveis a algo que nunca encontramos. Consequência: um fazendeiro passa por 100 milhas de milho híbrido e não "vê" a inovação. How-to insuficiente antes do trial → rejeição/descontinuância. Transferível: entregue how-to (não só awareness) e vença a seletividade via canal interpessoal bidirecional.</mecanismo>
+  <condicoes>
+    <vale_quando>Todo estágio de conhecimento; how-to ganha peso conforme a complexidade.</vale_quando>
+    <enfraquece_quando>Quando a inovação não é percebida como relevante à situação do indivíduo, o processo não passa do conhecimento.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Agentes concentram esforço em awareness (que o media faria melhor) e negligenciam o how-to, que é o que o cliente mais precisa no trial.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S35">É o detalhamento do estágio de Conhecimento.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5 (Three Types of Knowledge).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S37" tipo="principio">
+  <gatilho>Ao debater se deve esperar uma "necessidade existente" ou se pode criar a necessidade.</gatilho>
+  <mecanismo>A relação necessidade↔consciência é bidirecional. Por um lado, a exposição/percepção seletiva sugere que o indivíduo raramente se expõe a mensagens sobre a inovação sem antes sentir uma necessidade (Hassinger). Por outro, a inovação pode CRIAR a necessidade: ao aprender que algo existe, o indivíduo desenvolve a insatisfação ("desejos > atualidades") que o move a adotar — típico de produtos de consumo (moda, eletrônicos: "ficamos cientes, somos atraídos, decidimos que precisamos"). Transferível: para itens de necessidade latente, gere a consciência que cria a necessidade; para problemas já sentidos, basta conectar a solução. Cuidado: a necessidade do agente não é a do cliente (Edgar Dale: "podemos querer comida sem precisar; precisar de vitaminas sem querê-las").</mecanismo>
+  <condicoes>
+    <vale_quando>Produtos de consumo/desejo onde a consciência cria a necessidade.</vale_quando>
+    <enfraquece_quando>Necessidades urgentes pré-existentes (praga atacando a horta): aí a necessidade precede a consciência.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Calculadora de mão nos anos 1970: o autor sentiu forte necessidade de tê-la ao vê-la, mesmo quase nunca calculando nada — a consciência criou a necessidade (e superadoção).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S22">Necessidade criada vira vantagem relativa percebida.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5 (Needs vs Awareness).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S38" tipo="principio">
+  <gatilho>Quando o público DIZ que aprova mas NÃO age (alta intenção, baixa conversão).</gatilho>
+  <mecanismo>Atitude favorável não leva direto à adoção: existe o "KAP-gap" (knowledge-attitude-practice) — a discrepância entre atitude positiva e comportamento real. Mecanismo: a persuasão produz afeto, mas a passagem ao ato exige um gatilho que crystalize a atitude em comportamento — o "cue-to-action": um evento, num ponto do tempo, que converte a disposição em ação. Cues podem ser naturais (susto de gravidez, morte de um parente por câncer) ou fabricados pela agência (incentivo, experiência positiva de um par). Transferível: para fechar o gap intenção→ação, não repita argumentos — projete um gatilho situacional no momento certo.</mecanismo>
+  <condicoes>
+    <vale_quando>Especialmente em inovações preventivas, onde o KAP-gap é crônico.</vale_quando>
+    <reverte_quando>Sem nenhum cue-to-action, a atitude favorável permanece inerte indefinidamente.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Quase todos conhecem e aprovam contracepção, mas só ~15–20% usam; muitos param de fumar só após um irmão morrer de câncer de pulmão (cue-to-action).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S23">O cue-to-action é o que destrava preventivas.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S24">Incentivo pode funcionar como cue-to-action.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5 (Persuasion Stage; KAP-gap).</fonte>
+    <fonte_primaria tier="N1">Rogers et al. (1999); Rogers (1973).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S39" tipo="principio">
+  <gatilho>Ao decidir se trava a inovação numa forma fixa ("fidelidade") ou deixa o adotante modificá-la.</gatilho>
+  <mecanismo>Re-invenção é o grau em que a inovação é mudada/modificada pelo usuário ao adotá-la e implementá-la (ocorre sobretudo na implementação). Por décadas foi tratada como ruído/distorção pelas agências de P&amp;D, mas a evidência inverte o dogma: maior re-invenção leva a (a) adoção MAIS RÁPIDA (a ideia flexível casa com mais condições de adotantes) e (b) maior SUSTENTABILIDADE (o adotante customiza, sente como "seu" e mantém ao longo do tempo). Mecanismo: artefatos não são só construídos por designers, são RECONSTRUÍDOS por usuários; quem re-inventa tem pride of ownership e continua usando. Inovações soltas (loosely bundled), conceituais ou complexas são mais re-inventáveis. Transferível: projete para re-invenção (deixe "encaixar bells and whistles") em vez de à prova de re-invenção.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações flexíveis/conceituais, sistemas decentralizados que encorajam adaptação local.</vale_quando>
+    <enfraquece_quando>Inovações geneticamente/estruturalmente travadas (semente híbrida) não permitem re-invenção.</enfraquece_quando>
+    <reverte_quando>Re-invenção por ignorância/falta de how-to vira má-adoção e distorção — nem toda re-invenção é boa.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>DARE re-inventado por cada escola difundiu rápido; SMS criado por adolescentes; Minitel virou many-to-many; telefone virou ferramenta social (não só de negócios).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S49">Re-invenção e geração interna ambos criam senso de propriedade → sustentabilidade.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5, Gen. 5-8/5-9/5-10.</fonte>
+    <fonte_primaria tier="N1">Eveland et al. (1977); von Hippel (1976); Berman &amp; Pauly (1975).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S40" tipo="modelo_mental">
+  <gatilho>Ao segmentar uma audiência pela disposição relativa de adotar e calibrar a abordagem para cada segmento.</gatilho>
+  <mecanismo>Inovatividade (quão mais cedo um indivíduo adota que os demais) é contínua e normalmente distribuída; partindo a curva normal pela média ± desvios-padrão, obtêm-se cinco categorias-TIPO IDEAL: inovadores (2,5% — venturosos, cosmopolitas), early adopters (13,5% — respeitados, líderes de opinião), maioria inicial (34% — deliberados, elo de interconexão), maioria tardia (34% — céticos, cedem por pressão de pares/necessidade econômica) e laggards (16% — tradicionais, referência no passado, quase isolados). Mecanismo: cada categoria tem perfil socioeconômico, de personalidade e de comunicação coerente, então responde a canais/mensagens diferentes. NÃO há "abismo" descontínuo entre categorias (a evidência não sustenta o "chasm" de Moore) — é um contínuo. Transferível: a posição na curva prediz o que move cada um; trate-os como audiências distintas.</mecanismo>
+  <condicoes>
+    <vale_quando>Distribuições de adoção que se aproximam da normalidade (Gen. 7-1).</vale_quando>
+    <reverte_quando>Resistência do laggard costuma ser RACIONAL (recursos escassos, inovação inadequada a ele) — system-blame, não falha individual.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Apelo "testado por cientistas" funciona com inovadores; a maioria tardia só cede quando a norma do sistema já favorece e os pares já adotaram.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="GAB-S02">Lei de fundo do playbook de segmentação.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S54">Rotular "laggard" carrega individual-blame indevido.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 7.</fonte>
+    <fonte_primaria tier="N1">Rogers (1958, 1962); base empírica em Ryan &amp; Gross (1943).</fonte_primaria>
+  </evidencia>
+</regra>
+
+</unidades>

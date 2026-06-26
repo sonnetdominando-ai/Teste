@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Rogers, Diffusion of Innovations (5ª ed, 2003) -->
+<!-- PARTE 1/3 — VIR-S01..VIR-S20 — O MOTOR DA DIFUSÃO              -->
+<!-- ALVO: viralidade_difusao.xml                                   -->
+<!-- STAGING: renumerar a partir do último ID real de VIR           -->
+<!-- ============================================================== -->
+<unidades>
+
+<regra id="VIR-S01" tipo="modelo_mental">
+  <gatilho>Ao planejar a propagação de qualquer ideia/produto/comportamento novo e querer diagnosticar por que ele anda rápido, devagar ou trava.</gatilho>
+  <mecanismo>Toda difusão se decompõe em quatro elementos que sempre coexistem: (1) a INOVAÇÃO (a ideia percebida como nova), (2) os CANAIS de comunicação que a transportam, (3) o TEMPO (processo de decisão, inovatividade relativa, taxa de adoção) e (4) o SISTEMA SOCIAL (normas, estrutura, líderes) dentro de cujas fronteiras ela se espalha. Difusão é um tipo especial de comunicação cujo conteúdo é uma ideia nova; a novidade injeta incerteza, e a incerteza é o que o processo inteiro existe para reduzir. Diagnosticar uma propagação travada é perguntar qual dos quatro elementos falhou — quase nunca é só "o produto é ruim".</mecanismo>
+  <condicoes>
+    <vale_quando>Qualquer item percebido como novo por uma unidade de adoção (indivíduo, empresa, comunidade), de 5 páginas a uma nação inteira.</vale_quando>
+    <enfraquece_quando>Quando se trata a inovação como objeto isolado e ignora-se a estrutura do sistema — análise de difusão sem rede é como estudar circulação sanguínea sem conhecer veias e artérias (Katz).</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Um vídeo que ninguém compartilha: checar canal (só mass media, sem ativação interpessoal?), tempo (esperou-se o takeoff?), sistema (as normas da audiência favorecem ou punem compartilhar?), inovação (percebida como nova/útil?).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S05">É o arcabouço-mãe; a curva-S é a manifestação temporal dele.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers, E. M. — Diffusion of Innovations (5ª ed., 2003), cap. 1.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S02" tipo="principio">
+  <gatilho>Ao decidir se algo "conta" como inovação para uma audiência e como apresentá-lo.</gatilho>
+  <mecanismo>O que dispara reação humana não é a novidade objetiva (tempo desde a invenção) e sim a novidade PERCEBIDA. Se a ideia parece nova ao indivíduo, é inovação — independentemente de existir há séculos. A novidade pode estar no conhecimento, na atitude ainda não formada, ou na decisão ainda não tomada. Consequência transferível: a unidade de medida da difusão é a percepção do adotante, não a do criador. Por isso o mesmo objeto pode ser inovação radical para um público e banalidade para outro.</mecanismo>
+  <condicoes>
+    <vale_quando>Sempre que o público-alvo ainda não formou conhecimento, atitude ou decisão sobre o item.</vale_quando>
+    <reverte_quando>Para um público que já o reinventou e domestificou, deixa de ser inovação e a dinâmica de difusão não se aplica.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Reposicionar uma técnica antiga (ex.: jejum) como "descoberta" para uma audiência que nunca a encontrou ativa toda a máquina de difusão.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIR-S25">A percepção de novidade é avaliada contra o familiar (compatibilidade).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1, "The Innovation".</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S03" tipo="principio">
+  <gatilho>Ao desenhar a jornada de quem está decidindo adotar algo novo e arriscado.</gatilho>
+  <mecanismo>Adotar uma inovação é, no fundo, lidar com incerteza sobre consequências. A tecnologia é "um desenho para ação instrumental que reduz a incerteza nas relações causa-efeito". O adotante é movido a BUSCAR informação até reduzir a incerteza a um nível tolerável — então decide. Logo a difusão é uma atividade de busca-e-processamento de informação: cada peça de evidência (de pares, de trial, de demonstração) é matéria-energia que diminui as alternativas em aberto. Quem quer acelerar difusão remove incerteza; quem quer travá-la a injeta.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações cujas consequências para "a minha situação" não são óbvias no primeiro contato.</vale_quando>
+    <enfraquece_quando>Itens de fad puramente de status, em que a incerteza de consequência importa pouco (o benefício é só o prestígio).</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Distribuir amostra grátis, demonstração ou garantia: cada um corta um eixo de incerteza e empurra o adotante para a decisão.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S33">O trial é o principal redutor de incerteza por experiência direta.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1 e cap. 5.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S04" tipo="principio">
+  <gatilho>Quando alguém assume que "um produto/conteúdo bom o suficiente se vende sozinho".</gatilho>
+  <mecanismo>Vantagem relativa demonstrável é NECESSÁRIA mas longe de suficiente para difusão. A maioria das inovações se espalha a uma velocidade decepcionante mesmo com benefício comprovado, porque adoção depende de percepção, compatibilidade, redes e credibilidade da fonte — não só do mérito objetivo. O mecanismo: o benefício existe no mundo, mas a decisão acontece na mente do adotante, mediada por interesses estabelecidos, normas e ausência de modelo de pares. Corolário anti-ingenuidade: nunca conte com o mérito para fazer o trabalho de distribuição.</mecanismo>
+  <condicoes>
+    <vale_quando>Quase sempre; a regra é a difusão lenta, não a rápida.</vale_quando>
+    <reverte_quando>Há interesses estabelecidos (fabricantes, professores, hábito treinado) com lock-in: a inovação superior pode nunca difundir mesmo com vantagem esmagadora.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S22">Vantagem relativa puxa adoção, mas sozinha colide com compatibilidade e custos de troca que a anulam.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>O teclado Dvorak (muito mais eficiente que o QWERTY) quase não foi adotado em 70 anos por lock-in de fabricantes, professores e dos próprios datilógrafos.</aplicacao>
+    <aplicacao>Suco de cítrico contra escorbuto: 264 anos da prova de Lancaster (1601) até a adoção plena pela marinha britânica.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="antagonista" alvo="VIR-S22">Tempera o otimismo sobre vantagem relativa.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1 (Scurvy; Dvorak Keyboard).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S05" tipo="principio">
+  <gatilho>Ao prever ou interpretar a trajetória de adoção de algo ao longo do tempo, e ao decidir onde concentrar esforço de lançamento.</gatilho>
+  <mecanismo>A adoção cumulativa de uma inovação bem-sucedida desenha um S: poucos adotantes por período no início, aceleração até ~50%, depois desaceleração. O motor causal é a ATIVAÇÃO das redes interpessoais — cada adotante satisfeito vira evidência viva para os seguintes, numa expansão quase binomial (1 conta para 2, cada um conta para 2...) parecida com epidemia. O ponto-chave operacional: a curva "decola" entre ~10% e 20% de adoção cumulativa; aí líderes de opinião e pares ativam um momentum auto-sustentável e, depois disso, é quase impossível parar a difusão mesmo querendo. Antes do takeoff, todo o trabalho; depois dele, a difusão se paga sozinha.</mecanismo>
+  <condicoes>
+    <vale_quando>Difusão bem-sucedida (chega à quase totalidade dos adotantes potenciais) num sistema específico, para uma inovação específica.</vale_quando>
+    <enfraquece_quando>Acesso à interação não é livre (status, geografia, cliques fechados) deformam a curva; ou a observabilidade é baixa.</enfraquece_quando>
+    <reverte_quando>A inovação é taboo (não pode ser discutida) ou aplicável só a um subgrupo da população: não há curva-S no agregado (ex.: "safer sex" para o público geral). E inovações fracassadas: estagnam e despencam por descontinuância, sem S.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S44">Após o takeoff, continuar gastando esforço/verba de promoção é desperdício — o agente deve recuar.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Milho híbrido em Iowa: 10% em 1933, salto para 40% em 1936 — o threshold (1935) tornou a difusão imparável.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S01">É a manifestação temporal do elemento "tempo".</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S18">A curva-S emerge da distribuição normal de thresholds individuais.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1 e 7.</fonte>
+    <fonte_primaria tier="N1">Ryan, B. &amp; Gross, N. — The diffusion of hybrid seed corn in two Iowa communities. Rural Sociology 8 (1943). n=259; o estudo de difusão mais citado de todos.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S06" tipo="principio">
+  <gatilho>Ao escolher que tipo de prova usar para convencer alguém a adotar — dado científico vs. depoimento de par.</gatilho>
+  <mecanismo>A maioria das pessoas NÃO avalia uma inovação por estudos científicos de suas consequências; depende da avaliação SUBJETIVA transmitida por outros indivíduos como elas que já adotaram. O coração da difusão é a modelagem e imitação de parceiros de rede que adotaram antes. Mecanismo causal: a avaliação de um quase-par reduz a incerteza sobre "vai funcionar na MINHA situação" de um jeito que evidência geral e abstrata não consegue — ela é acessível, situada e convincente porque vem de alguém com condições parecidas. Por isso o teste do colega substitui (em parte) o teste próprio; e por isso testemunho de par bate meta-análise na persuasão.</mecanismo>
+  <condicoes>
+    <vale_quando>Estágio de persuasão/decisão, e para a maioria tardia e retardatários (que exigem prova de pares).</vale_quando>
+    <enfraquece_quando>Para os PRIMEIRíssimos adotantes (inovadores), que não têm pares experientes e precisam recorrer a fontes técnicas/científicas e ao próprio trial.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S53">A dependência de avaliação subjetiva de pares pode propagar adoção sem entendimento (e até inovações ruins).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Tetraciclina: "os testes do fabricante e de hospitais-escola não bastam para o médico médio; o teste pela experiência cotidiana de colegas no nível dele, sim" (Coleman et al.).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S08">Explica por que o canal interpessoal domina a persuasão.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S34">A observabilidade alimenta a conversa de pares.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1, 5, 8.</fonte>
+    <fonte_primaria tier="N1">Coleman, Katz &amp; Menzel — Medical Innovation: A Diffusion Study (1966), difusão da tetraciclina entre médicos.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S07" tipo="principio">
+  <gatilho>Ao desenhar qualquer estratégia de propagação: lembrar que o motor é social, não técnico.</gatilho>
+  <mecanismo>Gabriel Tarde já observava (1903) que, de 100 inovações concebidas, ~10 se espalham e ~90 são esquecidas — e que a adoção ("imitação") é o ato social elementar. A difusão é fundamentalmente um processo de imitação/modelagem em redes interpessoais: o indivíduo aprende sobre a inovação copiando a adoção de outro. Daí três leis que Tarde antecipou e a pesquisa confirmou: (a) a curva-S decola quando líderes de opinião usam a ideia; (b) quanto mais a inovação se parece com ideias já aceitas, mais provável a adoção (compatibilidade); (c) busca de status é motor primário da imitação. Transferível: arquitete a propagação como cadeia de modelagem social, não como broadcast de mérito.</mecanismo>
+  <condicoes>
+    <vale_quando>Sistemas com interação interpessoal observável.</vale_quando>
+    <enfraquece_quando>Inovações de baixa observabilidade ou ambientes atomizados sem rede.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Demonstração pública por um par admirado dispara a imitação em cadeia; broadcast frio sem modelo social, não.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S06">Imitação social é o princípio-mãe da avaliação de pares.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S22">Status como motor da imitação (Tarde).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 2.</fonte>
+    <fonte_primaria tier="N1">Tarde, G. — The Laws of Imitation (1903).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S08" tipo="principio">
+  <gatilho>Ao casar canal de comunicação com objetivo: gerar consciência vs. mudar atitude/decisão.</gatilho>
+  <mecanismo>Mass media e canais interpessoais fazem trabalhos diferentes. Mass media (um para muitos) é rápido e eficiente para CRIAR conhecimento, espalhar informação e mudar atitudes fracas. A formação/mudança de atitudes FORTES — e portanto a persuasão para adotar — é feita majoritariamente por canais interpessoais, que oferecem troca bidirecional (esclarecer, customizar para "minha situação") e vencem as barreiras de exposição/percepção/retenção seletivas. Regra de sequência: o uso ideal progride de mass media (consciência) para interpessoal (persuasão); inverter a ordem atrasa a adoção.</mecanismo>
+  <condicoes>
+    <vale_quando>Onde os mass media estão disponíveis; estágio de conhecimento → media, estágio de persuasão → interpessoal.</vale_quando>
+    <enfraquece_quando>Em nações em desenvolvimento com poucos media, canais interpessoais cosmopolitas assumem o papel de criar consciência.</enfraquece_quando>
+    <reverte_quando>Usar canal interpessoal cedo demais (no conhecimento) ou media tarde demais (na persuasão) prejudica o progresso pelo funil.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>EndNote difundiu-se quase 100% por redes de pares (sem comprar mídia); spray 2,4-D: menção a canal interpessoal sobe de 37% (conhecimento) para 63% (persuasão).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S56">São os dois coeficientes do modelo de Bass (p de media, q de interpessoal).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5, Gen. 5-13.</fonte>
+    <fonte_primaria tier="N1">Beal &amp; Rogers (1960); Lazarsfeld, Berelson &amp; Gaudet, The People's Choice (1944).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S09" tipo="principio">
+  <gatilho>Ao decidir se a informação deve vir de fora do sistema (cosmopolita) ou de dentro (localita), por momento e por tipo de adotante.</gatilho>
+  <mecanismo>Canais cosmopolitas (ligam o indivíduo a fontes FORA do sistema — media, agentes, viagens) são relativamente mais importantes no estágio de CONHECIMENTO; canais localitas (de dentro do sistema) dominam na PERSUASÃO. E por categoria: cosmopolitas pesam mais para adotantes mais cedo, localitas para os mais tardios. Mecanismo: ideias novas entram pela fronteira do sistema (precisam de ponte externa para serem conhecidas), mas a confirmação de que "serve aqui" exige a experiência local de pares próximos. Os primeiros adotantes funcionam como tradutores: importam de fora e viram canal localita para os seguintes.</mecanismo>
+  <condicoes>
+    <vale_quando>Qualquer sistema com fronteira identificável (comunidade, nicho, plataforma).</vale_quando>
+    <enfraquece_quando>Onde os mass media inexistem, o canal cosmopolita-interpessoal substitui a mídia no estágio de conhecimento.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Inovador que viaja a feiras/conferências importa a ideia; depois vira referência local para os vizinhos.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S16">O inovador cosmopolita é o canal de entrada da ideia no sistema.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5, Gen. 5-14 e 5-16.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S10" tipo="principio">
+  <gatilho>Ao montar quem fala com quem numa campanha de propagação — quão parecidos devem ser fonte e receptor.</gatilho>
+  <mecanismo>Comunicação ocorre mais e melhor entre semelhantes (homofilia): significados, linguagem e confiança compartilhados tornam a troca eficaz e recompensadora. Mas a difusão exige um paradoxo: para haver o que transmitir, é preciso ALGUMA heterofilia (a fonte precisa saber algo que o receptor não sabe). O ideal raro é a dupla homofília em tudo (status, educação, valores) EXCETO no conhecimento da inovação. Como na prática a competência técnica anda colada a status/educação, fonte e receptor acabam heterófilos em tudo — e a comunicação sofre. Transferível: maximize semelhança social, isole a heterofilia ao conhecimento.</mecanismo>
+  <condicoes>
+    <vale_quando>Toda díade de difusão; especialmente agente↔cliente.</vale_quando>
+    <reverte_quando>Homofilia total = nada novo a trocar; difusão não ocorre. É preciso o desnível mínimo de informação.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S11">Homofilia acelera a troca local mas vira barreira ao alcance entre estratos.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Usar um aide (par social) que adotou antes: homófilo em status, heterófilo só na experiência com a inovação.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIR-S43">Funda a estratégia de aides para fechar o gap de heterofilia.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1 e 8.</fonte>
+    <fonte_primaria tier="N1">Lazarsfeld &amp; Merton (1964) cunharam "homofilia"; raiz em Tarde (1903).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S11" tipo="principio">
+  <gatilho>Quando uma ideia gruda num nicho de elite mas não "desce" para o resto do público.</gatilho>
+  <mecanismo>A homofilia age como barreira INVISÍVEL: ideias novas entram pelos membros de maior status/inovatividade, mas se esses interagem sobretudo entre si, a inovação se espalha horizontalmente (entre iguais) e não verticalmente (para baixo). Difusão "trickle-across", não "trickle-down". Por isso a difusão homófila é rápida porém confinada a redes coesas — o alcance total depende de cruzar estratos. Operacional: se a rede é muito homófila, trabalhe VÁRIOS conjuntos de líderes de opinião (um por estrato), em vez de só os do topo.</mecanismo>
+  <condicoes>
+    <vale_quando>Sistemas estratificados onde elites conversam só com elites.</vale_quando>
+    <reverte_quando>Em sistema com normas progressistas, a ideia parte do topo e desce rápido cruzando linhas (vilarejo indiano progressista vs. tradicional: laços heterófilos aceleram).</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S10">A mesma homofilia que torna a comunicação eficaz trava o alcance entre camadas.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Difusão fica presa num cluster de "early adopters tech" e não alcança o público mainstream: faltam pontes heterófilas.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S12">Pontes/laços fracos é o que vence a barreira homófila.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S51">A barreira homófila é uma das causas do alargamento de gaps.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8, Gen. 8-1.</fonte>
+    <fonte_primaria tier="N1">Rao, Rogers &amp; Singh (1980); Van den Ban (1963).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S12" tipo="principio">
+  <gatilho>Ao buscar como uma ideia salta de um grupo fechado para outro grupo socialmente distante.</gatilho>
+  <mecanismo>Laços FORTES (homófilos, próximos, redundantes) ligam pessoas que já compartilham a mesma informação — pouco potencial informativo. Os laços FRACOS heterófilos, que conectam cliques distintas ("pontes"), carregam informação NOVA entre conjuntos sociais que de outro modo não se tocariam. O potencial de troca informativa de um elo é NEGATIVAMENTE relacionado à sua proximidade e homofília. Transferível: para propagar para fora da bolha, cultive e ative os elos-ponte (contatos periféricos, "pessoas na borda"), não só o núcleo coeso.</mecanismo>
+  <condicoes>
+    <vale_quando>Sistemas com cliques separadas que precisam ser interligadas para a difusão completa.</vale_quando>
+    <enfraquece_quando>Laços fracos transmitem informação, mas a PERSUASÃO ainda precisa de laços fortes/pares próximos — a ponte abre a porta, não fecha a venda.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Líderes de opinião como "brokers entre grupos" (Burt): pessoas na borda que carregam ideias através das fronteiras.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S16">O inovador-estranho é frequentemente o nó-ponte.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8, Gen. 8-11.</fonte>
+    <fonte_primaria tier="N1">Granovetter, M. — The strength of weak ties. AJS (1973).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S13" tipo="modelo_mental">
+  <gatilho>Ao escolher por quem alavancar a propagação dentro de um sistema.</gatilho>
+  <mecanismo>Liderança de opinião é o grau em que um indivíduo influencia INFORMALMENTE atitudes/comportamento de outros, com frequência, na direção desejada — independente de cargo formal. É ganha e mantida por três coisas: competência técnica, acessibilidade social e conformidade às normas do sistema. O líder ocupa o centro das redes interpessoais e serve de MODELO social cujo comportamento é imitado. Mecanismo de alavancagem: contatar poucos líderes faz a mensagem percolar pela rede em que eles estão imersos — não é preciso contato direto com todos. Cuidado: líderes podem ser "gastos" por agentes que os superusam, passando a parecer agentes profissionais e perdendo credibilidade com os antigos seguidores.</mecanismo>
+  <condicoes>
+    <vale_quando>Sistemas com estrutura de comunicação identificável; líderes são estáveis no curto/médio prazo.</vale_quando>
+    <enfraquece_quando>O líder desvia demais das normas: perde o respeito e a função de modelo.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S16">Líder de opinião (conformista, respeitado) ≠ inovador (desviante, suspeito) — confundir os dois quebra a campanha.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>RCTs em bares gays (Kelly): treinar os ~15% mais populares como modelos de "safer sex" aumentou 45% o uso de preservativo — a mensagem percolou pela rede deles.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S17">Early adopters concentram a liderança de opinião.</relacao>
+    <relacao tipo="pre_requisito" alvo="GAB-S02">Insumo da segmentação por categoria.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8.</fonte>
+    <fonte_primaria tier="N1">Kelly et al. (1991,1997); Lomas et al. (1991); ~10 RCTs (Tabela 8-2).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S14" tipo="principio">
+  <gatilho>Ao selecionar líderes de opinião e calibrar quão "à frente" eles devem estar do público.</gatilho>
+  <mecanismo>Líderes de opinião CONFORMAM-se às normas do sistema; sua inovatividade é função das normas dos seguidores. Onde as normas favorecem mudança, os líderes são inovadores; onde as normas são tradicionais, os líderes NÃO são especialmente inovadores (e o inovador vira um sujeito separado, suspeito). Mecanismo: o líder existe para reduzir incerteza dos seguidores; para isso precisa exibir julgamento prudente — não pode adotar tão à frente a ponto de virar modelo irrealista. Erro clássico do agente: escolher líderes inovadores demais; aí o gap de heterofilia que existia entre agente e clientes reaparece entre líder e seguidores.</mecanismo>
+  <condicoes>
+    <vale_quando>Sistemas tradicionais: o líder eficaz está só um pouco à frente da média.</vale_quando>
+    <reverte_quando>Sistemas com normas pró-mudança: aí o líder PODE e DEVE ser inovador.</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S16">Quanto mais inovador o porta-voz, menos crível como modelo num público tradicional.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Math moderno em Pittsburgh: o inovador (isolado sociométrico) não serviu de modelo; a difusão só decolou quando 3 líderes de opinião de uma clique adotaram.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S41">A inovatividade do líder é ditada pelas normas do sistema.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8, Gen. 8-9.</fonte>
+    <fonte_primaria tier="N1">Carlson (1965), math moderno; Herzog et al. (1968), vilas brasileiras.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S15" tipo="modelo_mental">
+  <gatilho>Quando se supõe que a mídia injeta mensagens direto na cabeça da massa e muda comportamento sozinha.</gatilho>
+  <mecanismo>O modelo da "agulha hipodérmica" (mídia onipotente sobre massa atomizada) é falso. O fluxo é de DUAS etapas: ideias vão da mídia para os líderes de opinião (transferência de informação) e destes para os seguidores (que adiciona influência interpessoal). A mídia é menos poderosa e menos direta do que se pensava; o que converte é a etapa interpessoal. Refinamento: o fluxo real é multi-etapas e varia por estágio do processo de decisão (mídia no conhecimento, interpessoal na persuasão) — não é literalmente "dois passos", mas a lição permanece: entre a mensagem e o comportamento há sempre a rede social.</mecanismo>
+  <condicoes>
+    <vale_quando>Mudança de atitude/comportamento (não mero awareness).</vale_quando>
+    <enfraquece_quando>Às vezes há só UM passo (mídia com efeito direto sobre o inovador); o "dois" é simplificação.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Eleição de Erie County (1944): pouquíssimas decisões de voto vieram direto da mídia; quase tudo via contato face a face.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S08">Funda a divisão de trabalho media/interpessoal por estágio.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8.</fonte>
+    <fonte_primaria tier="N1">Lazarsfeld, Berelson &amp; Gaudet — The People's Choice (1944), painel n=600; Katz &amp; Lazarsfeld (1955).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S16" tipo="principio">
+  <gatilho>Ao entender o papel — e os limites — do primeiro a adotar, e por que ele não convence o resto.</gatilho>
+  <mecanismo>O inovador é "venturoso": obcecado por novidade, cosmopolita, com redes fora do sistema, alta tolerância à incerteza e recursos para absorver fracassos. Funciona como o "estranho" de Simmel — membro do sistema mas pouco preso a ele, o que lhe dá liberdade para desviar das normas e PORTÃO (gatekeeper) por onde a ideia entra de fora. Porém, justamente por ser desviante e elite, o inovador tem BAIXA credibilidade local e NÃO é modelo apropriado para a média. Transferível: use o inovador para IMPORTAR e validar a ideia, nunca para PERSUADIR a maioria — esse trabalho é dos early adopters.</mecanismo>
+  <condicoes>
+    <vale_quando>Qualquer sistema; o inovador (~2,5%) lança a ideia mas não a populariza.</vale_quando>
+    <reverte_quando>Tratar o inovador como porta-voz num público tradicional ATRASA a adoção (ele é modelo irrealista/suspeito).</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIR-S13">Inovador desviante vs. líder de opinião conformista: papéis opostos na difusão.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Nelida em Los Molinas trabalhou com a "doente" e a "forasteira" (marginais), não com os líderes — a difusão da fervura da água nunca atingiu massa crítica.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIR-S17">O inovador prepara o terreno que o early adopter detona.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 7; raiz em Simmel (1908/1964), "o estranho".</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S17" tipo="principio">
+  <gatilho>Ao identificar quem, ao adotar, efetivamente dispara o efeito-cascata na maioria.</gatilho>
+  <mecanismo>O early adopter (~13,5%) é a categoria com MAIOR liderança de opinião na maioria dos sistemas. Diferente do inovador cosmopolita, ele é localita e integrado — "o indivíduo a consultar antes de adotar". Como está só um pouco à frente da média, serve de MODELO crível; ao adotar, reduz a incerteza dos pares e "carimba" a ideia com sua aprovação, disparando a massa crítica. Mecanismo: respeitabilidade local + proximidade de adopção = o gatilho social que move a maioria deliberante. Por isso o early adopter, não o inovador, é o alvo de quem quer acelerar difusão.</mecanismo>
+  <condicoes>
+    <vale_quando>Sistemas onde a maioria espera ver um par respeitado adotar primeiro.</vale_quando>
+    <enfraquece_quando>O early adopter precisa fazer escolhas judiciosas; se erra publicamente, perde a posição central e o poder de gatilho.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Vizinhança de Collins (Iowa): o inovador recebeu 1 voto sociométrico; o early adopter seguinte recebeu 8 — quando ELE adotou o herbicida, os vizinhos seguiram.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S05">Early adopters acionam o takeoff dos 10–20%.</relacao>
+    <relacao tipo="instancia_de" alvo="VIR-S40">É uma das cinco categorias de adotantes.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 7, "Early Adopters: Respect".</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S18" tipo="modelo_mental">
+  <gatilho>Ao modelar por que cada pessoa específica adota só depois de ver X outros adotarem.</gatilho>
+  <mecanismo>O threshold (limiar) de um indivíduo é o número/proporção de outros na SUA rede pessoal que precisam ter adotado antes de ele aderir. É o microfundamento da massa crítica: thresholds operam no indivíduo, a massa crítica no sistema. Inovadores têm threshold baixíssimo (adotam sem precisar de pares); a maioria tardia tem threshold alto (só cede quando quase todos da rede já adotaram). Como os thresholds são normalmente distribuídos, a soma deles GERA a curva-S. Mecanismo dominó (Granovetter): basta trocar um indivíduo de threshold 1 por um de threshold 2 para a cascata inteira não acontecer — a composição da distribuição importa mais que a média.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações observáveis, em que cada um vê quantos pares já adotaram.</vale_quando>
+    <enfraquece_quando>Inovações pouco observáveis (contracepção, prevenção HIV): alta ignorância pluralística torna os thresholds menos operantes.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Médico nº 3 de Peoria: adotou só quando 100% dos 5 colegas da rede pessoal adotaram (threshold alto) — "watching while being watched".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIR-S05">A distribuição de thresholds explica a forma da curva-S.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S19">Thresholds individuais somam-se na massa crítica do sistema.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8, Gen. 8-13.</fonte>
+    <fonte_primaria tier="N1">Granovetter (1978); Valente, T. — Network Models of the Diffusion of Innovations (1995).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S19" tipo="principio">
+  <gatilho>Ao lançar inovações cujo valor para cada um CRESCE com o número de adotantes (redes, apps, plataformas).</gatilho>
+  <mecanismo>Massa crítica é o ponto em que adotantes suficientes tornam a difusão auto-sustentável. Em inovações INTERATIVAS (e-mail, fax, redes), há interdependência RECÍPROCA: cada nova adoção aumenta a utilidade não só para os futuros adotantes (interdependência sequencial, válida para qualquer inovação) mas também para TODOS os que já adotaram. Isso cria uma "qualidade forçante" — "é preciso dois para dançar". Antes da massa crítica, o custo percebido supera a vantagem; depois dela, a utilidade dispara e a adoção vira avalanche. Implicação: o primeiro adotante de um produto interativo não tem com quem interagir — daí o vale da morte inicial que precisa ser vencido artificialmente.</mecanismo>
+  <condicoes>
+    <vale_quando>Tecnologias interativas/de rede; também fads de moda (massa de elites "vestindo" a novidade).</vale_quando>
+    <enfraquece_quando>Inovações não-interativas têm só interdependência sequencial — a cascata é mais branda.</enfraquece_quando>
+    <reverte_quando>Se a massa crítica nunca é atingida, a utilidade negativa inicial empurra à descontinuância e o produto morre.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>E-mail na Volvo: contas saltaram de 18% para 40%, mas o USO só decolou após o apoio do topo empurrar além da massa crítica.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="GAB-S01">A lei de fundo do playbook de massa crítica.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S18">Emerge da soma dos thresholds individuais.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8.</fonte>
+    <fonte_primaria tier="N1">Markus (1987); Katz (1962); Rholfs (1974).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S20" tipo="principio">
+  <gatilho>Ao decidir o quanto tornar visível a adoção alheia para acionar o efeito-manada.</gatilho>
+  <mecanismo>O efeito-threshold só funciona se o indivíduo CONSEGUE ver quantos pares já adotaram. Quando a adoção é pouco observável, instala-se "ignorância pluralística" — as pessoas não sabem o quanto os outros do sistema já mudaram — e os thresholds deixam de operar (ninguém é puxado por uma cascata que não enxerga). Mecanismo transferível: a observabilidade não é só atributo da inovação (S34), é o COMBUSTÍVEL do contágio social — tornar pública e contável a adoção alheia (contadores, selos, "X amigos usam") converte adoção privada invisível em pressão social visível.</mecanismo>
+  <condicoes>
+    <vale_quando>Comportamentos cuja adoção pode ser sinalizada e contada socialmente.</vale_quando>
+    <reverte_quando>Inovações intrínsecamente privadas/taboo (sexo seguro, contracepção): sem visibilidade, não há manada — exige outro mecanismo (cue-to-action, grupos).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Coletores solares aparecem em clusters de vizinhança na Califórnia (visíveis no telhado); computadores domésticos, pouco observáveis, difundiram mais devagar.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S34">É a observabilidade vista pelo lado da rede (não só do atributo).</relacao>
+    <relacao tipo="pre_requisito" alvo="VIR-S18">Observabilidade habilita o threshold a operar.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8 (Individual Thresholds).</fonte>
+  </evidencia>
+</regra>
+
+</unidades>

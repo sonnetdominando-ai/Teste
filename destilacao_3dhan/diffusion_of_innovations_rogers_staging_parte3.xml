@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Rogers, Diffusion of Innovations (5ª ed, 2003) -->
+<!-- PARTE 3/3 — VIR-S41..VIR-S56 + GAB-S01..GAB-S03                 -->
+<!-- SISTEMA · AGENTES · ORGANIZAÇÕES · CONSEQUÊNCIAS · EPISTEMOLOGIA -->
+<!-- ============================================================== -->
+<unidades>
+
+<!-- ALVO: viralidade_difusao.xml -->
+<!-- STAGING: renumerar a partir do último ID real de VIR -->
+
+<regra id="VIR-S41" tipo="principio">
+  <gatilho>Quando dois indivíduos idênticos em tudo adotam de formas diferentes só por estarem em sistemas/comunidades diferentes.</gatilho>
+  <mecanismo>O sistema social tem efeito DIRETO sobre a difusão, acima e além das características individuais — via "system effects" (influência da composição/estrutura do sistema sobre o membro) e via NORMAS (padrões estabelecidos de comportamento tolerável). Mecanismo: as normas definem o que é adotável; estrutura social e de comunicação (cliques, redes) canalizam quem influencia quem; logo a mesma inovação, promovida igualmente, atinge taxas distintas em sistemas distintos. Transferível: a inovatividade de um indivíduo é coproduzida por ele E pelo sistema; mudar a difusão pode exigir mudar a NORMA/estrutura, não só persuadir indivíduos.</mecanismo>
+  <condicoes>
+    <vale_quando>Sempre que houver variação de normas/estrutura entre subsistemas do público.</vale_quando>
+    <reverte_quando>Normas contra a mudança transformam o sistema em barreira (vaca sagrada na Índia; complexo quente-frio em Los Molinas) — a melhor inovação não passa.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Duas coreanas idênticas: a da Vila A (57% de adoção, líderes engajados) adota contracepção; a da Vila B (26%) não — só o sistema difere.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S14">Normas do sistema ditam a inovatividade dos líderes.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1 (Social System; System Norms).</fonte>
+    <fonte_primaria tier="N1">Rogers &amp; Kincaid (1981), 24 vilas coreanas.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S42" tipo="modelo_mental">
+  <gatilho>Ao mapear QUEM decide a adoção e quão rápido/durável será o resultado.</gatilho>
+  <mecanismo>Há quatro tipos de decisão de inovação, num contínuo de poder do indivíduo: (1) OPCIONAL (o indivíduo decide independente do sistema); (2) COLETIVA (consenso do sistema, todos se conformam); (3) AUTORIDADE (poucos com poder decidem, o membro só implementa); (4) CONTINGENTE (sequência: uma decisão só pode ser feita após outra prévia). Mecanismo de tradeoff: decisões de AUTORIDADE costumam ser as mais RÁPIDAS (dependendo de quão inovador é o decisor) mas podem ser CIRCUNDADAS na implementação; coletivas são mais lentas porém mais SUSTENTÁVEIS (participação gera continuidade). Transferível: identifique o tipo de decisão antes de desenhar a estratégia — ele dita velocidade, durabilidade e quem persuadir.</mecanismo>
+  <condicoes>
+    <vale_quando>Toda adoção; organizações usam mais coletiva/autoridade, consumidores/agricultores mais opcional.</vale_quando>
+    <reverte_quando>Autoridade draconiana provoca reação (interlock de cinto nos EUA em 1974 foi revogado por rejeição pública) — rapidez compra resistência.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Cinto de segurança migrou de opcional → coletiva (lei 1966) → autoridade (interlock) → de volta a opcional, conforme a reação pública.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S48">Decisões coletivas/autoridade são o terreno do processo organizacional.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1 e 10.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S43" tipo="principio">
+  <gatilho>Quando quem promove a inovação é tecnicamente superior e socialmente distante do público (e por isso não é ouvido).</gatilho>
+  <mecanismo>O agente de mudança é tipicamente HETERÓFILO em relação ao cliente (mais educado, técnico, de outra classe), o que trava a comunicação. A ponte é o AIDE (paraprofissional homófilo com o cliente). O mecanismo é a dupla credibilidade: a fonte heterófila tem credibilidade de COMPETÊNCIA (percebida como expert), a fonte homófila tem credibilidade de SEGURANÇA (percebida como confiável, sem segundas intenções). O agente ideal combina as duas: homófilo em características sociais, heterófilo só na competência sobre a inovação — frequentemente um aide que já adotou a inovação. Transferível: aceitabilidade pessoal vale tanto quanto expertise; reduza a distância social para ser ouvido.</mecanismo>
+  <condicoes>
+    <vale_quando>Públicos de menor status/educação que desconfiam de fontes institucionais distantes.</vale_quando>
+    <reverte_quando>"Profissionalização inautêntica" do aide (uniforme, crachá, jargão) destrói a função de ponte que justificava sua existência.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>STOP AIDS em São Francisco: palestrantes eram jovens gays HIV-positivos respeitados — "não faça o que eu fiz"; peer educators ex-profissionais do sexo têm credibilidade de segurança.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S10">É a aplicação prática do paradoxo homofilia/heterofilia.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 9 (Aides; Credibility).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S44" tipo="principio">
+  <gatilho>Ao alocar esforço de promoção ao longo da curva de adoção e ao resolver o conflito de lealdade agência×cliente.</gatilho>
+  <mecanismo>O sucesso do agente é positivamente ligado a (a) ESFORÇO de contato com clientes, mas o RETORNO desse esforço é fásico: até ~30% de adoção, a taxa acompanha o esforço; depois da massa crítica, a adoção sobe sozinha (impulsionada por líderes) e o agente pode se retirar. E (b) a ORIENTAÇÃO AO CLIENTE (vs. à agência): agentes client-oriented têm mais rapport, credibilidade e feedback, e baseiam a difusão nas necessidades reais do cliente. Mecanismo: o esforço inicial planta os adotantes que viram evidência social; depois disso, insistir é desperdício, e a empatia/diagnóstico de necessidades é o que destrava os resistentes. Transferível: gaste cedo e perto da massa crítica; depois solte — e priorize a necessidade do cliente sobre a meta da agência.</mecanismo>
+  <condicoes>
+    <vale_quando>Difusões com fase inicial dependente de empurrão e fase tardia auto-sustentável.</vale_quando>
+    <enfraquece_quando>Agente que ignora a necessidade sentida do cliente produz consequências inesperadas (poço de irrigação virou poço de beber na Índia; metade dos projetos viraram templos budistas).</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Stone (1952): após ~30% de adoção, o esforço dos agentes caiu mas os agricultores continuaram adotando à taxa quase constante.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S05">A retirada do agente acompanha o takeoff da curva-S.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 9, Gen. 9-1/9-2/9-3.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S45" tipo="principio">
+  <gatilho>Quando a métrica de sucesso é só "número de adoções" — e isso esconde um problema.</gatilho>
+  <mecanismo>O critério usual (taxa de adoção) pode enganar: a QUALIDADE das decisões de adoção pode importar mais que a quantidade. Mecanismo do risco: pressão/coerção, falta de counseling (how-to/principles), e supressão da descontinuância inflam o número mas degradam a qualidade e ameaçam a SUSTENTABILIDADE de longo prazo — adotantes mal-informados descontinuam ou sofrem consequências. Transferível: difusão "vitoriosa" em volume pode ser fracasso em substância; meça também qualidade da decisão e consequências, não só contagem.</mecanismo>
+  <condicoes>
+    <vale_quando>Quando a inovação tem consequências sérias para o adotante e exige decisão informada.</vale_quando>
+    <reverte_quando>Campeões de inovação superentusiastas, sem contrapeso de defensores do consumidor, otimizam volume à custa da qualidade (Norplant).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Norplant na Indonésia: 3,6 milhões de adotantes (recorde mundial) via "safaris" coercitivos, sem counseling e com descontinuância negada — sucesso em número, falha ética e de qualidade.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="antagonista" alvo="VIR-S24">Incentivos/pressão maximizam quantidade às custas da qualidade.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 9 (Coercion in Norplant Diffusion).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S46" tipo="principio">
+  <gatilho>Ao tentar fazer uma ideia nova sobreviver dentro de uma organização que resiste.</gatilho>
+  <mecanismo>Um campeão é o indivíduo carismático que joga seu peso atrás da inovação, vencendo a indiferença/resistência — "a ideia nova ou acha um campeão ou morre" (Schön). Mecanismo: o campeão não vence por PODER formal, mas por HABILIDADE com pessoas — ocupa posição de ligação na organização, lê aspirações, negocia e orquestra uma coalizão informal que redefine a inovação e reestrutura a organização para acomodá-la (papel análogo ao do líder de opinião numa comunidade). Padrão contraintuitivo: quanto mais BAIXO o campeão na hierarquia, mais RADICAL costuma ser a inovação que ele empurra (escapa do desagrado corporativo). Para inovações caras/visíveis/radicais, porém, é útil ter um padrinho de alto cargo.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações que provocam resistência organizacional e precisam atravessar fases de implementação.</vale_quando>
+    <enfraquece_quando>Anti-campeões (opositores) podem impedir a inovação de chegar à rotinização.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Laptop da Toshiba: o engenheiro Mizoguchi, contra duas vetadas do topo, levou o projeto "underground"; um estagiário de saúde pública foi o campeão da lei antifumo de El Paso.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S48">O campeão move a inovação pelos 5 estágios do processo organizacional.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 10, Gen. 10-3.</fonte>
+    <fonte_primaria tier="N1">Howell &amp; Higgins (1990); Day (1994).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S47" tipo="principio">
+  <gatilho>Ao explicar por que a mesma característica organizacional ora favorece, ora atrapalha a inovação.</gatilho>
+  <mecanismo>Variáveis estruturais INVERTEM de sinal entre as duas fases do processo: baixa centralização, alta complexidade (expertise) e baixa formalização FACILITAM a INICIAÇÃO (gerar/considerar ideias), mas DIFICULTAM a IMPLEMENTAÇÃO (pôr em uso); centralização e formalização altas fazem o oposto. Mecanismo: iniciar exige abertura e diversidade de ideias (descentralização ajuda); implementar exige coordenação e comando (centralização ajuda). Por isso estudos cross-seccionais que somam tudo numa "inovatividade" acham correlações baixas — eles misturam as duas fases. Tamanho organizacional prediz inovatividade não por si, mas como SUBSTITUTO de recursos folgados (slack), expertise e estrutura. Transferível: case a estrutura à fase — não existe estrutura "inovadora" única.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovação em organizações com fases distintas de iniciação e implementação.</vale_quando>
+    <enfraquece_quando>Tratar inovatividade como variável única e atemporal mascara a inversão (correlações baixas dos estudos agregados).</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Skunkworks (descentralizado, informal) gera o radical; depois a corporação centralizada é melhor para implementá-lo em escala.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S48">A inversão se distribui pelos estágios de iniciação vs. implementação.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 10, Gen. 10-1/10-2.</fonte>
+    <fonte_primaria tier="N1">Zaltman, Duncan &amp; Holbek (1973); Mahler &amp; Rogers (1999), 324 bancos alemães.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S48" tipo="modelo_mental">
+  <gatilho>Ao conduzir a adoção de uma inovação dentro de uma organização (não de um indivíduo).</gatilho>
+  <mecanismo>O processo de inovação organizacional tem cinco estágios em dois subprocessos. INICIAÇÃO: (1) agenda-setting — um performance gap/choque define um problema e busca-se inovação (muitas vezes a solução precede o problema: "respostas antecedem perguntas"); (2) matching — casa-se problema e inovação, testando viabilidade (decisão de adotar = divisor de águas). IMPLEMENTAÇÃO: (3) redefining/restructuring — a inovação perde caráter estrangeiro via re-invenção, e a organização muda para acomodá-la (adaptação MÚTUA); (4) clarifying — o significado se torna claro pelo uso ampliado e construção social (pressa aqui causa desastre); (5) routinizing — a inovação vira rotina e perde identidade separada (= sustentabilidade). Transferível: implementar não é "instalar"; é coevolução negociada da ideia e da organização.</mecanismo>
+  <condicoes>
+    <vale_quando>Decisões coletivas/autoridade em organizações; estágios tardios exigem que os anteriores tenham ocorrido.</vale_quando>
+    <reverte_quando>Implementação apressada no estágio de clarifying provoca rejeição (Diamond Lane de Santa Monica; lei antifumo de Alamogordo votada às pressas).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>E-mail na Volvo levou 5 anos e suporte do topo + centros locais de ajuda para rotinizar entre 7.400 funcionários.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S39">A re-invenção acontece no estágio de redefining/restructuring.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 10 (Stages in the Innovation Process).</fonte>
+    <fonte_primaria tier="N1">Programa de Minnesota (Van de Ven et al., 1989/1999).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S49" tipo="principio">
+  <gatilho>Ao decidir entre importar uma solução pronta de fora ou desenvolvê-la com a participação de quem vai usá-la.</gatilho>
+  <mecanismo>Inovações geradas INTERNAMENTE (ou fortemente re-inventadas pelos usuários) implementam-se melhor que as importadas de fora: encaixam mais na situação, e os participantes as veem como "suas". Mecanismo: a participação gera propriedade psicológica; unidades que não participaram do desenvolvimento/re-invenção tratam a inovação como "mandato externo" e resistem. A SUSTENTABILIDADE é função de (a) re-invenção, (b) fit com a organização e (c) participação ampla na decisão (coletiva > autoridade, pois sobrevive à saída de um líder). Transferível: faça o público co-criar; propriedade compartilhada é o que faz a adoção durar após o fim do empurrão inicial.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações que precisam ser sustentadas após o fim de recursos/funding especiais.</vale_quando>
+    <enfraquece_quando>Decisão de autoridade com 1 patrono: se ele sai, a inovação descontinua (baixa sustentabilidade).</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Solagen (Kodak) era interno mas complexo demais para os operadores → implementação falhou; guidelines de câncer co-escritas pelos médicos foram adotadas (re-invenção + propriedade).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S39">Geração interna e re-invenção compartilham o mecanismo de propriedade → sustentabilidade.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 10 (Internally generated innovations; Sustainability).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S50" tipo="modelo_mental">
+  <gatilho>Ao antecipar os efeitos (inclusive os indesejados) de uma inovação que se difunde.</gatilho>
+  <mecanismo>Consequências são as mudanças que ocorrem a um indivíduo/sistema pela adoção (ou rejeição) de uma inovação, classificáveis em três eixos: (1) desejável vs. indesejável (funcional/disfuncional); (2) direta vs. indireta (resposta imediata vs. efeito de segunda ordem); (3) antecipada vs. não-antecipada (reconhecida e intencional vs. não). Os agentes preveem bem a FORMA (aparência física) e às vezes a FUNÇÃO (contribuição ao modo de vida), mas raramente o SIGNIFICADO (a percepção subjetiva da inovação pelos clientes) — e é no significado que moram as consequências indiretas, não-antecipadas e indesejáveis. Transferível: toda difusão desejável carrega efeitos de segunda ordem invisíveis ao promotor; antecipe o significado, não só a função.</mecanismo>
+  <condicoes>
+    <vale_quando>Qualquer inovação introduzida num sistema com cultura/estrutura própria.</vale_quando>
+    <reverte_quando>Uma inovação benéfica na média pode ser desastrosa para certos adotantes ou para a estrutura social (machado de aço destruiu a estrutura de autoridade dos Yir Yoront).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Snowmobile entre os Skolt Lapps: elevou o "bem" médio (mobilidade) mas concentrou a posse de renas em poucos; DDT salvou milhões e gerou mosquitos resistentes.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S51">O eixo (in)desigualdade das consequências é a 2ª dimensão dos efeitos.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 1 e 11.</fonte>
+    <fonte_primaria tier="N1">Sharp (1952), Yir Yoront; Pelto (1973), Skolt Lapps.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S51" tipo="principio">
+  <gatilho>Ao avaliar o impacto SOCIAL de uma difusão bem-sucedida — quem ganha mais e quem fica para trás.</gatilho>
+  <mecanismo>A difusão de inovações tende a ALARGAR o gap socioeconômico entre adotantes mais cedo e mais tarde (e entre os já altos e baixos em status) — o "communication effects gap". Três motores causais: (1) os "ups" têm mais atitude favorável, mais busca e mais recursos para adotar inovações caras; (2) os contatos do agente e os elos interpessoais conectam semelhantes (trickle-across), então a ideia não desce; (3) adotar cedo gera windfall profits, e os ganhos compostos afastam ainda mais os "downs". Resultado: o info-rico fica mais rico, o info-pobre fica MENOS pobre (melhora absoluta, piora relativa). Transferível: medir só o efeito MÉDIO esconde o efeito DISTRIBUTIVO — pergunte sempre "em quem o efeito foi maior/menor?", não só "quanto efeito houve?".</mecanismo>
+  <condicoes>
+    <vale_quando>Sistemas com desigualdade prévia de recursos/informação (Gen. 11-4/11-5).</vale_quando>
+    <reverte_quando>Com estratégia deliberada de estreitamento (ceiling effect, alvo nos downs, organização em grupos), o gap pode ser mantido ou NARROWED — não é inevitável (Gen. 11-7).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Novas variedades de café na Colômbia (Havens &amp; Flinn): renda dos adotantes +213% vs. +166% dos não-adotantes; o gap por acre quase decuplicou.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="GAB-S03">Lei de fundo do protocolo de estreitamento de gaps.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S11">A barreira homófila é um dos motores do alargamento.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 3 e 11.</fonte>
+    <fonte_primaria tier="N1">Havens &amp; Flinn (1974); Tichenor, Donohue &amp; Olien (1970), knowledge gap.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S52" tipo="principio">
+  <gatilho>Ao prever se uma mesma inovação vai concentrar ou distribuir benefícios num grupo.</gatilho>
+  <mecanismo>A ESTRUTURA SOCIAL em que a inovação é introduzida — não a inovação em si — determina em grande parte a (des)igualdade das consequências (Gen. 11-6). Mecanismo: quando a estrutura prévia já é muito desigual, uma inovação (sobretudo cara) tende a amplificar a desigualdade; quando há uma estrutura coletiva (cooperativa, grupo), os mesmos recursos são distribuídos. Fatores determinantes são de nível SISTÊMICO, mesmo que o impacto se dê via ações individuais. E a estrutura não é estática: organizar grupos (collective efficacy) muda quem consegue adotar inovações de alto custo. Transferível: para mudar o resultado distributivo, mude a estrutura de acesso (organize), não só a mensagem.</mecanismo>
+  <condicoes>
+    <vale_quando>Inovações de alto custo introduzidas em sistemas de estratificação variável.</vale_quando>
+    <reverte_quando>Estrutura cooperativa prévia inverte o resultado: a mesma tecnologia distribui em vez de concentrar (poços de Bangladesh vs. Paquistão).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Poço de irrigação idêntico: no Paquistão (fazendas grandes) concentrou renda; em Bangladesh (cooperativas de aldeia) dobrou a renda distribuída.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S41">É o efeito de sistema aplicado às consequências.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 11, Gen. 11-6.</fonte>
+    <fonte_primaria tier="N1">Gotsch (1972), poços em Bangladesh e Paquistão.</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S53" tipo="principio">
+  <gatilho>Ao pesquisar ou planejar difusão sem questionar se a inovação DEVE mesmo ser adotada por todos.</gatilho>
+  <mecanismo>O "viés pró-inovação" é a suposição implícita de que a inovação deveria ser difundida e adotada por TODOS, rapidamente, sem re-invenção nem rejeição. Mecanismo do erro: por ser implícito (raramente declarado), ele cega o analista para fenômenos críticos — a ignorância sobre a inovação, a rejeição e a descontinuância (rejeição ativa vs. passiva), a re-invenção, e os programas ANTI-difusão (impedir a propagação de inovações "ruins": crack, cigarro, vírus). Transferível: ao estudar/planejar viralidade, dê atenção igual ao que NÃO se espalha, ao que é rejeitado e ao que deveria ser CONTIDO — caso contrário o conhecimento fica artificialmente limitado.</mecanismo>
+  <condicoes>
+    <vale_quando>Toda análise de difusão; é a primeira defesa contra conclusões enviesadas.</vale_quando>
+    <enfraquece_quando>Escolher para estudo só inovações que difundiram rápido e com sucesso realimenta o próprio viés.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Difusão de tecnologia de determinação de sexo na Índia/China: inovação "bem-sucedida" com consequência social desastrosa (razões de sexo distorcidas).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S54">Ambos são vieses herdados que distorcem o estudo da difusão.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 3 (Pro-Innovation Bias).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S54" tipo="principio">
+  <gatilho>Quando se culpa o público ("resistente", "irracional", "atrasado") por não adotar.</gatilho>
+  <mecanismo>O "individual-blame bias" é a tendência a responsabilizar o indivíduo por seus problemas, em vez do SISTEMA do qual faz parte ("se o sapato não serve, o problema é o seu pé"). Mecanismo perverso: o estereótipo do laggard como tradicional/irracional vira PROFECIA AUTORREALIZÁVEL — o agente não contata quem ele julga improdutivo, e a falta de contato torna a não-adoção ainda mais provável. Mas a resistência tardia é muitas vezes RACIONAL (recursos escassos, inovação inadequada àquele adotante). Crucial: causa (a ser apurada empiricamente) ≠ culpa (juízo de valor); confundi-las contamina a análise. Transferível: antes de culpar o público, redefina o problema — frequentemente a falha é da fonte/inovação/sistema, e a redefinição abre a solução.</mecanismo>
+  <condicoes>
+    <vale_quando>Sempre que a explicação default é "o público é resistente".</vale_quando>
+    <reverte_quando>Redefinir o problema como system-blame destrava a solução (vídeo de tratores suecos: o que faltava era um bom sistema de som, não mais potência; "sugar daddies" como causa real da gravidez adolescente).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Reciclagem em Edmonton vs. Calgary: o preditor não era a atitude individual, e sim ter (ou não) programa municipal de coleta — system-blame.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIR-S40">Explica por que "laggard" carrega estigma indevido.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 3 (Individual-Blame Bias).</fonte>
+    <fonte_primaria tier="N1">Caplan &amp; Nelson (1973); Derksen &amp; Gartell (1993).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S55" tipo="principio">
+  <gatilho>Ao projetar mecanismos onde o próprio uso do produto recruta novos usuários (viralidade engenheirada).</gatilho>
+  <mecanismo>Quando a inovação ou seu canal embute a PROMOÇÃO no ato de uso, cada uso vira um anúncio personalizado vindo de um par — criando uma curva-S de mensagens promocionais cumulativas a custo quase zero. A internet/e-mail combina alcance um-para-muitos (como mass media) com personalização um-para-um (como interpessoal), colapsando o custo de comunicar através do espaço; assim a difusão atinge "boca a boca à velocidade da internet". Mecanismo transferível: desenhe o loop de indicação DENTRO do produto (a mensagem sai de quem o usa, para a rede de quem o usa), de modo que adoção gere exposição gere adoção, sem comprar mídia.</mecanismo>
+  <condicoes>
+    <vale_quando>Produtos digitais/interativos onde o uso é naturalmente comunicado a contatos do usuário.</vale_quando>
+    <enfraquece_quando>O mesmo motor amplifica o indesejado: vírus de internet viajam o mundo em um ou dois dias.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Hotmail: cada e-mail enviado carregava "Get your free e-mail at Hotmail.com" — 12 milhões de usuários em 18 meses, quase sem mídia paga.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S19">É massa crítica acelerada por loop de utilidade interativa.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S20">O loop torna a adoção alheia visível e contagiante.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5 (How the Internet Is Changing the Innovation-Decision Process).</fonte>
+    <fonte_primaria tier="N1">Singhal &amp; Rogers (2001); Rosen, The Anatomy of Buzz (2000).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="VIR-S56" tipo="modelo_mental">
+  <gatilho>Ao tentar prever quantas adoções de um novo produto ocorrerão em períodos futuros.</gatilho>
+  <mecanismo>O modelo de Bass formaliza a difusão com três parâmetros: p (coeficiente de inovação — adotantes movidos por mass media, concentrados no início), q (coeficiente de imitação — adotantes movidos por comunicação interpessoal, que cresce e depois decresce, gerando a sino/curva-S) e m (potencial de mercado). Mecanismo: q (interpessoal) recebe peso muito maior que p (media), coerente com toda a pesquisa de difusão; o modelo prevê o número AGREGADO de adotantes por período, e a curva é simétrica em torno do tempo médio de adoção (ponto de inflexão). Transferível: para projetar uma curva de adoção, estime o empurrão de mídia (p), o contágio interpessoal (q) e o teto de mercado (m) — e saiba que o contágio domina.</mecanismo>
+  <condicoes>
+    <vale_quando>Bens duráveis de consumo e telecom em mercados desenvolvidos, com dados de lançamentos análogos.</vale_quando>
+    <enfraquece_quando>Em nações em desenvolvimento os coeficientes de mídia diferem; o modelo assume simetria e mercado único, frágil para difusão global multi-país.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Previsões originais de Bass (1969) para TVs, secadoras e ar-condicionado; hoje testado em celulares e telecom.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S08">Os dois coeficientes são exatamente media (p) e interpessoal (q).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 5 (The Bass Forecasting Model).</fonte>
+    <fonte_primaria tier="N1">Bass, F. — A new product growth model for consumer durables. Management Science (1969).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<!-- ============================================================== -->
+<!-- ALVO: modelos_output.xml (GAB)                                 -->
+<!-- STAGING: renumerar a partir do último ID real de GAB           -->
+<!-- ============================================================== -->
+
+<regra id="GAB-S01" tipo="gabarito">
+  <no_alvo>estrategia_canal, estrategista_oferta</no_alvo>
+  <gatilho>Ao lançar uma inovação interativa/de rede e precisar levá-la ao ponto de auto-sustentação (massa crítica).</gatilho>
+  <mecanismo>Sustenta-se na lei da massa crítica em inovações interativas (interdependência recíproca: cada adotante aumenta a utilidade para todos): antes do ponto de inflexão a utilidade é negativa, então o lançamento precisa de empurrões artificiais até a difusão se pagar sozinha. Guarda-corpo anti-dogma: o playbook só funciona enquanto a massa crítica não foi atingida; depois dela, os mesmos empurrões viram desperdício.</mecanismo>
+  <aplicacoes>
+    <aplicacao>Receita executável (aplicar até o takeoff, depois cortar): (1) ALVO no topo da hierarquia — faça os indivíduos mais respeitados/poderosos adotarem primeiro (quando o presidente usa o e-mail, todos precisam responder por e-mail). (2) GRUPOS INTACTOS inovadores — introduza primeiro em uma unidade naturalmente mais inovadora e densa (ex.: P&amp;D), deixe atingir massa crítica ali, depois expanda. (3) INCENTIVOS temporários — dê o serviço grátis/subsidiado a um grupo selecionado por tempo limitado (carros híbridos vendidos a 2/3 do custo + manutenção grátis até a massa crítica). (4) PERCEPÇÃO de inevitabilidade — comunique que a adoção é inevitável/muito desejável/que a massa crítica já ocorreu ou ocorrerá em breve. (5) CONTEXTO do sistema — use hierarquia, recompensas e regras para baixar o esforço percebido dos primeiros adotantes.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S19">Instancia a lei da massa crítica/interdependência recíproca.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S24">Usa incentivos pump-priming.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 8 (Strategies for Getting to Critical Mass).</fonte>
+    <fonte_primaria tier="N1">Rholfs (1974); Markus (1987).</fonte_primaria>
+  </evidencia>
+</regra>
+
+<regra id="GAB-S02" tipo="gabarito">
+  <no_alvo>roteirista_estrategico, estrategia_canal</no_alvo>
+  <gatilho>Ao planejar mensagens e canais distintos para cada fatia da audiência conforme a disposição relativa de adotar.</gatilho>
+  <mecanismo>Sustenta-se na lei das categorias de adotantes (perfis coerentes e contínuos de socioeconomia, personalidade e comunicação por posição na curva-S): cada categoria responde a credibilidade e canal diferentes, então quebrar a audiência heterófila em subaudiências homófilas torna cada mensagem mais eficaz. Guarda-corpo: as categorias são tipos-ideais, não há "abismo" descontínuo; não force perfis fora do que o público sustenta.</mecanismo>
+  <aplicacoes>
+    <aplicacao>Receita executável de segmentação: (1) INOVADORES/EARLY — apele a teste científico, pioneirismo e dados; canais cosmopolitas/mass media; eles toleram incerteza e querem ser primeiros. (2) MAIORIA INICIAL — prova social de pares respeitados (early adopters como "o indivíduo a consultar"); reduza incerteza com demonstração e trial. (3) MAIORIA TARDIA — pressão de norma já consolidada + necessidade econômica + testemunho denso de pares; só cedem quando a maioria já adotou. (4) LAGGARDS — canais localitas/interpessoais, garantia total de não-fracasso, mensagem de baixo risco; trate a resistência como racional (system-blame), não como teimosia. Use early adopters e líderes de opinião como ponte entre os segmentos.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S40">Instancia a lei das cinco categorias de adotantes.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S13">Opera via líderes de opinião por segmento.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 7 (Audience Segmentation and Adopter Categories).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="GAB-S03" tipo="gabarito">
+  <no_alvo>estrategia_canal, pesquisador_validador</no_alvo>
+  <gatilho>Ao difundir algo para um público desigual quando se quer evitar que a difusão alargue o gap entre "ups" e "downs".</gatilho>
+  <mecanismo>Sustenta-se na lei do communication effects gap (a difusão alarga gaps porque ups têm mais acesso, mais avaliação de pares e mais recursos), mas com o corolário de Rogers de que o alargamento NÃO é inevitável com estratégia deliberada (Gen. 11-7). Guarda-corpo: medir o efeito médio esconde o distributivo; o protocolo exige medir gaps antes/depois, não só a adoção agregada.</mecanismo>
+  <aplicacoes>
+    <aplicacao>Protocolo executável (organizado pelas 3 causas do gap): A) ACESSO À INFORMAÇÃO — use o "ceiling effect" (conteúdo redundante/de menos interesse para os ups, que se desligam, deixando os downs alcançarem); desenhe mensagens sob medida para a baixa escolaridade (mais visual); use canais que chegam aos downs (rádio/TV onde não há impressos). B) AVALIAÇÃO DE PARES — identifique líderes de opinião ENTRE os downs e concentre contato neles; recrute aides homófilos dos downs; forme pequenos grupos para reforço social. C) RECURSOS/SLACK — recomende inovações apropriadas e de baixo custo aos downs; crie organização coletiva (cooperativas) para comandar recursos de adoção; desloque o contato do agente dos early adopters para a maioria tardia/laggards. Meça o gap em dois pontos no tempo (paradigma Tichenor), não só a média.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIR-S51">Instancia (e neutraliza) a lei do communication effects gap.</relacao>
+    <relacao tipo="sinergia" alvo="VIR-S52">Opera mudando a estrutura social de acesso.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Rogers — Diffusion of Innovations (2003), cap. 11 (Strategies for Narrowing Gaps), Gen. 11-7.</fonte>
+    <fonte_primaria tier="N1">Shingi &amp; Mody (1976); Röling et al. (1976), experimentos de campo.</fonte_primaria>
+  </evidencia>
+</regra>
+
+</unidades>
