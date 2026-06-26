@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Vittorio Storaro & Ric Gentry,              -->
+<!-- "Writing with Light: An Interview with Vittorio Storaro"       -->
+<!-- Film Quarterly 48(2):2-9, Winter 1994-95 · UC Press · JSTOR 1213091 -->
+<!-- PARTE 2/2 — PCV-S01..S02 + EXP-S01 + GAB-S01..S03 (6 unidades) -->
+<!-- STAGING: ids provisórios por-obra; renumerar/dedup na INGESTÃO.-->
+<!-- ============================================================== -->
+<unidades>
+
+<!-- ALVO: percepcao_cognicao_visual.xml -->
+<!-- STAGING: renumerar a partir do último ID real de PCV. -->
+
+<regra id="PCV-S01" tipo="principio">
+  <gatilho>Quando se escolhe a paleta de uma cena, personagem ou mundo para transmitir um sentimento.</gatilho>
+  <mecanismo>A cor não é apenas informação visual — o corpo RESPONDE a ela física e psicologicamente. Por isso é possível CODIFICAR sentimento e emoção pela atribuição deliberada de cor: a resposta do espectador (afetiva, corporal) opera antes e abaixo do julgamento consciente. Storaro trata as cores como "the children of light" e relata ter pesquisado "what kind of response the human body has to it, how we can visualize sentiment and emotion with color". O mecanismo (como articulado pelo mestre): a cor é um canal direto para o estado afetivo, contornando a mediação verbal/racional. ATENÇÃO epistêmica: aqui é convicção de ofício [V] — a fonte AFIRMA a base fisiológica mas não cita estudo; tratar como princípio estético articulado, não como dado medido.</mecanismo>
+  <condicoes>
+    <vale_quando>Há controle da paleta e uma intenção afetiva a transmitir.</vale_quando>
+    <enfraquece_quando>As associações de cor são culturalmente variáveis — a resposta não é universal nem garantida.</enfraquece_quando>
+    <reverte_quando>Uma cor com carga cultural oposta à intenção produz o afeto contrário ao pretendido.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Atribuir verde/água, vermelho/fogo, azul/ar, preto/matéria a personagens para que o espectador "feel and understand, consciously and unconsciously, what the story is about".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="GAB-S01">A receita de cor→personagem repousa nesta resposta afetiva à cor.</relacao>
+    <relacao tipo="sinergia" alvo="PCV-S02">A cor chega sobretudo pela via inconsciente.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.4-7. Convicção de mestre [V]; base fisiológica alegada, não demonstrada na fonte.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="PCV-S02" tipo="principio">
+  <gatilho>Quando se projeta como o espectador vai RECEBER a camada visual de uma cena.</gatilho>
+  <mecanismo>A imagem comunica em duas vias simultâneas — à CONSCIÊNCIA (o que o espectador nota e nomeia) e ao INCONSCIENTE (o que ele sente sem perceber a causa). O desenho visual eficaz endereça AS DUAS: o sentido temático pode chegar pela via inconsciente (cor, luz, textura) mesmo quando a via consciente está ocupada com enredo/diálogo. Por isso escolhas visuais "invisíveis" — como a troca de formato que "hardly anyone was even aware of" — ainda fazem trabalho semântico. Projetar só para a via consciente desperdiça metade do canal; é a via pré-consciente que carrega boa parte do tema.</mecanismo>
+  <condicoes>
+    <vale_quando>O visual pode carregar sentido paralelo e simultâneo ao texto/ação.</vale_quando>
+    <enfraquece_quando>O visual é tão saliente que migra para a via consciente e vira distração.</enfraquece_quando>
+    <reverte_quando>Sinais inconscientes contraditórios com a mensagem consciente geram desconforto difuso — o espectador "sente que algo está errado" sem saber por quê.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Troca de 35mm anamórfico → 65mm imperceptível conscientemente, mas que muda a textura/registro; sistema de cores lido "consciously and unconsciously".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIS-S01">É a razão de a "escrita com luz" funcionar como linguagem.</relacao>
+    <relacao tipo="sinergia" alvo="VIS-S03">A textura/formato age na via inconsciente.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.4-8. Convicção de mestre [V].</fonte>
+  </evidencia>
+</regra>
+
+<!-- ALVO: experimentacao_validacao.xml -->
+<!-- STAGING: renumerar a partir do último ID real de EXP. -->
+
+<regra id="EXP-S01" tipo="heuristica">
+  <gatilho>Quando se cogita adotar uma técnica/formato novo numa produção de alto risco.</gatilho>
+  <mecanismo>Separar o risco CRIATIVO do risco TÉCNICO: testar a técnica nova de antemão, em baixo risco, para descobrir se ela muda o método de trabalho. Se os testes mostram diferença operacional mínima, a decisão criativa de adotá-la deixa de carregar incerteza técnica — pode-se comprometer com o salto estético sabendo que a logística não vai surpreender no set.</mecanismo>
+  <aplicacoes>
+    <aplicacao>Storaro fez testes com 65mm antes de Dick Tracy, que "indicated there would be very little difference in the working methods with 65mm as opposed to CinemaScope anamorphic" — o que o deixou seguro para propor 65mm em Little Buddha e mudar de formato em set remoto "within a week".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIS-S03">De-risca a troca de formato/textura entre camadas.</relacao>
+    <relacao tipo="sinergia" alvo="GAB-S03">Passo da receita de troca de formato.</relacao>
+  </relacoes>
+  <evidencia tier="N3">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. p.8 (testes de 65mm antes de Dick Tracy). Heurística de praticante [V].</fonte>
+  </evidencia>
+</regra>
+
+<!-- ALVO: modelos_output.xml -->
+<!-- STAGING: renumerar a partir do último ID real de GAB. -->
+
+<regra id="GAB-S01" tipo="gabarito">
+  <no_alvo>diretor_visual, engenheiro_narrativo</no_alvo>
+  <gatilho>Quando uma narrativa tem múltiplos personagens/mundos a diferenciar e, ao final, unificar visualmente.</gatilho>
+  <mecanismo>Lei de fundo (guarda-corpo anti-dogma): a cor é canal afetivo pré-consciente (PCV-S01) e o símbolo só ressoa se for motivado pela natureza do referente (EST-S02). Por isso o código funciona apenas quando cada cor deriva de uma propriedade REAL do personagem/lugar — atribuição por gosto enfraquece o sistema.</mecanismo>
+  <aplicacoes>
+    <aplicacao>Receita (instanciada em Little Buddha):
+1. Liste os personagens/mundos centrais e o tema de cada um.
+2. Atribua a cada um um ELEMENTO (terra/água/fogo/ar) escolhido pela natureza do personagem e por sua geografia — não por capricho (ex.: o mestre que nutre/ensina = terra).
+3. Derive a COR do elemento (terra=preto/matéria; água=verde; fogo=vermelho; ar=azul) e ajuste-a, se preciso, à cultura do mundo.
+4. Realize cada cor pela cadeia técnica INTEIRA (VIS-S02): filme, lente, filtro, luz e cópia coerentes; para contrastar, inverta a cadeia.
+5. Reserve o BRANCO (espectro pleno) para o momento de síntese/clímax, onde os elementos se reúnem (VIS-S06, VIS-S08).
+6. Module a presença: às vezes um elemento isolado, às vezes vários simultâneos, "always striving for harmony".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="EST-S02">Aplica o princípio do símbolo motivado.</relacao>
+    <relacao tipo="instancia_de" alvo="PCV-S01">Aplica a cor como canal afetivo.</relacao>
+    <relacao tipo="sinergia" alvo="VIS-S06">O branco fecha o sistema na síntese.</relacao>
+  </relacoes>
+  <evidencia tier="N3">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.6-10. Receita de praticante premiado (3 Oscars); lastro = ofício demonstrado [V].</fonte>
+  </evidencia>
+</regra>
+
+<regra id="GAB-S02" tipo="gabarito">
+  <no_alvo>diretor_visual</no_alvo>
+  <gatilho>Quando uma cena-clímax (ou jornada) deve transmitir um ciclo completo: vida/morte/renascimento, ou dualidade → equilíbrio → transcendência.</gatilho>
+  <mecanismo>Lei de fundo: a progressão de luz por hora-do-dia é lida como ciclo de tempo (VIS-S05) e o clímax cobra os motivos plantados (VIS-S08); corpos celestes portam estados psicológicos (VIS-S09). A receita só "paga" se o sistema foi plantado antes na obra.</mecanismo>
+  <aplicacoes>
+    <aplicacao>Receita (derivada da cena da enlightenment de Little Buddha):
+1. Comece a cena no DIA (estado inicial estável — ali, a história sendo contada às crianças).
+2. Avance ao PÔR-DO-SOL conforme entra a tentação/distração (as filhas de Mara).
+3. Traga a NOITE quando chega a ameaça (o vento, a aproximação de Mara).
+4. Toque o fundo na NOITE PLENA, sobre o oceano — o ponto mais escuro.
+5. Faça a LUA NASCER junto com a ALVORADA no confronto decisivo: sol e lua em equilíbrio = opostos reconciliados (VIS-S09).
+6. Deixe a CONSCIÊNCIA dominar (a luz do dia vence) e RETORNE AO BRANCO como energia/síntese (VIS-S06).
+Opcional: cruze a progressão de luz com um ciclo de elementos na mesma cena — terra ao sentar no chão; ar no vento; água no oceano; fogo nas flechas; branco no fim.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIS-S05">Instancia o ciclo de luz.</relacao>
+    <relacao tipo="instancia_de" alvo="VIS-S08">Instancia a recapitulação climática.</relacao>
+    <relacao tipo="instancia_de" alvo="VIS-S09">Instancia os símbolos sol/lua.</relacao>
+  </relacoes>
+  <evidencia tier="N3">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.8-10. Receita de praticante premiado [V].</fonte>
+  </evidencia>
+</regra>
+
+<regra id="GAB-S03" tipo="gabarito">
+  <no_alvo>diretor_visual</no_alvo>
+  <gatilho>Quando a obra tem dois registros/mundos (presente × mito, real × lembrança, comum × ideal) a separar sem exposição.</gatilho>
+  <mecanismo>Lei de fundo: a textura/formato é pontuação narrativa (VIS-S03), decodificada pela via inconsciente (PCV-S02); preservar a proporção protege a composição (VIS-S04).</mecanismo>
+  <aplicacoes>
+    <aplicacao>Receita (derivada de Little Buddha):
+1. Defina os dois registros e qual deve parecer mais "ideal/elevado".
+2. Capte o registro cotidiano no formato-base (ex.: 35mm anamórfico).
+3. Capte o registro ideal/fabular num meio de MAIOR resolução/precisão/saturação (ex.: negativo 65mm); derive o alvo de textura de uma referência de arte do mundo retratado (VIS-S07).
+4. Mantenha a MESMA proporção/aspect ratio entre os dois, para que a troca seja sentida como TEXTURA, não como ruptura de formato — e para preservar a composição (VIS-S04).
+5. De-risque antes: teste o método novo para confirmar workflow equivalente (EXP-S01).
+6. Faça a transição coincidir com a fronteira narrativa (ex.: ao "abrir o livro ilustrado" da história).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIS-S03">Instancia textura/formato como pontuação.</relacao>
+    <relacao tipo="sinergia" alvo="VIS-S07">Deriva a textura de uma referência de arte.</relacao>
+    <relacao tipo="sinergia" alvo="EXP-S01">De-risca a técnica nova antes.</relacao>
+  </relacoes>
+  <evidencia tier="N3">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.7-9. Receita de praticante premiado [V].</fonte>
+  </evidencia>
+</regra>
+
+</unidades>

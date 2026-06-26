@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================== -->
+<!-- DESTILAÇÃO 3DHAN — Vittorio Storaro & Ric Gentry,              -->
+<!-- "Writing with Light: An Interview with Vittorio Storaro"       -->
+<!-- Film Quarterly 48(2):2-9, Winter 1994-95 · UC Press · JSTOR 1213091 -->
+<!-- TIPO: ENTREVISTA (maestria de ofício) → tier N2/N3, NÃO N1.    -->
+<!-- PARTE 1/2 — VIS-S01..S09 + EST-S01..S04 (13 unidades)          -->
+<!-- STAGING: ids provisórios por-obra; renumerar/dedup na INGESTÃO.-->
+<!-- ============================================================== -->
+<unidades>
+
+<!-- ALVO: cinematografia_cor_visual.xml -->
+<!-- STAGING: renumerar a partir do último ID real de VIS. -->
+
+<regra id="VIS-S01" tipo="principio">
+  <gatilho>Quando se desenha a fotografia/visual de uma cena e a tentação é tratar luz e cor como mera iluminação técnica (tornar a cena visível) em vez de como discurso.</gatilho>
+  <mecanismo>"Fotografar" significa literalmente "escrever com luz": o desenho visual (luz, sombra, cor, formato, composição) é um sistema LINGUÍSTICO paralelo ao enredo — com vocabulário, pontuação, adjetivos e estilo — que narra a história ao espectador ao mesmo tempo que o texto e a ação. Por ser língua, precisa ser AUTORADO para SIGNIFICAR, não apenas para deixar a cena legível. A luz deixa de ser meio (revelar o objeto) e torna-se o SUJEITO expressivo primário: é ela que carrega sentimento e tema. O cineasta complementa a visão do diretor escrevendo essa segunda camada de sentido. Onde a iluminação só ilumina, não há mensagem; onde é tratada como escrita, cada plano diz algo além do que mostra.</mecanismo>
+  <condicoes>
+    <vale_quando>Há uma intenção temática a transmitir e controle sobre luz, cor e formato.</vale_quando>
+    <enfraquece_quando>O visual é meramente funcional/documental sem tese; ou a "linguagem" vira maneirismo desligado da história (estilo pelo estilo).</enfraquece_quando>
+    <reverte_quando>Quando a camada visual sobrepuja ou contradiz a narrativa em vez de complementá-la: aí ela distrai e confunde em vez de comunicar — por isso Storaro insiste em "complement the director's vision".</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="EST-S04">Autoexpressão do cineasta × serviço à visão do diretor (Storaro resolve como falsa oposição).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Em Little Buddha, Storaro atribui um sistema luz/cor/elemento a cada personagem para "describe the story through the visualization, the photography, so that the viewer can feel and understand, consciously and unconsciously, what the story is about".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="PCV-S02">A recepção em dupla via (consciente+inconsciente) é o porquê de a "escrita" visual funcionar.</relacao>
+    <relacao tipo="sinergia" alvo="EST-S02">A linguagem visual só comunica se o signo for motivado, não arbitrário.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro V &amp; Gentry R — "Writing with Light: An Interview with Vittorio Storaro". Film Quarterly 48(2):2-9, Winter 1994-95. UC Press. JSTOR 1213091. pp.4-5, 9 ("cinema is a language of images"; "to write with light").</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S02" tipo="principio">
+  <gatilho>Quando há um conceito visual definido (um "look") e é preciso decidir COMO realizá-lo tecnicamente — ou contrastar dois mundos/estados na mesma obra.</gatilho>
+  <mecanismo>Um conceito visual não se realiza por uma única alavanca, e sim pela orquestração COERENTE de toda a cadeia técnica para um mesmo fim — emulsão/filme, lentes, filtragem, iluminação e processo de cópia (printing) escolhidos juntos para produzir UM efeito. Cada elo empurra na mesma direção; o resultado é a soma. Para CONTRASTAR dois registros, inverte-se a cadeia INTEIRA ("nearly the opposite"), não um só parâmetro — assim a diferença é estrutural e sentida, não cosmética. É o equivalente a usar "different punctuation and different adjectives" para criar estilo: o sentido emerge do conjunto de escolhas, nunca de um truque isolado.</mecanismo>
+  <condicoes>
+    <vale_quando>Há controle sobre múltiplos estágios da produção (captação a pós) e um conceito unificador para alinhá-los.</vale_quando>
+    <enfraquece_quando>Só um estágio é controlável (ex.: pós sem controle de captação) — o efeito fica diluído.</enfraquece_quando>
+    <reverte_quando>Escolhas que puxam em direções contraditórias (luz quente + cópia fria + lente que neutraliza) anulam-se e produzem um look sem identidade, "lamacento".</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Seattle/água: um filme, lentes, filtragem, luz e cópia específicos; Kathmandu/fogo: "nearly the opposite" em cada elo; a cena da enlightenment usou "all four" elementos.</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIS-S01">É como a linguagem visual é fisicamente escrita na película.</relacao>
+    <relacao tipo="sinergia" alvo="GAB-S01">A receita elemento→cor depende desta orquestração para se materializar.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.6-7 ("I used everything in my knowledge of photography… one specific film stock, one specific set of lenses… one way of printing").</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S03" tipo="principio">
+  <gatilho>Quando uma obra tem camadas/mundos narrativos distintos (presente vs. mito, real vs. lembrança, comum vs. ideal) e é preciso diferenciá-los sem exposição.</gatilho>
+  <mecanismo>A TEXTURA da imagem — resolução, grão, nitidez, formato de captação — é em si um signo narrativo. Trocar deliberadamente o meio/formato entre camadas (ex.: anamórfico 35mm para o presente, negativo 65mm de altíssima resolução para o mundo fabular) cria um contraste tátil que o espectador lê como "estou em outro mundo", mesmo sem perceber conscientemente a troca de câmera. O mecanismo é perceptivo: maior resolução/precisão/saturação lê-se como "ideal / livro ilustrado"; menor, como "cotidiano". A diferença de textura faz o trabalho de pontuação que a montagem ou o diálogo fariam — separa registros sem precisar dizer.</mecanismo>
+  <condicoes>
+    <vale_quando>Há mais de um registro narrativo e meios com texturas distinguíveis disponíveis.</vale_quando>
+    <enfraquece_quando>A diferença de textura é sutil demais para ser sentida, ou o canal de exibição comprime/achata as resoluções e iguala os registros.</enfraquece_quando>
+    <reverte_quando>Trocas de textura sem correspondência narrativa viram inconsistência percebida como ERRO técnico, não como signo.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Little Buddha: história contemporânea em anamórfico; vida do Buddha em 65mm, "much richer in image quality… that story-book quality"; "hardly anyone was even aware of the change in the cameras or the format".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIS-S07">A referência de arte (miniaturas) motivou o alvo de textura.</relacao>
+    <relacao tipo="instancia_de" alvo="PCV-S02">Funciona porque a textura é decodificada pela via inconsciente.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.7-8 (65mm para a história fabular; mudança de textura imperceptível).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S04" tipo="principio">
+  <gatilho>Quando a obra será reexibida em outro formato/proporção (TV, vertical, streaming, HDVS) e se cogita recortar ou reenquadrar a composição original.</gatilho>
+  <mecanismo>A composição/enquadramento NÃO é um recipiente neutro do conteúdo — é parte do significado ("cinema is a language of images"). Recortar para caber em outra proporção apaga conteúdo linguístico: altera a expressão, o estilo e, no limite, a própria obra ("like cutting a painting to fit the wall space where you want to put it"). Como a vida de um filme na tela eletrônica é mais longa que no cinema, a perda por reformatação é a regra, não a exceção. Solução estrutural: convergir os formatos de captação e exibição para a MESMA proporção (Storaro propõe aproximar 65mm e HDVS a um 1:2 comum) para que a imagem composta seja idêntica em qualquer meio — preserva-se o enquadramento original em vez de sacrificá-lo na distribuição.</mecanismo>
+  <condicoes>
+    <vale_quando>A composição carrega intenção (peso, vazio, relação figura-fundo) e a obra será multi-plataforma.</vale_quando>
+    <enfraquece_quando>O conteúdo é central com folga de margem — composições "seguras" toleram recorte com perda menor.</enfraquece_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="CAN">A distribuição (proporção da tela/algoritmo do canal — TV ontem, vertical/feed hoje) PRESSIONA pela reformatação; este princípio antagoniza essa pressão. Trade-off: fidelidade compositiva × adequação ao canal.</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro argumenta por um padrão 1:2 entre 65mm (−.2) e HDVS (+.2) para compor uma imagem idêntica em qualquer mídia. Transfere diretamente ao dilema moderno de reenquadrar 16:9 → 9:16: cortar a composição é "cortar a pintura".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="VIS-S01">Corolário de que a imagem é linguagem: o frame é unidade dessa língua.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.8-9 (HDVS, aspect ratio 1:2, "cutting a painting").</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S05" tipo="principio">
+  <gatilho>Quando uma sequência ou jornada precisa transmitir passagem cíclica de tempo, ciclo de vida/morte/renascimento, ou ligar o drama individual a uma escala maior.</gatilho>
+  <mecanismo>Encadear a QUALIDADE da luz por hora-do-dia ao longo das cenas (dia → pôr-do-sol → crepúsculo → noite → alvorada → dia de novo, em outro ponto) cria um ciclo SENTIDO de tempo que o espectador lê intuitivamente como nascimento/renascimento e continuidade. Como a luz natural é universalmente associada ao tempo e ao ciclo terrestre, sua progressão converte uma sequência de cenas numa só respiração temporal — e ancora a história individual numa escala cósmica (terra em relação ao sol, aos planetas, ao espaço-tempo). O tempo deixa de ser INFORMADO e passa a ser SENTIDO pela luz.</mecanismo>
+  <condicoes>
+    <vale_quando>Há um arco/jornada que se beneficia de leitura cíclica e liberdade para controlar a hora-luz de cada cena.</vale_quando>
+    <enfraquece_quando>A continuidade realista exige hora fixa (cena curta de tempo contínuo).</enfraquece_quando>
+    <reverte_quando>A progressão de luz desalinhada do arco emocional gera dissonância (luz "amanhecendo" sobre uma queda dramática confunde a leitura).</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Peregrinação de Siddhartha: cada cena num momento do dia para "move the cycle forward — day, sunset, dusk, night, dawn, day again but at a different time", dando "a sense of his birth and rebirth".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIS-S08">O clímax recapitula o ciclo de luz construído.</relacao>
+    <relacao tipo="sinergia" alvo="VIS-S09">Os corpos celestes (sol/lua) marcam pontos do ciclo com carga psicológica.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. p.8 (ciclo de luz na jornada de Siddhartha).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S06" tipo="principio">
+  <gatilho>Quando o ponto de resolução temática é unidade, transcendência, síntese ou "iluminação" (no duplo sentido).</gatilho>
+  <mecanismo>A luz branca de espectro pleno lê-se como síntese e transcendência porque É, fisicamente, a integração de todas as cores. Quando a obra construiu um código cromático de partes/oposições (cada cor = um personagem/elemento), RETORNAR ao branco no clímax faz a síntese VISUAL espelhar a síntese TEMÁTICA: as partes se reúnem na unidade. O branco aqui não é ausência de cor, mas soma delas — por isso funciona como símbolo de energia/totalidade/"overconsciente" no fim de um sistema cromático. O mecanismo exige o acúmulo prévio: branco só significa "tudo junto" se as cores-parte foram estabelecidas antes.</mecanismo>
+  <condicoes>
+    <vale_quando>Existe um sistema cromático de partes (cores associadas a personagens/temas) a ser sintetizado.</vale_quando>
+    <enfraquece_quando>Não houve código de cores prévio — aí o branco é apenas branco, sem leitura de síntese.</enfraquece_quando>
+    <reverte_quando>Branco usado sem o acúmulo lê-se como vazio/estéril, não como plenitude.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Enlightenment: "a fifth manifestation, which is energy, the energy of pure white light which is the enlightenment"; no clímax "all the light returns to white as the symbol for energy, the overconscious".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="GAB-S01">O sistema de cores-parte que o branco sintetiza.</relacao>
+    <relacao tipo="sinergia" alvo="VIS-S08">O retorno ao branco é parte da recapitulação climática.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.8-10 (branco como quinta manifestação/energia).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S07" tipo="principio">
+  <gatilho>Quando se busca um "look" com autenticidade cultural/histórica específica para um mundo ou época da obra.</gatilho>
+  <mecanismo>Derivar o estilo visual de uma TRADIÇÃO de arte autêntica do mundo retratado (pintura, miniatura, escola) — em vez de inventar do zero — empresta à imagem a textura, a paleta e a gramática visual que aquela cultura já codificou, ganhando autenticidade e ressonância que o público reconhece mesmo sem nomear. A obra-referência funciona como alvo CONCRETO ("achieve that kind of look") que disciplina as escolhas técnicas e dá um norte verificável. Ancorar o invento numa fonte real reduz a arbitrariedade e importa séculos de convenção visual já legível.</mecanismo>
+  <condicoes>
+    <vale_quando>Existe uma tradição visual pertinente ao mundo/época da história.</vale_quando>
+    <enfraquece_quando>A referência é decorativa/desconectada da narrativa ou anacrônica.</enfraquece_quando>
+    <reverte_quando>Referência aplicada sem tradução para o meio (copiar a pintura literalmente) vira pastiche e quebra a imersão.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Estudo de miniaturas indianas do séc. XVII "which had perfect details and saturated colors", para que a história do Buddha começasse "as if you were opening this wonderful, beautiful illustrated book before the children's gaze".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="VIS-S03">A referência motivou a troca para 65mm (textura de livro ilustrado).</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.7-8 (miniaturas indianas do séc. XVII).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S08" tipo="principio">
+  <gatilho>Quando se desenha a cena-clímax de uma obra que construiu motivos/símbolos ao longo do percurso.</gatilho>
+  <mecanismo>Um clímax ganha potência ao RECAPITULAR e comprimir, numa única sequência, todo o sistema simbólico estabelecido antes — fazendo convergir, em rápida sucessão ou simultaneidade, os motivos que estavam dispersos. O pagamento emocional vem do reconhecimento (consciente ou não) de que "tudo se junta aqui": cada elemento previamente plantado retorna e se resolve. O mecanismo é de acúmulo-e-quitação: o clímax não INTRODUZ, ele COLHE. Sem o plantio prévio, a recapitulação não tem o que colher.</mecanismo>
+  <condicoes>
+    <vale_quando>Há um sistema de motivos/símbolos plantado e mantido ao longo da obra.</vale_quando>
+    <enfraquece_quando>Os motivos foram fracos ou inconsistentes — não há o que recapitular.</enfraquece_quando>
+    <reverte_quando>Amontoar todos os símbolos sem hierarquia/clareza no clímax vira sobrecarga ilegível em vez de síntese.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Cena da enlightenment: "in one sequence I did the entire cycle of the four elements and the entire journey of the sun and the moon" — terra (sentado no chão), ar (vento dispersa as filhas de Mara), água (oceano), fogo (flechas em chamas), branco (energia).</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="pre_requisito" alvo="VIS-S05">O ciclo de luz é um dos sistemas recapitulados.</relacao>
+    <relacao tipo="sinergia" alvo="VIS-S06">O retorno ao branco fecha a recapitulação.</relacao>
+    <relacao tipo="sinergia" alvo="GAB-S02">Receita executável dessa progressão climática.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.8-10 (cena da enlightenment).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="VIS-S09" tipo="principio">
+  <gatilho>Quando é preciso tornar visível um estado interno abstrato (consciente/inconsciente, ego/transcendência, dualidade/equilíbrio).</gatilho>
+  <mecanismo>Estados psicológicos abstratos tornam-se legíveis quando mapeados em fenômenos de luz natural que o público já lê intuitivamente: sol/dia = consciência; lua/noite = inconsciência; o EQUILÍBRIO entre eles (sol e lua juntos na alvorada) = a reconciliação dos opostos; a DOMINÂNCIA de um = a vitória de um estado sobre o outro. Como esses corpos e seus momentos carregam associação cultural milenar, o espectador decodifica o estado interno sem explicação verbal. O mecanismo: usar um significante natural concreto e universal como portador de um significado psicológico abstrato — o concreto carrega o abstrato.</mecanismo>
+  <condicoes>
+    <vale_quando>O significante natural tem associação cultural estável com o estado-alvo.</vale_quando>
+    <enfraquece_quando>A associação é idiossincrática ou não compartilhada pelo público.</enfraquece_quando>
+    <reverte_quando>Forçar um mapeamento contra a associação culturalmente dada (ex.: noite = clareza/consciência) confunde em vez de comunicar.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>No clímax, sol e lua postos "in balance" na alvorada = consciente e inconsciente em equilíbrio; depois "consciousness dominates and becomes the overconscious".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="instancia_de" alvo="EST-S02">É um símbolo motivado (a propriedade real do sol/lua porta o sentido).</relacao>
+    <relacao tipo="sinergia" alvo="VIS-S05">Sol e lua pontuam o ciclo de luz.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.8-9 (sol=consciência/dia, lua=inconsciência/noite, equilíbrio na alvorada).</fonte>
+  </evidencia>
+</regra>
+
+<!-- ALVO: estetica_cientifica.xml -->
+<!-- STAGING: renumerar a partir do último ID real de EST. -->
+
+<regra id="EST-S01" tipo="principio">
+  <gatilho>Quando se avalia o próprio amadurecimento num ofício, ou se planeja a progressão de domínio de uma técnica complexa de muitos elementos.</gatilho>
+  <mecanismo>O domínio de um ofício progride em duas fases ordenadas: primeiro APARTAR — aprender a separar e controlar cada elemento isoladamente (luz de sombra, uma cor da outra) para conhecê-lo a fundo; depois INTEGRAR — recombinar os elementos já dominados em harmonia/equilíbrio. A síntese só vem bem se a análise foi feita: harmoniza-se bem apenas o que já se sabe separar. A maturidade não é saber MAIS técnicas, e sim a passagem do controle analítico para o equilíbrio sintético. Tentar a harmonia antes de dominar as partes produz mistura indistinta, não síntese.</mecanismo>
+  <condicoes>
+    <vale_quando>O ofício tem elementos separáveis e uma trajetória longa de domínio.</vale_quando>
+    <enfraquece_quando>O aprendiz pula a fase analítica e mistura sem controle.</enfraquece_quando>
+    <reverte_quando>Ficar preso à fase analítica (separar sempre, nunca integrar) também limita: vira fragmentação sem todo.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Storaro descreve a própria carreira: 1ª fase (até Apocalypse Now) = luz/sombra; 2ª (até The Last Emperor) = cor; 3ª (depois) = "find balance… more harmony" entre os quatro elementos. "In the beginning, I was mainly trying to divide… Now it was time to see if I could put them together."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="EST-S04">A trajetória de domínio coincide com a trajetória de autorrealização.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.4-6 (as três fases: dividir → harmonizar).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="EST-S02" tipo="principio">
+  <gatilho>Quando se cria um código simbólico (cores, motivos, leitmotifs) para personagens ou temas de uma obra.</gatilho>
+  <mecanismo>Um sistema simbólico só lê como inevitável (e não como enfeite arbitrário) quando cada signo é MOTIVADO — ancorado na natureza, na geografia ou na função do que representa. A motivação faz o público SENTIR a correspondência como verdadeira antes mesmo de decodificá-la conscientemente. A arbitrariedade enfraquece o símbolo (poderia ser qualquer cor); o vínculo causal entre signo e referente o torna ressonante e memorável. Escolher o signo a partir de uma propriedade real do referente é o que separa código de capricho.</mecanismo>
+  <condicoes>
+    <vale_quando>O referente tem propriedades (natureza/lugar/função) das quais derivar o signo.</vale_quando>
+    <enfraquece_quando>O vínculo é fraco ou puramente convencional, sem motivação real.</enfraquece_quando>
+    <reverte_quando>Motivação rebuscada/forçada demais vira didatismo simbólico (alegoria pesada) e perde a sutileza.</reverte_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>Lama Norbu = terra/preto (matéria; nutrir = impartir conhecimento; o lama é mãe e pai dos discípulos); Jesse/Seattle = água/verde; Raju/Kathmandu = fogo/vermelho; Gita/Nepal = ar/azul — "this was not arbitrary — these elements were in the nature of their characters and their geographies".</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="generaliza" alvo="VIS-S09">Sol/lua como estado psicológico é um caso de símbolo motivado.</relacao>
+    <relacao tipo="pre_requisito" alvo="GAB-S01">A receita elemento→cor→personagem instancia este princípio.</relacao>
+  </relacoes>
+  <evidencia tier="N2">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.6-7 (atribuição motivada de elementos/cores).</fonte>
+  </evidencia>
+</regra>
+
+<regra id="EST-S03" tipo="modelo_mental">
+  <gatilho>Quando se busca compreender ou cortejar o momento de inspiração / ideia criativa.</gatilho>
+  <mecanismo>Modelo adotado por Storaro (via Sri Aurobindo): a mente tem três níveis — subconsciente (abaixo), consciência (onde se opera) e "overconsciente" (acima). Quanto mais fundo se explora o próprio subconsciente, mais — na mesma proporção — se alcança o overconsciente ao retornar. O momento de INSPIRAÇÃO (a ideia que "salta", a palavra que vem, o lampejo de como fazer a luz) é justamente um breve ASCENSO ao overconsciente, seguido de volta à consciência normal. Implicação transferível: a profundidade do trabalho interior de autoconhecimento determina a altura do insight acessível; cortejar ideias passa por mergulhar fundo em si, não por forçar a superfície.</mecanismo>
+  <condicoes>
+    <vale_quando>Tomado como heurística de prática criativa que o próprio mestre usa para entender seus lampejos.</vale_quando>
+    <enfraquece_quando>Tratado como afirmação literal sobre a arquitetura da mente — não há lastro empírico na fonte.</enfraquece_quando>
+  </condicoes>
+  <aplicacoes>
+    <aplicacao>"Any moment that they have an inspiration, that is the moment they can go above the level of consciousness to look into the overconscious… working in photography, I have an idea, how to make that light — that moment is our chance to go into the overconscious and come back."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="EST-S04">Profundidade interior alimenta tanto o insight quanto a expressão.</relacao>
+  </relacoes>
+  <evidencia tier="N3">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.4-6. Filosofia de prática [V]; modelo atribuído pela fonte a Sri Aurobindo, "Adventure of Consciousness" (via Storaro) — convenção/filosofia, não ciência.</fonte>
+  </evidencia>
+</regra>
+
+<regra id="EST-S04" tipo="modelo_mental">
+  <gatilho>Quando se pensa o teto de qualidade/profundidade do próprio trabalho criativo e sua relação com a vida do autor — ou o conflito entre servir a visão de outro e se expressar.</gatilho>
+  <mecanismo>A obra é autobiografia involuntária: ao trabalhar, o autor usa "everything within myself", então a profundidade e autenticidade do que consegue expressar é LIMITADA pela sua própria profundidade como pessoa. E o vínculo é recíproco e cumulativo: expressar-se faz crescer como humano, e crescer como humano amplia o que se pode expressar — um ciclo virtuoso ("step by step as you express yourself, you grow as a human being, and… the more you grow… the more you express yourself"). Implicação: investir no desenvolvimento interior não é tangente ao ofício — é o que eleva o TETO do ofício. Servir à visão de outro e a autoexpressão não competem: é POR usar tudo de si que se serve bem.</mecanismo>
+  <condicoes>
+    <vale_quando>O trabalho admite expressão pessoal e há um percurso longo de prática.</vale_quando>
+    <enfraquece_quando>O trabalho é puramente técnico/anônimo, sem espaço de autoria.</enfraquece_quando>
+    <reverte_quando>Autoexpressão que ignora a visão/serviço vira ego que atrapalha a obra — por isso Storaro equilibra: "I'm always working very hard to complement the director's vision, but it is also my own story".</reverte_quando>
+  </condicoes>
+  <tensoes>
+    <tensao alvo="VIS-S01">Serviço à visão alheia × autoria pessoal — resolvido como falsa oposição (a entrega pessoal É o que torna o serviço excelente).</tensao>
+  </tensoes>
+  <aplicacoes>
+    <aplicacao>Storaro estrutura toda a carreira como fases de autorrealização; "Little Buddha is not just a movie for me. It is really a part of my own life." "Each movie is a part of your life, even if you don't want it to be."</aplicacao>
+  </aplicacoes>
+  <relacoes>
+    <relacao tipo="sinergia" alvo="EST-S01">A maturação do ofício é a maturação da pessoa.</relacao>
+    <relacao tipo="sinergia" alvo="EST-S03">A profundidade interior alimenta a expressão.</relacao>
+  </relacoes>
+  <evidencia tier="N3">
+    <fonte>Storaro &amp; Gentry — Film Quarterly 48(2), 1994-95. pp.4-6, 9-10. Filosofia de prática [V] de mestre; sem lastro empírico.</fonte>
+  </evidencia>
+</regra>
+
+</unidades>
